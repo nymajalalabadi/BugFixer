@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "ورود";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="/css/user.css">
+}
+
+@section Header
+{
+    <partial name="_Header" />
+}
+
+<div class="user-page-style">
+
+    <div class="breadcumb-layer">
+        <div class="container">
+            <ul itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> صفحه اصلی </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a asp-action="Login" asp-controller="Account" itemprop="item"><span itemprop="name"> ورود به سایت </span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="user-page">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-7 col-sm-12 col-xs-12 pull-left">
+
+                    <div class="inner">
+                        <div class="description">
+                            <p>لطفا به هنگام ورود به حساب کاربری به موارد زیر توجه فرمایید </p>
+                            <ul>
+                                <li>در صورتی که برای اولین بار به حساب کاربری خود وارد می شوید ، پس از ورود به سامانه ، جهت حفظ امنیت بیشتر ، لطفا رمز عبور خود را تغییر دهید.</li>
+                                <li>پس از ورود به حساب کاربری ، جهت حفظ امنیت ، لطفا از حساب کاربری خود خارج شوید.</li>
+                                <li>در صورتی که رمز عبور خود را فراموش کرده اید ، می توانید از طریق شماره موبایلتان ، رمز عبور جدید را دریافت نمایید.</li>
+                            </ul>
+
+                            <div class="register-link">
+                                <i class="icon-add-user"></i> در صورتی که در سایت ، عضو نیستید ، ابتدا <a href=""> ثبت نام </a> کنید
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-5 col-sm-12 col-xs-12 pull-right">
+
+                    <form action="" method="" class="shadow-style">
+
+                        <div class="inner">
+
+                            <h2> <i class="icon-three-dots"></i> ورود به حساب کاربری </h2>
+
+                            <div class="input-layer">
+                                <span><i class="icon-mail-envelope"></i> پست الکترونیک </span>
+                                <input type="email" name="">
+                                <label class="error"> پست الکترونیکی را وارد نمایید </label>
+                            </div>
+
+                            <div class="input-layer">
+                                <span><i class="icon-lock"></i> رمز عبور </span>
+                                <input type="password" name="">
+                                <label class="error"> رمز عبور را وارد نمایید </label>
+                            </div>
+
+                            <div class="captcha-layer">
+                                <!-- کد کپچا در این لایه قرار بدید تا استایل بگیره-->
+                            </div>
+
+                            <div class="checkbox">
+                                <input type="checkbox" name="" id="remember-me">
+                                <label for="remember-me"> مرا بخاطر بسپار </label>
+                            </div>
+
+                            <div class="link">
+                                <a href=""> رمز عبور خود را فراموش کرده ام !</a>
+                            </div>
+
+                            <button> ورود به حساب کاربری </button>
+
+                        </div>
+
+                    </form>
+
+                    <div class="login-with-social shadow-style">
+                        <span>ورود با سایر حساب های کاربری </span>
+                        <a href="" class="shadow-style"><i class="icon-twitter"></i></a>
+                        <a href="" class="shadow-style"><i class="icon-github"></i></a>
+                        <a href="" class="shadow-style"><i class="icon-google-plus"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+

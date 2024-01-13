@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{0DA90D9E-2AD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFixer.IoC", "BugFixer.IoC\BugFixer.IoC.csproj", "{8B159493-F4DC-44B4-85FA-911D7A5A9DCA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentension", "Presentension", "{6CC65C64-9DBD-485A-918E-4B5E206DB5BF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6CC65C64-9DBD-485A-918E-4B5E206DB5BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

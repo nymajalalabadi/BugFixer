@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WebFont</title>
+    <link rel="stylesheet" type="text/css" href="bugfixer.css">
+    <meta charset="UTF-8">
+    <style>
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    body {
+        font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        color: #222;
+    }
+    a {
+        color: #333;
+        border-bottom: 1px solid #a9fd00;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    [class^="icon-"]:before, [class*=" icon-"]:before, [class^="icon-"]:after, [class*=" icon-"]:after {
+        font-family: bugfixer;
+        font-size: 30px;
+        font-style: normal;
+        margin-left: 20px;
+        color: #333;
+    }
+    .wrapper {
+        max-width: 600px;
+        margin: auto;
+        padding: 0 1em;
+    }
+    .title {
+        font-size: 1.25em;
+        text-align: center;
+        margin-bottom: 1em;
+        text-transform: uppercase;
+    }
+    header {
+        text-align: center;
+        background-color: #222;
+        color: #fff;
+        padding: 1em;
+    }
+    header .logo {
+        width: 210px;
+        height: 38px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 1em;
+        border: none;
+    }
+    header strong {
+        font-size: 1.95em;
+        font-weight: bold;
+        vertical-align: middle;
+        margin-top: 5px;
+        display: inline-block;
+    }
+    .demo {
+        margin: 2em auto;
+        line-height: 1.25em;
+    }
+    .demo ul li {
+        margin-bottom: 1em;
+    }
+    .demo ul li .num {
+        color: #222;
+        border-radius: 20px;
+        display: inline-block;
+        width: 26px;
+        padding: 3px;
+        height: 26px;
+        text-align: center;
+        margin-right: 0.5em;
+        border: 1px solid #222;
+    }
+    .demo ul li code {
+        background-color: #222;
+        border-radius: 4px;
+        padding: 0.25em 0.5em;
+        display: inline-block;
+        color: #fff;
+        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+        font-weight: lighter;
+        margin-top: 1em;
+        font-size: 0.8em;
+        word-break: break-all;
+    }
+    .demo ul li code.big {
+        padding: 1em;
+        font-size: 0.9em;
+    }
+    .demo ul li code .red {
+        color: #EF3159;
+    }
+    .demo ul li code .green {
+        color: #ACFF65;
+    }
+    .demo ul li code .yellow {
+        color: #FFFF99;
+    }
+    .demo ul li code .blue {
+        color: #99D3FF;
+    }
+    .demo ul li code .purple {
+        color: #A295FF;
+    }
+    .demo ul li code .dots {
+        margin-top: 0.5em;
+        display: block;
+    }
+    #glyphs {
+        border-bottom: 1px solid #ccc;
+        padding: 2em 0;
+        text-align: center;
+    }
+    .glyph {
+        display: inline-block;
+        width: 9em;
+        margin: 1em;
+        text-align: center;
+        vertical-align: top;
+        background: #FFF;
+    }
+    .glyph .glyph-icon {
+        padding: 10px;
+        display: block;
+        font-family:"bugfixer";
+        font-size: 33px;
+        line-height: 1;
+    }
+    .glyph .glyph-icon:before {
+        font-size: 40px;
+        color: #222;
+        margin-left: 0;
+    }
+    .class-name {
+        font-size: 0.65em;
+        background-color: #222;
+        color: #fff;
+        border-radius: 4px 4px 0 0;
+        padding: 0.5em;
+        color: #FFFF99;
+        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+    }
+    .author-name {
+        font-size: 0.6em;
+        background-color: #fcfcfd;
+        border: 1px solid #DEDEE4;
+        border-top: 0;
+        border-radius: 0 0 4px 4px;
+        padding: 0.5em;
+    }
+    .class-name:last-child {
+        font-size: 10px;
+        color:#888;
+    }
+    .class-name:last-child a {
+        font-size: 10px;
+        color:#555;
+    }
+    .class-name:last-child a:hover {
+        color:#a9fd00;
+    }
+    .glyph > input {
+        display: block;
+        width: 100px;
+        margin: 5px auto;
+        text-align: center;
+        font-size: 12px;
+        cursor: text;
+    }
+    .glyph > input.icon-input {
+        font-family:"bugfixer";
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .attribution .title {
+        margin-top: 2em;
+    }
+    .attribution textarea {
+        background-color: #fcfcfd;
+        padding: 1em;
+        border: none;
+        box-shadow: none;
+        border: 1px solid #DEDEE4;
+        border-radius: 4px;
+        resize: none;
+        width: 100%;
+        height: 150px;
+        font-size: 0.8em;
+        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+        -webkit-appearance: none;
+    }
+    .iconsuse {
+        margin: 2em auto;
+        text-align: center;
+        max-width: 1200px;
+    }
+    .iconsuse:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+    .iconsuse .image {
+        float: left;
+        width: 25%;
+        padding: 0 1em;
+    }
+    .iconsuse .image p {
+        margin-bottom: 1em;
+    }
+    .iconsuse .image span {
+        display: block;
+        font-size: 0.65em;
+        background-color: #222;
+        color: #fff;
+        border-radius: 4px;
+        padding: 0.5em;
+        color: #FFFF99;
+        margin-top: 1em;
+        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+    }
+    #footer {
+        text-align: center;
+        background-color: #4C5B5C;
+        color: #7c9192;
+        padding: 1em;
+    }
+    #footer a {
+        border: none;
+        color: #a9fd00;
+        font-weight: normal;
+    }
+    @media (max-width: 960px) {
+        .iconsuse .image {
+            width: 50%;
+        }
+    }
+    @media (max-width: 560px) {
+        .iconsuse .image {
+            width: 100%;
+        }
+    }
+    </style>
+</head>
+
+<body class="characters-off">
+
+
+   <section id="glyphs">          
+    
+      
+        <div class="glyph"><div class="glyph-icon icon-briefcase"></div>
+            <div class="class-name">.icon-briefcase</div>
+            <div class="author-name">Author: <a data-file="001-briefcase" href="https://www.bugfixer.com/authors/those-icons">Those Icons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-phone-1"></div>
+            <div class="class-name">.icon-phone-1</div>
+            <div class="author-name">Author: <a data-file="002-phone-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-laptop"></div>
+            <div class="class-name">.icon-laptop</div>
+            <div class="author-name">Author: <a data-file="003-laptop" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-folder"></div>
+            <div class="class-name">.icon-folder</div>
+            <div class="author-name">Author: <a data-file="004-folder" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-repairing-service"></div>
+            <div class="class-name">.icon-repairing-service</div>
+            <div class="author-name">Author: <a data-file="005-repairing-service" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-reply"></div>
+            <div class="class-name">.icon-reply</div>
+            <div class="author-name">Author: <a data-file="006-reply" href="https://www.bugfixer.com/authors/those-icons">Those Icons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-poll"></div>
+            <div class="class-name">.icon-poll</div>
+            <div class="author-name">Author: <a data-file="007-poll" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-happy-1"></div>
+            <div class="class-name">.icon-happy-1</div>
+            <div class="author-name">Author: <a data-file="008-happy-1" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-dollar-symbol"></div>
+            <div class="class-name">.icon-dollar-symbol</div>
+            <div class="author-name">Author: <a data-file="009-dollar-symbol" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-neutral"></div>
+            <div class="class-name">.icon-neutral</div>
+            <div class="author-name">Author: <a data-file="010-neutral" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-sad"></div>
+            <div class="class-name">.icon-sad</div>
+            <div class="author-name">Author: <a data-file="011-sad" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-event"></div>
+            <div class="class-name">.icon-event</div>
+            <div class="author-name">Author: <a data-file="012-event" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-happy"></div>
+            <div class="class-name">.icon-happy</div>
+            <div class="author-name">Author: <a data-file="013-happy" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-alert"></div>
+            <div class="class-name">.icon-alert</div>
+            <div class="author-name">Author: <a data-file="014-alert" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-menu-2"></div>
+            <div class="class-name">.icon-menu-2</div>
+            <div class="author-name">Author: <a data-file="015-menu-2" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-menu-1"></div>
+            <div class="class-name">.icon-menu-1</div>
+            <div class="author-name">Author: <a data-file="016-menu-1" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-cart-1"></div>
+            <div class="class-name">.icon-cart-1</div>
+            <div class="author-name">Author: <a data-file="017-cart-1" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-clock-1"></div>
+            <div class="class-name">.icon-clock-1</div>
+            <div class="author-name">Author: <a data-file="018-clock-1" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-atom"></div>
+            <div class="class-name">.icon-atom</div>
+            <div class="author-name">Author: <a data-file="019-atom" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-cogwheel"></div>
+            <div class="class-name">.icon-cogwheel</div>
+            <div class="author-name">Author: <a data-file="020-cogwheel" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-mode"></div>
+            <div class="class-name">.icon-mode</div>
+            <div class="author-name">Author: <a data-file="021-mode" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bug-3"></div>
+            <div class="class-name">.icon-bug-3</div>
+            <div class="author-name">Author: <a data-file="022-bug-3" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-cloud"></div>
+            <div class="class-name">.icon-cloud</div>
+            <div class="author-name">Author: <a data-file="023-cloud" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-mouse"></div>
+            <div class="class-name">.icon-mouse</div>
+            <div class="author-name">Author: <a data-file="024-mouse" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-phone"></div>
+            <div class="class-name">.icon-phone</div>
+            <div class="author-name">Author: <a data-file="025-phone" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-rotate"></div>
+            <div class="class-name">.icon-rotate</div>
+            <div class="author-name">Author: <a data-file="026-rotate" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-crop"></div>
+            <div class="class-name">.icon-crop</div>
+            <div class="author-name">Author: <a data-file="027-crop" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-link"></div>
+            <div class="class-name">.icon-link</div>
+            <div class="author-name">Author: <a data-file="028-link" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-portrait"></div>
+            <div class="class-name">.icon-portrait</div>
+            <div class="author-name">Author: <a data-file="029-portrait" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-photo"></div>
+            <div class="class-name">.icon-photo</div>
+            <div class="author-name">Author: <a data-file="030-photo" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-window"></div>
+            <div class="class-name">.icon-window</div>
+            <div class="author-name">Author: <a data-file="031-window" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-remove"></div>
+            <div class="class-name">.icon-remove</div>
+            <div class="author-name">Author: <a data-file="032-remove" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-user-6"></div>
+            <div class="class-name">.icon-user-6</div>
+            <div class="author-name">Author: <a data-file="033-user-6" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-safe"></div>
+            <div class="class-name">.icon-safe</div>
+            <div class="author-name">Author: <a data-file="034-safe" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-switch"></div>
+            <div class="class-name">.icon-switch</div>
+            <div class="author-name">Author: <a data-file="035-switch" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-talk"></div>
+            <div class="class-name">.icon-talk</div>
+            <div class="author-name">Author: <a data-file="036-talk" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-university"></div>
+            <div class="class-name">.icon-university</div>
+            <div class="author-name">Author: <a data-file="037-university" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-delete-1"></div>
+            <div class="class-name">.icon-delete-1</div>
+            <div class="author-name">Author: <a data-file="038-delete-1" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-info-1"></div>
+            <div class="class-name">.icon-info-1</div>
+            <div class="author-name">Author: <a data-file="039-info-1" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-info"></div>
+            <div class="class-name">.icon-info</div>
+            <div class="author-name">Author: <a data-file="040-info" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-adjust"></div>
+            <div class="class-name">.icon-adjust</div>
+            <div class="author-name">Author: <a data-file="041-adjust" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-user-shape"></div>
+            <div class="class-name">.icon-user-shape</div>
+            <div class="author-name">Author: <a data-file="042-user-shape" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-notifications-on"></div>
+            <div class="class-name">.icon-notifications-on</div>
+            <div class="author-name">Author: <a data-file="043-notifications-on" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-key"></div>
+            <div class="class-name">.icon-key</div>
+            <div class="author-name">Author: <a data-file="044-key" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-sand-clock"></div>
+            <div class="class-name">.icon-sand-clock</div>
+            <div class="author-name">Author: <a data-file="045-sand-clock" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-wait"></div>
+            <div class="class-name">.icon-wait</div>
+            <div class="author-name">Author: <a data-file="046-wait" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-earth"></div>
+            <div class="class-name">.icon-earth</div>
+            <div class="author-name">Author: <a data-file="047-earth" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-worldwide"></div>
+            <div class="class-name">.icon-worldwide</div>
+            <div class="author-name">Author: <a data-file="048-worldwide" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-fullscreen-2"></div>
+            <div class="class-name">.icon-fullscreen-2</div>
+            <div class="author-name">Author: <a data-file="049-fullscreen-2" href="https://www.bugfixer.com/authors/those-icons">Those Icons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-fullscreen-1"></div>
+            <div class="class-name">.icon-fullscreen-1</div>
+            <div class="author-name">Author: <a data-file="050-fullscreen-1" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-expand-3"></div>
+            <div class="class-name">.icon-expand-3</div>
+            <div class="author-name">Author: <a data-file="051-expand-3" href="https://www.bugfixer.com/authors/pixelmeetup">Pixelmeetup</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-fullscreen"></div>
+            <div class="class-name">.icon-fullscreen</div>
+            <div class="author-name">Author: <a data-file="052-fullscreen" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-flag-1"></div>
+            <div class="class-name">.icon-flag-1</div>
+            <div class="author-name">Author: <a data-file="053-flag-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-flag"></div>
+            <div class="class-name">.icon-flag</div>
+            <div class="author-name">Author: <a data-file="054-flag" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-pencil-edit"></div>
+            <div class="class-name">.icon-pencil-edit</div>
+            <div class="author-name">Author: <a data-file="055-pencil-edit" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-dustbin"></div>
+            <div class="class-name">.icon-dustbin</div>
+            <div class="author-name">Author: <a data-file="056-dustbin" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-magnifying-glass-1"></div>
+            <div class="class-name">.icon-magnifying-glass-1</div>
+            <div class="author-name">Author: <a data-file="057-magnifying-glass-1" href="https://www.bugfixer.com/authors/dinosoftlabs">DinosoftLabs</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bug-2"></div>
+            <div class="class-name">.icon-bug-2</div>
+            <div class="author-name">Author: <a data-file="058-bug-2" href="https://www.bugfixer.com/authors/pixel-perfect">Pixel perfect</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-computer"></div>
+            <div class="class-name">.icon-computer</div>
+            <div class="author-name">Author: <a data-file="059-computer" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-puzzle-2"></div>
+            <div class="class-name">.icon-puzzle-2</div>
+            <div class="author-name">Author: <a data-file="060-puzzle-2" href="https://www.bugfixer.com/authors/pixel-perfect">Pixel perfect</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-code-1"></div>
+            <div class="class-name">.icon-code-1</div>
+            <div class="author-name">Author: <a data-file="061-code-1" href="https://www.bugfixer.com/authors/pixelmeetup">Pixelmeetup</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-coding-1"></div>
+            <div class="class-name">.icon-coding-1</div>
+            <div class="author-name">Author: <a data-file="062-coding-1" href="https://www.bugfixer.com/authors/prosymbols">Prosymbols</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-code"></div>
+            <div class="class-name">.icon-code</div>
+            <div class="author-name">Author: <a data-file="063-code" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-coding"></div>
+            <div class="class-name">.icon-coding</div>
+            <div class="author-name">Author: <a data-file="064-coding" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-html"></div>
+            <div class="class-name">.icon-html</div>
+            <div class="author-name">Author: <a data-file="065-html" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-cancel-1"></div>
+            <div class="class-name">.icon-cancel-1</div>
+            <div class="author-name">Author: <a data-file="066-cancel-1" href="https://www.bugfixer.com/authors/chanut">Chanut</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-graph-2"></div>
+            <div class="class-name">.icon-graph-2</div>
+            <div class="author-name">Author: <a data-file="067-graph-2" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-credit-card"></div>
+            <div class="class-name">.icon-credit-card</div>
+            <div class="author-name">Author: <a data-file="068-credit-card" href="https://www.bugfixer.com/authors/dave-gandy">Dave Gandy</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bookmark-4"></div>
+            <div class="class-name">.icon-bookmark-4</div>
+            <div class="author-name">Author: <a data-file="069-bookmark-4" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bookmark-3"></div>
+            <div class="class-name">.icon-bookmark-3</div>
+            <div class="author-name">Author: <a data-file="070-bookmark-3" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bookmark-2"></div>
+            <div class="class-name">.icon-bookmark-2</div>
+            <div class="author-name">Author: <a data-file="071-bookmark-2" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bookmark-1"></div>
+            <div class="class-name">.icon-bookmark-1</div>
+            <div class="author-name">Author: <a data-file="072-bookmark-1" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bookmark"></div>
+            <div class="class-name">.icon-bookmark</div>
+            <div class="author-name">Author: <a data-file="073-bookmark" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-marker"></div>
+            <div class="class-name">.icon-marker</div>
+            <div class="author-name">Author: <a data-file="074-marker" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-profile"></div>
+            <div class="class-name">.icon-profile</div>
+            <div class="author-name">Author: <a data-file="075-profile" href="https://www.bugfixer.com/authors/lucy-g">Lucy G</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-graph-1"></div>
+            <div class="class-name">.icon-graph-1</div>
+            <div class="author-name">Author: <a data-file="076-graph-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-graph"></div>
+            <div class="class-name">.icon-graph</div>
+            <div class="author-name">Author: <a data-file="077-graph" href="https://www.bugfixer.com/authors/pixel-perfect">Pixel perfect</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bug-1"></div>
+            <div class="class-name">.icon-bug-1</div>
+            <div class="author-name">Author: <a data-file="078-bug-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-magnifying-glass"></div>
+            <div class="class-name">.icon-magnifying-glass</div>
+            <div class="author-name">Author: <a data-file="079-magnifying-glass" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-problem"></div>
+            <div class="class-name">.icon-problem</div>
+            <div class="author-name">Author: <a data-file="080-problem" href="https://www.bugfixer.com/authors/nikita-golubev">Nikita Golubev</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bug"></div>
+            <div class="class-name">.icon-bug</div>
+            <div class="author-name">Author: <a data-file="081-bug" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-insect"></div>
+            <div class="class-name">.icon-insect</div>
+            <div class="author-name">Author: <a data-file="082-insect" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-open-book"></div>
+            <div class="class-name">.icon-open-book</div>
+            <div class="author-name">Author: <a data-file="083-open-book" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-time-left"></div>
+            <div class="class-name">.icon-time-left</div>
+            <div class="author-name">Author: <a data-file="084-time-left" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-terminal"></div>
+            <div class="class-name">.icon-terminal</div>
+            <div class="author-name">Author: <a data-file="085-terminal" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-sort"></div>
+            <div class="class-name">.icon-sort</div>
+            <div class="author-name">Author: <a data-file="086-sort" href="https://www.bugfixer.com/authors/vitaly-gorbachev">Vitaly Gorbachev</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-gear-2"></div>
+            <div class="class-name">.icon-gear-2</div>
+            <div class="author-name">Author: <a data-file="087-gear-2" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-question-1"></div>
+            <div class="class-name">.icon-question-1</div>
+            <div class="author-name">Author: <a data-file="088-question-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-checklist"></div>
+            <div class="class-name">.icon-checklist</div>
+            <div class="author-name">Author: <a data-file="089-checklist" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-cloud-computing"></div>
+            <div class="class-name">.icon-cloud-computing</div>
+            <div class="author-name">Author: <a data-file="090-cloud-computing" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-24-hours"></div>
+            <div class="class-name">.icon-24-hours</div>
+            <div class="author-name">Author: <a data-file="091-24-hours" href="https://www.bugfixer.com/authors/srip">srip</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-calendar-2"></div>
+            <div class="class-name">.icon-calendar-2</div>
+            <div class="author-name">Author: <a data-file="092-calendar-2" href="https://www.bugfixer.com/authors/becris">Becris</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-time"></div>
+            <div class="class-name">.icon-time</div>
+            <div class="author-name">Author: <a data-file="093-time" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-stack"></div>
+            <div class="class-name">.icon-stack</div>
+            <div class="author-name">Author: <a data-file="094-stack" href="https://www.bugfixer.com/authors/hirschwolf">hirschwolf</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-settings"></div>
+            <div class="class-name">.icon-settings</div>
+            <div class="author-name">Author: <a data-file="095-settings" href="https://www.bugfixer.com/authors/hirschwolf">hirschwolf</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-puzzle-1"></div>
+            <div class="class-name">.icon-puzzle-1</div>
+            <div class="author-name">Author: <a data-file="096-puzzle-1" href="https://www.bugfixer.com/authors/mynamepong">mynamepong</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-mobile-phone"></div>
+            <div class="class-name">.icon-mobile-phone</div>
+            <div class="author-name">Author: <a data-file="097-mobile-phone" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-paper"></div>
+            <div class="class-name">.icon-paper</div>
+            <div class="author-name">Author: <a data-file="098-paper" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-clock"></div>
+            <div class="class-name">.icon-clock</div>
+            <div class="author-name">Author: <a data-file="099-clock" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-calendar-1"></div>
+            <div class="class-name">.icon-calendar-1</div>
+            <div class="author-name">Author: <a data-file="100-calendar-1" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-medal"></div>
+            <div class="class-name">.icon-medal</div>
+            <div class="author-name">Author: <a data-file="101-medal" href="https://www.bugfixer.com/authors/vectors-market">Vectors Market</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-food"></div>
+            <div class="class-name">.icon-food</div>
+            <div class="author-name">Author: <a data-file="102-food" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-instagram"></div>
+            <div class="class-name">.icon-instagram</div>
+            <div class="author-name">Author: <a data-file="103-instagram" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-github"></div>
+            <div class="class-name">.icon-github</div>
+            <div class="author-name">Author: <a data-file="104-github" href="https://www.bugfixer.com/authors/pixel-perfect">Pixel perfect</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-upload"></div>
+            <div class="class-name">.icon-upload</div>
+            <div class="author-name">Author: <a data-file="105-upload" href="https://www.bugfixer.com/authors/pixel-perfect">Pixel perfect</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-download"></div>
+            <div class="class-name">.icon-download</div>
+            <div class="author-name">Author: <a data-file="106-download" href="https://www.bugfixer.com/authors/pixel-perfect">Pixel perfect</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bullet"></div>
+            <div class="class-name">.icon-bullet</div>
+            <div class="author-name">Author: <a data-file="107-bullet" href="https://www.bugfixer.com/authors/pixelmeetup">Pixelmeetup</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-notebook"></div>
+            <div class="class-name">.icon-notebook</div>
+            <div class="author-name">Author: <a data-file="108-notebook" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-print"></div>
+            <div class="class-name">.icon-print</div>
+            <div class="author-name">Author: <a data-file="109-print" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-calendar"></div>
+            <div class="class-name">.icon-calendar</div>
+            <div class="author-name">Author: <a data-file="110-calendar" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-wrench"></div>
+            <div class="class-name">.icon-wrench</div>
+            <div class="author-name">Author: <a data-file="111-wrench" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-resume"></div>
+            <div class="class-name">.icon-resume</div>
+            <div class="author-name">Author: <a data-file="112-resume" href="https://www.bugfixer.com/authors/smartline">Smartline</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-bag"></div>
+            <div class="class-name">.icon-bag</div>
+            <div class="author-name">Author: <a data-file="113-bag" href="https://www.bugfixer.com/authors/dimitry-miroliubov">Dimitry Miroliubov</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-analytics"></div>
+            <div class="class-name">.icon-analytics</div>
+            <div class="author-name">Author: <a data-file="114-analytics" href="https://www.bugfixer.com/authors/pixel-perfect">Pixel perfect</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-money"></div>
+            <div class="class-name">.icon-money</div>
+            <div class="author-name">Author: <a data-file="115-money" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-puzzle"></div>
+            <div class="class-name">.icon-puzzle</div>
+            <div class="author-name">Author: <a data-file="116-puzzle" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-wallet"></div>
+            <div class="class-name">.icon-wallet</div>
+            <div class="author-name">Author: <a data-file="117-wallet" href="https://www.bugfixer.com/authors/good-ware">Good Ware</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-stop"></div>
+            <div class="class-name">.icon-stop</div>
+            <div class="author-name">Author: <a data-file="118-stop" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-tick-2"></div>
+            <div class="class-name">.icon-tick-2</div>
+            <div class="author-name">Author: <a data-file="119-tick-2" href="https://www.bugfixer.com/authors/smartline">Smartline</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-lock"></div>
+            <div class="class-name">.icon-lock</div>
+            <div class="author-name">Author: <a data-file="120-lock" href="https://www.bugfixer.com/authors/those-icons">Those Icons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-login-1"></div>
+            <div class="class-name">.icon-login-1</div>
+            <div class="author-name">Author: <a data-file="121-login-1" href="https://www.bugfixer.com/authors/those-icons">Those Icons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-work"></div>
+            <div class="class-name">.icon-work</div>
+            <div class="author-name">Author: <a data-file="122-work" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-percent"></div>
+            <div class="class-name">.icon-percent</div>
+            <div class="author-name">Author: <a data-file="123-percent" href="https://www.bugfixer.com/authors/roundicons">Roundicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-user-5"></div>
+            <div class="class-name">.icon-user-5</div>
+            <div class="author-name">Author: <a data-file="124-user-5" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-maps-and-flags"></div>
+            <div class="class-name">.icon-maps-and-flags</div>
+            <div class="author-name">Author: <a data-file="125-maps-and-flags" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-expand-2"></div>
+            <div class="class-name">.icon-expand-2</div>
+            <div class="author-name">Author: <a data-file="126-expand-2" href="https://www.bugfixer.com/authors/cursor-creative">Cursor Creative</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-expand-1"></div>
+            <div class="class-name">.icon-expand-1</div>
+            <div class="author-name">Author: <a data-file="127-expand-1" href="https://www.bugfixer.com/authors/cursor-creative">Cursor Creative</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-expand"></div>
+            <div class="class-name">.icon-expand</div>
+            <div class="author-name">Author: <a data-file="128-expand" href="https://www.bugfixer.com/authors/cursor-creative">Cursor Creative</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-list"></div>
+            <div class="class-name">.icon-list</div>
+            <div class="author-name">Author: <a data-file="129-list" href="https://www.bugfixer.com/authors/alfredo-hernandez">Alfredo Hernandez</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-questions"></div>
+            <div class="class-name">.icon-questions</div>
+            <div class="author-name">Author: <a data-file="130-questions" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-quality"></div>
+            <div class="class-name">.icon-quality</div>
+            <div class="author-name">Author: <a data-file="131-quality" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-question"></div>
+            <div class="class-name">.icon-question</div>
+            <div class="author-name">Author: <a data-file="132-question" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-shopping-cart-2"></div>
+            <div class="class-name">.icon-shopping-cart-2</div>
+            <div class="author-name">Author: <a data-file="133-shopping-cart-2" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-home-1"></div>
+            <div class="class-name">.icon-home-1</div>
+            <div class="author-name">Author: <a data-file="134-home-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-user-4"></div>
+            <div class="class-name">.icon-user-4</div>
+            <div class="author-name">Author: <a data-file="135-user-4" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-gear-1"></div>
+            <div class="class-name">.icon-gear-1</div>
+            <div class="author-name">Author: <a data-file="136-gear-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-edit-1"></div>
+            <div class="class-name">.icon-edit-1</div>
+            <div class="author-name">Author: <a data-file="137-edit-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-worlwide"></div>
+            <div class="class-name">.icon-worlwide</div>
+            <div class="author-name">Author: <a data-file="138-worlwide" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-arroba"></div>
+            <div class="class-name">.icon-arroba</div>
+            <div class="author-name">Author: <a data-file="139-arroba" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-layers-1"></div>
+            <div class="class-name">.icon-layers-1</div>
+            <div class="author-name">Author: <a data-file="140-layers-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-phone-call-1"></div>
+            <div class="class-name">.icon-phone-call-1</div>
+            <div class="author-name">Author: <a data-file="141-phone-call-1" href="https://www.bugfixer.com/authors/zlatko-najdenovski">Zlatko Najdenovski</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-fax"></div>
+            <div class="class-name">.icon-fax</div>
+            <div class="author-name">Author: <a data-file="142-fax" href="https://www.bugfixer.com/authors/zlatko-najdenovski">Zlatko Najdenovski</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-shopping-cart-1"></div>
+            <div class="class-name">.icon-shopping-cart-1</div>
+            <div class="author-name">Author: <a data-file="143-shopping-cart-1" href="https://www.bugfixer.com/authors/vectors-market">Vectors Market</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-zoom-in"></div>
+            <div class="class-name">.icon-zoom-in</div>
+            <div class="author-name">Author: <a data-file="144-zoom-in" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-like"></div>
+            <div class="class-name">.icon-like</div>
+            <div class="author-name">Author: <a data-file="145-like" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-dislike"></div>
+            <div class="class-name">.icon-dislike</div>
+            <div class="author-name">Author: <a data-file="146-dislike" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-right-quote"></div>
+            <div class="class-name">.icon-right-quote</div>
+            <div class="author-name">Author: <a data-file="147-right-quote" href="https://www.bugfixer.com/authors/elias-bikbulatov">Elias Bikbulatov</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-left-quote"></div>
+            <div class="class-name">.icon-left-quote</div>
+            <div class="author-name">Author: <a data-file="148-left-quote" href="https://www.bugfixer.com/authors/elias-bikbulatov">Elias Bikbulatov</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-java"></div>
+            <div class="class-name">.icon-java</div>
+            <div class="author-name">Author: <a data-file="149-java" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-android"></div>
+            <div class="class-name">.icon-android</div>
+            <div class="author-name">Author: <a data-file="150-android" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-telegram"></div>
+            <div class="class-name">.icon-telegram</div>
+            <div class="author-name">Author: <a data-file="151-telegram" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-rss"></div>
+            <div class="class-name">.icon-rss</div>
+            <div class="author-name">Author: <a data-file="152-rss" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-youtube"></div>
+            <div class="class-name">.icon-youtube</div>
+            <div class="author-name">Author: <a data-file="153-youtube" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-software"></div>
+            <div class="class-name">.icon-software</div>
+            <div class="author-name">Author: <a data-file="154-software" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-users"></div>
+            <div class="class-name">.icon-users</div>
+            <div class="author-name">Author: <a data-file="155-users" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-document"></div>
+            <div class="class-name">.icon-document</div>
+            <div class="author-name">Author: <a data-file="156-document" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-folder-1"></div>
+            <div class="class-name">.icon-folder-1</div>
+            <div class="author-name">Author: <a data-file="157-folder-1" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-search-1"></div>
+            <div class="class-name">.icon-search-1</div>
+            <div class="author-name">Author: <a data-file="158-search-1" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-attach"></div>
+            <div class="class-name">.icon-attach</div>
+            <div class="author-name">Author: <a data-file="159-attach" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-placeholder"></div>
+            <div class="class-name">.icon-placeholder</div>
+            <div class="author-name">Author: <a data-file="160-placeholder" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-star"></div>
+            <div class="class-name">.icon-star</div>
+            <div class="author-name">Author: <a data-file="161-star" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-play-button"></div>
+            <div class="class-name">.icon-play-button</div>
+            <div class="author-name">Author: <a data-file="162-play-button" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-avatar"></div>
+            <div class="class-name">.icon-avatar</div>
+            <div class="author-name">Author: <a data-file="163-avatar" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-gps"></div>
+            <div class="class-name">.icon-gps</div>
+            <div class="author-name">Author: <a data-file="164-gps" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-app"></div>
+            <div class="class-name">.icon-app</div>
+            <div class="author-name">Author: <a data-file="165-app" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-layers"></div>
+            <div class="class-name">.icon-layers</div>
+            <div class="author-name">Author: <a data-file="166-layers" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-gear"></div>
+            <div class="class-name">.icon-gear</div>
+            <div class="author-name">Author: <a data-file="167-gear" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-pass"></div>
+            <div class="class-name">.icon-pass</div>
+            <div class="author-name">Author: <a data-file="168-pass" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-month"></div>
+            <div class="class-name">.icon-month</div>
+            <div class="author-name">Author: <a data-file="169-month" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-user-3"></div>
+            <div class="class-name">.icon-user-3</div>
+            <div class="author-name">Author: <a data-file="170-user-3" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-user-2"></div>
+            <div class="class-name">.icon-user-2</div>
+            <div class="author-name">Author: <a data-file="171-user-2" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-user-1"></div>
+            <div class="class-name">.icon-user-1</div>
+            <div class="author-name">Author: <a data-file="172-user-1" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-rich"></div>
+            <div class="class-name">.icon-rich</div>
+            <div class="author-name">Author: <a data-file="173-rich" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-mail"></div>
+            <div class="class-name">.icon-mail</div>
+            <div class="author-name">Author: <a data-file="174-mail" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-phone-call"></div>
+            <div class="class-name">.icon-phone-call</div>
+            <div class="author-name">Author: <a data-file="175-phone-call" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-star-empty"></div>
+            <div class="class-name">.icon-star-empty</div>
+            <div class="author-name">Author: <a data-file="176-star-empty" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-heart"></div>
+            <div class="class-name">.icon-heart</div>
+            <div class="author-name">Author: <a data-file="177-heart" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-telephone"></div>
+            <div class="class-name">.icon-telephone</div>
+            <div class="author-name">Author: <a data-file="178-telephone" href="https://www.bugfixer.com/authors/gregor-cresnar">Gregor Cresnar</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-cancel"></div>
+            <div class="class-name">.icon-cancel</div>
+            <div class="author-name">Author: <a data-file="179-cancel" href="https://www.bugfixer.com/authors/lucy-g">Lucy G</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-search"></div>
+            <div class="class-name">.icon-search</div>
+            <div class="author-name">Author: <a data-file="180-search" href="https://www.bugfixer.com/authors/vectors-market">Vectors Market</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-shopping-cart"></div>
+            <div class="class-name">.icon-shopping-cart</div>
+            <div class="author-name">Author: <a data-file="181-shopping-cart" href="https://www.bugfixer.com/authors/vectors-market">Vectors Market</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-support"></div>
+            <div class="class-name">.icon-support</div>
+            <div class="author-name">Author: <a data-file="182-support" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-man"></div>
+            <div class="class-name">.icon-man</div>
+            <div class="author-name">Author: <a data-file="183-man" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-continuous-feed-paper"></div>
+            <div class="class-name">.icon-continuous-feed-paper</div>
+            <div class="author-name">Author: <a data-file="184-continuous-feed-paper" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-credit-cards-payment"></div>
+            <div class="class-name">.icon-credit-cards-payment</div>
+            <div class="author-name">Author: <a data-file="185-credit-cards-payment" href="https://www.bugfixer.com/authors/ctrlastudio">Ctrlastudio</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-filled-heart"></div>
+            <div class="class-name">.icon-filled-heart</div>
+            <div class="author-name">Author: <a data-file="186-filled-heart" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-date"></div>
+            <div class="class-name">.icon-date</div>
+            <div class="author-name">Author: <a data-file="187-date" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-check-1"></div>
+            <div class="class-name">.icon-check-1</div>
+            <div class="author-name">Author: <a data-file="188-check-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-eye"></div>
+            <div class="class-name">.icon-eye</div>
+            <div class="author-name">Author: <a data-file="189-eye" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-ring"></div>
+            <div class="class-name">.icon-ring</div>
+            <div class="author-name">Author: <a data-file="190-ring" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-tick-inside-circle"></div>
+            <div class="class-name">.icon-tick-inside-circle</div>
+            <div class="author-name">Author: <a data-file="191-tick-inside-circle" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-radio-on-button"></div>
+            <div class="class-name">.icon-radio-on-button</div>
+            <div class="author-name">Author: <a data-file="192-radio-on-button" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-backspace-arrow"></div>
+            <div class="class-name">.icon-backspace-arrow</div>
+            <div class="author-name">Author: <a data-file="193-backspace-arrow" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-caret-up"></div>
+            <div class="class-name">.icon-caret-up</div>
+            <div class="author-name">Author: <a data-file="194-caret-up" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-three-dots"></div>
+            <div class="class-name">.icon-three-dots</div>
+            <div class="author-name">Author: <a data-file="195-three-dots" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-ellipsis"></div>
+            <div class="class-name">.icon-ellipsis</div>
+            <div class="author-name">Author: <a data-file="196-ellipsis" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-caret-down"></div>
+            <div class="class-name">.icon-caret-down</div>
+            <div class="author-name">Author: <a data-file="197-caret-down" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-add-user"></div>
+            <div class="class-name">.icon-add-user</div>
+            <div class="author-name">Author: <a data-file="198-add-user" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-notifications"></div>
+            <div class="class-name">.icon-notifications</div>
+            <div class="author-name">Author: <a data-file="199-notifications" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-lock-2"></div>
+            <div class="class-name">.icon-lock-2</div>
+            <div class="author-name">Author: <a data-file="200-lock-2" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-tick-1"></div>
+            <div class="class-name">.icon-tick-1</div>
+            <div class="author-name">Author: <a data-file="201-tick-1" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-check-box"></div>
+            <div class="class-name">.icon-check-box</div>
+            <div class="author-name">Author: <a data-file="202-check-box" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-back-arrow"></div>
+            <div class="class-name">.icon-back-arrow</div>
+            <div class="author-name">Author: <a data-file="203-back-arrow" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-forward-arrow"></div>
+            <div class="class-name">.icon-forward-arrow</div>
+            <div class="author-name">Author: <a data-file="204-forward-arrow" href="https://www.bugfixer.com/authors/google">Google</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-facebook"></div>
+            <div class="class-name">.icon-facebook</div>
+            <div class="author-name">Author: <a data-file="205-facebook" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-clock-outline"></div>
+            <div class="class-name">.icon-clock-outline</div>
+            <div class="author-name">Author: <a data-file="206-clock-outline" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-programming-code"></div>
+            <div class="class-name">.icon-programming-code</div>
+            <div class="author-name">Author: <a data-file="207-programming-code" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-login"></div>
+            <div class="class-name">.icon-login</div>
+            <div class="author-name">Author: <a data-file="208-login" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-menu-button"></div>
+            <div class="class-name">.icon-menu-button</div>
+            <div class="author-name">Author: <a data-file="209-menu-button" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-recycling-bin"></div>
+            <div class="class-name">.icon-recycling-bin</div>
+            <div class="author-name">Author: <a data-file="210-recycling-bin" href="https://www.bugfixer.com/authors/catalin-fertu">Catalin Fertu</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-help"></div>
+            <div class="class-name">.icon-help</div>
+            <div class="author-name">Author: <a data-file="211-help" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-instagram-old"></div>
+            <div class="class-name">.icon-instagram-old</div>
+            <div class="author-name">Author: <a data-file="212-instagram-old" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-edit-button"></div>
+            <div class="class-name">.icon-edit-button</div>
+            <div class="author-name">Author: <a data-file="213-edit-button" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-comment-1"></div>
+            <div class="class-name">.icon-comment-1</div>
+            <div class="author-name">Author: <a data-file="214-comment-1" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-coffee"></div>
+            <div class="class-name">.icon-coffee</div>
+            <div class="author-name">Author: <a data-file="215-coffee" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-cart"></div>
+            <div class="class-name">.icon-cart</div>
+            <div class="author-name">Author: <a data-file="216-cart" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-mail-envelope"></div>
+            <div class="class-name">.icon-mail-envelope</div>
+            <div class="author-name">Author: <a data-file="217-mail-envelope" href="https://www.bugfixer.com/authors/simpleicon">SimpleIcon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-power-symbol"></div>
+            <div class="class-name">.icon-power-symbol</div>
+            <div class="author-name">Author: <a data-file="218-power-symbol" href="https://www.bugfixer.com/authors/simpleicon">SimpleIcon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-linkedin"></div>
+            <div class="class-name">.icon-linkedin</div>
+            <div class="author-name">Author: <a data-file="219-linkedin" href="https://www.bugfixer.com/authors/simpleicon">SimpleIcon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-whatsapp"></div>
+            <div class="class-name">.icon-whatsapp</div>
+            <div class="author-name">Author: <a data-file="220-whatsapp" href="https://www.bugfixer.com/authors/simpleicon">SimpleIcon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-chevron-left"></div>
+            <div class="class-name">.icon-chevron-left</div>
+            <div class="author-name">Author: <a data-file="221-chevron-left" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-edit"></div>
+            <div class="class-name">.icon-edit</div>
+            <div class="author-name">Author: <a data-file="222-edit" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-plus-sign"></div>
+            <div class="class-name">.icon-plus-sign</div>
+            <div class="author-name">Author: <a data-file="223-plus-sign" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-chevron-up"></div>
+            <div class="class-name">.icon-chevron-up</div>
+            <div class="author-name">Author: <a data-file="224-chevron-up" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-minus"></div>
+            <div class="class-name">.icon-minus</div>
+            <div class="author-name">Author: <a data-file="225-minus" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-check"></div>
+            <div class="class-name">.icon-check</div>
+            <div class="author-name">Author: <a data-file="226-check" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-chevron-right"></div>
+            <div class="class-name">.icon-chevron-right</div>
+            <div class="author-name">Author: <a data-file="227-chevron-right" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-chevron-down"></div>
+            <div class="class-name">.icon-chevron-down</div>
+            <div class="author-name">Author: <a data-file="228-chevron-down" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-delete"></div>
+            <div class="class-name">.icon-delete</div>
+            <div class="author-name">Author: <a data-file="229-delete" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-books-stack-of-three"></div>
+            <div class="class-name">.icon-books-stack-of-three</div>
+            <div class="author-name">Author: <a data-file="230-books-stack-of-three" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-google-plus"></div>
+            <div class="class-name">.icon-google-plus</div>
+            <div class="author-name">Author: <a data-file="231-google-plus" href="https://www.bugfixer.com/authors/dave-gandy">Dave Gandy</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-youtube-2"></div>
+            <div class="class-name">.icon-youtube-2</div>
+            <div class="author-name">Author: <a data-file="232-youtube-2" href="https://www.bugfixer.com/authors/dave-gandy">Dave Gandy</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-star-half"></div>
+            <div class="class-name">.icon-star-half</div>
+            <div class="author-name">Author: <a data-file="233-star-half" href="https://www.bugfixer.com/authors/dave-gandy">Dave Gandy</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-comments"></div>
+            <div class="class-name">.icon-comments</div>
+            <div class="author-name">Author: <a data-file="234-comments" href="https://www.bugfixer.com/authors/dave-gandy">Dave Gandy</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-comment"></div>
+            <div class="class-name">.icon-comment</div>
+            <div class="author-name">Author: <a data-file="235-comment" href="https://www.bugfixer.com/authors/dave-gandy">Dave Gandy</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-home"></div>
+            <div class="class-name">.icon-home</div>
+            <div class="author-name">Author: <a data-file="236-home" href="https://www.bugfixer.com/authors/icomoon">Icomoon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-picture"></div>
+            <div class="class-name">.icon-picture</div>
+            <div class="author-name">Author: <a data-file="237-picture" href="https://www.bugfixer.com/authors/icomoon">Icomoon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-speech-bubbles"></div>
+            <div class="class-name">.icon-speech-bubbles</div>
+            <div class="author-name">Author: <a data-file="238-speech-bubbles" href="https://www.bugfixer.com/authors/icomoon">Icomoon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-logo"></div>
+            <div class="class-name">.icon-logo</div>
+            <div class="author-name">Author: <a data-file="239-logo" href="https://www.bugfixer.com/authors/icomoon">Icomoon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-giftbox"></div>
+            <div class="class-name">.icon-giftbox</div>
+            <div class="author-name">Author: <a data-file="240-giftbox" href="https://www.bugfixer.com/authors/icomoon">Icomoon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-smartphone"></div>
+            <div class="class-name">.icon-smartphone</div>
+            <div class="author-name">Author: <a data-file="241-smartphone" href="https://www.bugfixer.com/authors/icomoon">Icomoon</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-dial"></div>
+            <div class="class-name">.icon-dial</div>
+            <div class="author-name">Author: <a data-file="242-dial" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-circular-arrow"></div>
+            <div class="class-name">.icon-circular-arrow</div>
+            <div class="author-name">Author: <a data-file="243-circular-arrow" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-caret-left"></div>
+            <div class="class-name">.icon-caret-left</div>
+            <div class="author-name">Author: <a data-file="244-caret-left" href="https://www.bugfixer.com/authors/picol">Picol</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-twitter"></div>
+            <div class="class-name">.icon-twitter</div>
+            <div class="author-name">Author: <a data-file="245-twitter" href="https://www.bugfixer.com/authors/elegant-themes">Elegant Themes</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-photo-camera"></div>
+            <div class="class-name">.icon-photo-camera</div>
+            <div class="author-name">Author: <a data-file="246-photo-camera" href="https://www.bugfixer.com/authors/daniel-bruce">Daniel Bruce</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-question-mark"></div>
+            <div class="class-name">.icon-question-mark</div>
+            <div class="author-name">Author: <a data-file="247-question-mark" href="https://www.bugfixer.com/authors/daniel-bruce">Daniel Bruce</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-web-link"></div>
+            <div class="class-name">.icon-web-link</div>
+            <div class="author-name">Author: <a data-file="248-web-link" href="https://www.bugfixer.com/authors/daniel-bruce">Daniel Bruce</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-share"></div>
+            <div class="class-name">.icon-share</div>
+            <div class="author-name">Author: <a data-file="249-share" href="https://www.bugfixer.com/authors/daniel-bruce">Daniel Bruce</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-gmail"></div>
+            <div class="class-name">.icon-gmail</div>
+            <div class="author-name">Author: <a data-file="250-gmail" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-tick"></div>
+            <div class="class-name">.icon-tick</div>
+            <div class="author-name">Author: <a data-file="251-tick" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-information-button"></div>
+            <div class="class-name">.icon-information-button</div>
+            <div class="author-name">Author: <a data-file="252-information-button" href="http://www.bugfixer.com">bugfixer</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon icon-user"></div>
+            <div class="class-name">.icon-user</div>
+            <div class="author-name">Author: <a data-file="253-user" href="https://www.bugfixer.com/authors/smashicons">Smashicons</a> </div> 
+        </div>        
+        
+
+    </section>
+
+
+
+</body>
+</html>

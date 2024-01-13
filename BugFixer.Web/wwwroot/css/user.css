@@ -1,0 +1,818 @@
+.profile-page .user-introduction .user-info button{
+   -webkit-transition : all 0.2s linear 0s; -moz-transition : all 0.2s linear 0s; -ms-transition : all 0.2s linear 0s; -o-transition : all 0.2s linear 0s; transition : all 0.2s linear 0s
+}
+.user-page form .inner:after ,.login-with-social:after,.users-list-layer .user-col article:after,
+.profile-page .user-introduction:after,
+.profile-page .user-introduction .left-side .inner > ul > li ul:after,
+.profile-page .user-information .main-tabs:after,
+.profile-page .tab-content-layer .top-post-layer article:after,
+.profile-page #certification-tab ul:after{
+    display: block; clear: both; visibility: hidden;height: 0; line-height: 0; content: ''
+}
+.user-page{
+    padding: 70px 0 60px
+}
+.user-page .pull-left .inner{
+    padding-right: 60px
+}
+.user-page form{
+    width: 100%;
+    margin: 0 auto;
+    padding: 25px 30px;
+    position: relative;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #fff;
+    border:1px solid #eaf1f2;
+}
+.user-page form > .inner{
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    z-index: 1;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+
+}
+.user-page form > .inner h2{
+    line-height: 20px;
+    padding-bottom:50px;
+    font-size: 16px;
+}
+.user-page form > .inner h2 i{
+    position: relative;
+    top: 5px;
+    margin-left: 3px;
+    color: #77c444;
+    font-size: 22px;
+}
+.user-page form > .inner > p{
+    font-size: 14px;
+    line-height: 23px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    color: #6a6d7c
+}
+.user-page form > .inner .input-layer{
+    width: 100%;
+    min-height: 40px;
+    position: relative;
+    margin-bottom: 30px;
+}
+.user-page form > .inner .input-layer label{
+    width: 100%;
+    line-height: 22px;
+    font-size: 13px;
+    padding: 7px 0 0;
+    color: #fe6f75;
+    display: block;
+}
+.user-page form > .inner .input-layer input{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    padding: 0 15px;
+    font-size: 13px;
+    border:1px solid #dee8ed;
+}
+.user-page form > .inner .input-layer span{
+    position: absolute;
+    top: -13px;
+    right: 15px;
+    background-color: #fff;
+    padding: 0 7px 0 10px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 13px;
+    color: #6a6d7c
+}
+.user-page form > .inner .input-layer span:before{
+    position: absolute;
+    height: 12px;
+    width: 1px;
+    top: 6px;
+    right: 31px;
+    background-color: #d2d6e1;
+    content: '';
+    transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+}
+.user-page form > .inner .input-layer span:after{
+    position: absolute;
+    height: 9px;
+    width: 1px;
+    top: 8px;
+    right: 35px;
+    background-color: #d2d6e1;
+    content: '';
+    transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+}
+.user-page form > .inner .input-layer span i{
+    color: #c6d4df;
+    font-size: 17px;
+    position: relative;
+    top: 4px;
+    width: 35px;
+    text-align: right;
+}
+.user-page form > .inner .checkbox{
+    width: 100%;
+    position: relative;
+    height: 35px;
+    padding: 10px 5px 10px 0
+}
+.user-page form > .inner .checkbox input{
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.user-page form > .inner .checkbox label{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+}
+.user-page form > .inner .checkbox label:before{
+    width: 17px;
+    height: 17px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border:1px solid #d2d6e1;
+    content: '';
+    right: 0;
+    top: 12px;
+    position: absolute;
+    padding-left: 1px
+}
+.user-page form > .inner .checkbox input:checked + label:before{
+    content: '\f1e1';
+    font-family: 'bugfixer';
+    color: #7ab436;
+    line-height: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 10px
+}
+.user-page form > .inner .link{
+    line-height: 20px;
+    font-size: 14px;
+    color: #1fa4e2
+}
+.user-page form > .inner .link a{
+    color: #007cd4;
+    font-size: 13px
+}
+.user-page form button{
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    padding: 0 18px;
+    line-height: 45px;
+    border:0;
+    background-color: #77c444;
+    color: #fff;
+    font-size: 14px;
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 5px
+}
+.user-page form button:hover{
+    background-color: #68b833;
+}
+.user-page .left-side .inner{
+    padding-right: 60px
+}
+.captcha-layer{
+  position: relative;
+}
+.captcha-layer .rc-anchor-light{
+  border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+  background-color: #fff !important;
+  border:1px solid #dee8ed !important;
+}
+.captcha-layer .rc-anchor-checkbox-label,
+.rc-anchor-normal .rc-anchor-pt, .rc-anchor-invisible .rc-anchor-pt, .rc-anchor-compact .rc-anchor-pt{
+  font-family: 'IRANsans' !important;
+  color: #4b5b74 !important
+}
+
+.login-with-social{
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  margin: 25px auto;
+  padding: 20px;
+  width: 100%;
+  background-color: #fff;
+  border:1px solid #eaf1f2;
+}
+.login-with-social > span{
+  font-size: 13px;
+  word-spacing: -1px;
+  line-height: 40px;
+  float: right;
+  width: auto;
+  display: table;
+}
+.login-with-social > a{
+  display: table;
+  float: left;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  text-align: center;
+  font-size: 26px;
+  color: #a3b9ca
+}
+.login-with-social > a:hover{
+  color: #7788a1
+}
+.login-with-social > a i{
+  position: relative;
+  top: 4px
+}
+
+
+.user-page-style .description p{
+  font-size: 15px;
+  line-height: 25px;
+  padding-bottom: 20px;
+  text-align: justify;
+  font-weight: bold;
+  word-spacing: -1px
+}
+.user-page-style .description ul{
+  padding: 8px 0 15px;
+}
+.user-page-style .description ul li{
+  line-height: 25px;
+  padding: 5px 13px 5px 0;
+  position: relative;
+  word-spacing: -1px;
+  color: #58768e
+}
+.user-page-style .description ul li:before{
+  position: absolute;
+  right: 0;
+  top: 15px;
+  width: 5px;
+  height: 5px;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  background-color: #21b75c;
+  content: ''
+}
+.user-page-style .description .register-link{
+  padding: 8px 0;
+  font-size: 15px;
+  line-height: 25px;
+  text-align: justify;
+  word-spacing: -1px;
+  color: #58768e;
+}
+.user-page-style .description .register-link a{
+  color: #77c444
+}
+.user-page-style .description .register-link i{
+  color: #c6d4df;
+  font-size: 19px;
+  margin-left: 4px;
+  position: relative;
+  top: 3px
+}
+
+footer .top-footer{
+  margin-top: 0
+}
+
+.users-list .users-list-layer{
+  padding: 25px 0 10px;
+  position: relative;
+}
+.users-list-layer .user-col article{
+  width: 100%;
+  position: relative;
+  margin-bottom: 35px
+}
+.users-list-layer .user-col article .img-layer{
+  width: 75px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  box-shadow: 0 0 8px #ccc;
+  -moz-box-shadow: 0 0 8px #ccc;
+  -webkit-box-shadow: 0 0 8px #ccc;
+}
+.users-list-layer .user-col article .left-col{
+  width: 100%;
+  padding-right: 85px;
+}
+.users-list-layer .user-col article .left-col h2 a{
+  font-size: 14px;
+  word-spacing: -1px;
+  line-height: 18px;
+  padding-bottom: 3px
+}
+.users-list-layer .user-col article .left-col .address{
+  font-size: 12px;
+  line-height: 14px;
+  padding: 3px 0 0;
+  display: block;
+}
+.users-list-layer .user-col article .left-col .address a{
+  color: #aabbc2
+}
+.users-list-layer .user-col article .left-col .statistics{
+  padding: 3px 0;
+}
+.users-list-layer .user-col article .left-col .statistics span{
+  margin-left: 5px;
+  font-size: 11px;
+  color: #788990
+}
+.users-list-layer .user-col article .left-col .statistics span:first-child{
+  padding-left: 5px
+}
+.users-list-layer .user-col article .left-col .statistics span i{
+  font-style: normal;
+  font-family: artial , tahoma;
+  font-size: 10px
+}
+.users-list-layer .user-col article .left-col .skills ,
+.users-list-layer .user-col article .left-col .skills a{
+  font-size: 10px;
+  color: #aabbc2
+}
+.users-list-layer .user-col article .left-col .address a:hover,
+.users-list-layer .user-col article .left-col .skills a:hover{
+  color: #2a4658
+}
+
+.profile-page .user-introduction .right-side{
+  width: 70%;
+  float: right;
+}
+.profile-page .user-introduction .left-side{
+  width: 30%;
+  float: left;
+  padding-right: 30px
+}
+.profile-page .user-introduction{
+  margin-bottom: 25px;
+  padding-right: 200px;
+  position: relative;
+  min-height: 150px
+}
+.profile-page .user-introduction .avatar{
+  width: 175px;
+  position: absolute;
+  right: 0;
+  top: 0
+}
+.profile-page .user-introduction .avatar img{
+  width: 100%;
+  display: block;
+  border: 3px solid #eaf1f2
+}
+.profile-page .user-introduction .user-info .user-name {
+  position: relative;
+}
+.profile-page .user-introduction .user-info h1 {
+  width: auto;
+  display: inline-table;
+}
+.profile-page .user-introduction .user-info button {
+  width: auto;
+  display: inline-table;
+  position: relative;
+  top: 1px;
+  margin-right: 10px;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  line-height: 16px;
+  color: #fff;
+  background-color: #77c444;
+  border:0;
+}
+.profile-page .user-introduction .user-info button.followed {
+  width: auto;
+  display: inline-table;
+  position: relative;
+  top: 1px;
+  margin-right: 10px;
+  font-size: 13px;
+  padding: 5px 10px;
+  line-height: 16px;
+}
+.profile-page .user-introduction .user-info button:hover {
+  background-color: #61ae2e
+}
+.profile-page .user-introduction .user-info button.followed:hover {
+  background-color: #aabbc2
+}
+.profile-page .user-introduction .user-info h1 a{
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 22px;
+  margin: 10px 0 15px;
+  color: #2a4658
+}
+.profile-page .user-introduction .user-info span{
+  font-size: 15px;
+  line-height: 22px;
+  color: #aabbc2;
+  display: block;
+  margin: 5px 0
+}
+.profile-page .user-introduction .user-info p{
+  font-size: 13px;
+  line-height: 26px;
+  text-align: justify;
+  color: #2a4658
+}
+.profile-page .user-introduction .left-side .inner{
+  border:1px solid #eaf1f2;
+  padding: 15px 25px;
+  margin-bottom: 30px
+}
+
+.profile-page .user-introduction .left-side .inner > ul > li{
+  line-height: 22px;
+  margin-bottom: 10px
+}
+.profile-page .user-introduction .left-side .inner > ul > li ul{
+  margin-bottom: 13px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #eaf1f2
+}
+.profile-page .user-introduction .left-side .inner > ul > li ul li{
+  float: right;
+  display: inline-table;
+  line-height: 22px;
+  font-size: 13px;
+  width: 33.33%
+}
+.profile-page .user-introduction .left-side .inner > ul > li{
+  line-height: 22px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #2a4658
+}
+.profile-page .user-introduction .left-side .inner > ul > li > i{
+  font-size: 15px;
+  color: #aabbc2;
+  position: relative;
+  top: 1px;
+  margin-left: 3px;
+  min-width: 20px
+}
+.profile-page .user-introduction .left-side .inner > ul > li ul li i,
+.profile-page .user-introduction .left-side .inner span i{
+  font-family: arial , tahoma;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  color: #8e9ca5;
+  position: relative;
+  margin-left: 3px
+}
+.profile-page .user-introduction .left-side .inner > ul > li > i.icon-eye{
+  font-size: 17px;
+  right: -1px
+}
+
+.profile-page .user-information{
+  width: 100%;
+  position: relative;
+}
+.profile-page .user-information .main-tabs {
+  border-bottom: 1px solid #eaf1f2
+}
+.profile-page .user-information .main-tabs li{
+  width: auto;
+  min-width: 80px;
+  white-space: nowrap;
+  float: right;
+}
+.profile-page .user-information .main-tabs li a{
+  padding: 0 20px;
+  line-height: 45px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #aabbc2;
+  border-top: 3px solid transparent
+}
+.profile-page .user-information .main-tabs li.active a,
+.profile-page .user-information .main-tabs li a:hover{
+  color: #2a4658;
+  border-top: 3px solid #fecd32
+}
+.profile-page .tab-content-layer{
+  width: 100%;
+  position: relative;
+  display: none
+}
+.profile-page .tab-content-layer.active{
+  display: block;
+}
+.profile-page .tab-content-layer .inner{
+  padding: 25px 0
+}
+.profile-page .tab-content-layer .inner p{
+  line-height: 26px;
+  text-align: right;
+  margin:5px 0;
+  color: #2a4658;
+  font-size: 14px
+}
+.profile-page .tab-content-layer .inner p.title{
+  font-size: 15px
+}
+.profile-page .tab-content-layer .top-tags-layer{
+  margin-bottom: 10px
+}
+.profile-page .tab-content-layer .top-tags-layer header,
+.profile-page .tab-content-layer .top-post-layer header{
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eaf1f2;
+  margin: 20px 0;
+  position: relative;
+}
+.profile-page .tab-content-layer .top-tags-layer header h3,
+.profile-page .tab-content-layer .top-post-layer header h3{
+  font-size: 16px;
+  line-height: 20px;
+  display: inline-table;
+
+}
+.profile-page .tab-content-layer .top-tags-layer header span,
+.profile-page .tab-content-layer .top-post-layer header span{
+  color: #aabbc2;
+  font-size: 15px;
+  font-family: arial;
+  margin-right: 5px;
+  font-weight: bold
+}
+.profile-page .tab-content-layer .top-tags-layer article{
+  margin-bottom: 20px
+}
+.profile-page .tab-content-layer .top-tags-layer h2{
+  display: block;
+  padding-bottom: 5px
+}
+.profile-page .tab-content-layer .top-tags-layer .row a{
+    font-size: 13px;
+    line-height: 23px;
+    padding: 2px 18px 0 10px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #ebf0f3;
+    color: #264559;
+    margin: 3px 0 3px 3px;
+    position: relative;
+}
+.profile-page .tab-content-layer .top-tags-layer .row a:before{
+    background-color: #b6c2c6;
+    width: 5px;
+    height: 5px;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    content: ''
+}
+.profile-page .tab-content-layer .top-tags-layer .row a:hover{
+    background-color: #f4f7f9
+}
+.profile-page .tab-content-layer .top-tags-layer span{
+    line-height: 22px;
+    margin-left: 15px;
+    font-size: 13px
+}
+.profile-page .tab-content-layer .top-tags-layer span i{
+    font-size: 14px;
+    font-family: arial,tahoma;
+    font-style: normal;
+    color: #aabbc2;
+    font-weight: bold
+}
+.profile-page .tab-content-layer .intro{
+    padding-right: 20px;
+    border-right: 3px solid #eaf1f2;
+    margin-bottom: 15px
+}
+.profile-page .tab-content-layer .intro a{
+    color: #aabbc2;
+    font-size: 13px;
+    padding: 2px 0 0
+}
+.profile-page .tab-content-layer .view-all{
+    color: #007cd4;
+    font-size: 14px;
+    text-align: right;
+    line-height: 25px;
+    word-spacing: -2px;
+    padding: 5px 0 10px
+}
+.profile-page .tab-content-layer .view-all i{
+    font-size: 12px;
+    margin-left: 4px;
+    position: relative;
+    top: 1px
+}
+.profile-page .tab-content-layer .top-post-layer article{
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eaf1f2
+}
+.profile-page .tab-content-layer .top-post-layer article .answer-count{
+    width: auto;
+    min-width: 40px;
+    border:1px solid #eaf1f2;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    line-height: 25px;
+    margin-left: 10px;
+    font-family: arial , tahoma;
+    text-align: center;
+    font-weight: bold;
+    color: #aabbc2;
+    display: table;
+    float: right;
+}
+.profile-page .tab-content-layer .top-post-layer article .answer-count.answered{
+  background-color: #fff;
+  border:1px solid #77c444;
+  color: #77c444
+}
+.profile-page .tab-content-layer .top-post-layer article .answer-count.selected{
+  background-color: #77c444;
+  border:1px solid #77c444;
+  color: #fff
+}
+.profile-page .tab-content-layer .top-post-layer article h2{
+    width: auto;
+    line-height: 22px;
+    color: #aabbc2;
+    display: inline-table;
+    float: right;
+    padding: 3px 0;
+    font-size: 13px
+}
+.profile-page .tab-content-layer .top-post-layer article h2 a{
+    color: #2a4658
+}
+.profile-page .tab-content-layer .top-post-layer article h2 a:hover{
+    color: #007cd4
+}
+.profile-page .tab-content-layer .top-post-layer article .publish-date{
+    font-size: 13px;
+    line-height: 24px;
+    padding: 3px 10px;
+    color: #aabbc2;
+    position: absolute;
+    left: 0;
+    top: 0
+}
+.profile-page #certification-tab ul li {
+    line-height: 24px;
+    padding: 10px 15px;
+    position: relative;
+    word-spacing: -1px;
+    color: #58768e;
+    margin:8px 0 8px 2%;
+    background-color: #eef4f9;
+    border-radius: 3px;
+    float: right;
+    width: 49%;
+    font-size: 13px;
+    text-align: center;
+}
+.profile-page #certification-tab ul li:nth-child(2n) {
+    margin-left: 0
+}
+
+
+
+@media screen and (max-width : 1199px){
+  .profile-page .user-introduction .left-side{
+    width: 40%
+  }
+  .profile-page .user-introduction .right-side{
+    width: 60%
+  }
+}
+@media screen and (max-width : 991px){
+  .user-page{
+    padding: 40px 0
+  }
+  .user-page .pull-left .inner{
+    padding-right: 0
+  }
+  .user-page-style .description{
+    margin-bottom: 40px
+  }
+  .profile-page .user-introduction{
+    padding-right: 0;
+  }
+  .profile-page .user-introduction .left-side,.profile-page .user-introduction .right-side{
+    width: 100%;
+    float:none;
+    padding-right: 0
+  }
+  .profile-page .user-introduction .avatar{
+    position: static;
+    display: block;
+    margin: 0 auto
+  }
+  .profile-page .user-introduction .user-info{
+    text-align: center;
+    margin-bottom: 30px
+  }
+  .profile-page .user-introduction .user-info h1 a{
+    margin: 15px 0
+  }
+  .profile-page .tab-content-layer .intro{
+    padding-right: 0;
+    border-right: 0
+  }
+}
+
+@media screen and (max-width : 680px){
+  .profile-page #certification-tab ul li{
+    width: 100%;
+    float: none;
+    margin-left: 0
+  }
+}
+@media screen and (max-width : 560px){
+    .users-list .users-list-layer .user-col{
+        float: none;
+        width: 100%
+    }
+    .users-list .users-list-layer .user-col article{
+        margin-bottom: 18px
+    }
+    .profile-page .tab-content-layer .top-post-layer article .publish-date{
+      position: static;
+    }
+    .profile-page .tab-content-layer .inner p.title{
+      font-size: 14px
+    }
+}
+
+@media screen and (max-width : 480px){
+    .user-page form{
+        width: 100%;
+        padding: 20px
+    }
+}
+
+@media screen and (max-width : 400px){
+   .login-with-social{
+      text-align: center;
+   }
+   .login-with-social > span{
+      width: 100%;
+      float: none;
+      text-align: center;
+      margin-bottom: 10px
+   }
+   .login-with-social > a{
+      float: none;
+      margin: 0 5px;
+      display: inline-block;
+   }
+   .user-page form button{
+      width: 100%
+   }
+   .profile-page .tab-content-layer .top-tags-layer .tag-col{
+      width: 100%;
+      float: none
+   }
+}

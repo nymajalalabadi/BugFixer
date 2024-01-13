@@ -1,0 +1,119 @@
+
+.faq-layer{
+    margin: 0
+}
+.faq-layer header{
+    position: relative;
+}
+.faq-layer header h3,
+.faq-layer > h3{
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 0 16px 15px;
+    border-bottom: 1px solid #e4ebf4;
+    line-height: 21px;
+    position: relative;
+    overflow: hidden;
+    word-spacing: -1px;
+    
+}
+
+.faq-layer header i {
+    font-size: 14px;
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    color: #889eb8;
+    font-style: normal;
+}
+.faq-layer > .inner{
+    padding: 20px 0
+}
+
+
+.accordion-layer {
+  padding: 15px 15px 15px 0
+}
+.accordion-layer > .inner{
+  position: relative;
+  border-right: 3px solid #e5ecf0;
+  padding-right: 28px;
+}
+.accordion-layer > .inner  article{
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+  top: -15px
+}
+.accordion-layer > .inner  article h2{
+  position: relative;
+  line-height: 23px;
+  padding: 10px 0;
+  font-size: 14px;
+  word-spacing: -1px;
+  width: 100%;
+  color: #4b5b74
+}
+.accordion-layer > .inner  article h2:hover{
+  cursor: pointer;
+}
+.accordion-layer > .inner  article h2 i{
+  font-size: 11px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #e5ecf0;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  line-height: 27px;
+  text-align: center;
+  background-color: #f3f7fa;
+  position: absolute;
+  right: -44px;
+  z-index: 2;
+  top: 5px;
+  padding-left: 2px;
+  color: #889ba9
+}
+.accordion-layer > .inner  article h2 i:hover{
+  border: 2px solid #fecd32;
+  background-color: #fff;
+  color: #fecd32;
+  cursor: pointer;
+}
+.accordion-layer > .inner  .open h2 i{
+  border: 2px solid #77c444;
+  background-color: #fff;
+  color: #77c444;
+  cursor: pointer;
+}
+.accordion-layer > .inner  .open h2{
+  color: #77c444;
+}
+.accordion-layer > .inner  article .text{
+  line-height: 25px;
+  text-align: justify;
+  padding-top: 5px;
+  display: none
+}
+
+
+@media screen and (max-width : 767px){
+    .faq-layer > .inner{
+        padding: 20px 0
+    }
+    .accordion-layer{
+      padding: 15px 10px 15px 5px
+    }
+}
+@media screen and (max-width : 600px){
+    .faq-layer header h3, .faq-layer > h3{
+        font-size: 14px;
+        font-weight: normal
+    }
+}
+@media screen and (max-width : 480px){
+    .faq-layer > .inner{
+        padding: 15px  0
+    }  
+}

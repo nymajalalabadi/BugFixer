@@ -1,0 +1,85 @@
+.tags-page .tags-list-layer{
+   padding: 25px 0
+}
+.tags-page .tag-col article{
+   display: block;
+   border-bottom: 1px solid #eaf1f2;
+   padding-bottom: 30px;
+   margin-bottom: 20px;
+   min-height: 120px;
+   position: relative;
+}
+.tags-page .tag-col article a{
+    font-size: 14px;
+    line-height: 23px;
+    padding: 2px 18px 0 10px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #ebf0f3;
+    color: #264559;
+    position: relative;
+}
+.tags-page .tag-col article a:before{
+    background-color: #b6c2c6;
+    width: 5px;
+    height: 5px;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    content: ''
+}
+.tags-page .tag-col article a:hover{
+    background-color: #f4f7f9
+}
+.tags-page .tag-col article p{
+   font-size: 13px;
+   line-height: 21px;
+   padding: 10px 0;
+   height: 50px;
+   overflow: hidden;
+   word-spacing: -2px
+}
+.tags-page .tag-col .detail{
+   position: absolute;
+   bottom: 14px;
+   right: 0
+}
+.tags-page .tag-col .detail span{
+   font-size: 12px;
+   line-height: 20px;
+   margin-left: 20px;
+   color: #91a1a7
+}
+.tags-page .tag-col .detail span i{
+   font-family: arial,tahoma;
+   font-style: normal;
+   font-size: 12px
+}
+
+.page-style .right-col .top-heading span{
+  top: 13px
+}
+.page-style .right-col .top-heading span i{
+  font-size: 16px;
+  top: 1px;
+  margin-left: 4px
+}
+
+@media screen and (max-width : 680px){
+    .pagination-layer{
+        margin: 0
+    }
+}
+@media screen and (max-width : 470px){
+    .tags-page .tags-list-layer .tag-col{
+        width: 100%;
+        float: none
+    }
+    .tags-page .tag-col article p{
+        font-size: 12px
+    }
+}

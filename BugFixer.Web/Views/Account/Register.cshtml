@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "ورود";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="/css/user.css">
+}
+
+@section Header
+{
+    <partial name="_Header" />
+}
+
+<div class="user-page-style">
+
+    <div class="breadcumb-layer">
+        <div class="container">
+            <ul itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> صفحه اصلی </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a asp-action="Register" asp-controller="Account" itemprop="item"><span itemprop="name"> ثبت نام در سایت </span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="user-page">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-7 col-sm-12 col-xs-12 pull-left">
+
+                    <div class="inner">
+                        <div class="description">
+                            <p> لطفا به هنگام ثبت نام به موارد زیر توجه فرمایید  </p>
+                            <ul>
+                                <li>ابتدا <a href="">قوانین و شرایط</a> عضویت در سامانه را با دقت مطالعه نموده و سپس اقدام به ثبت نام در سامانه نمایید .</li>
+                                <li>لطفا مشخصات و شماره موبایل خود را با دقت و بطور صحیح وارد نمایید .</li>
+                                <li>رمز عبور به سامانه پس از عضویت به شماره موبایل شما ارسال خواهد شد .</li>
+                                <li>پس از ورود به حساب کاربری خود ، جهت حفظ امنیت بیشتر حساب کاربری ، لطفا رمز عبور خود را تغییر دهید .</li>
+                            </ul>
+
+                            <div class="register-link">
+                                <i class="icon-login"></i> در صورتی که قبلا ثبت نام کرده اید ،  به حساب کاربری خود <a href=""> وارد شوید </a> .
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-5 col-sm-12 col-xs-12 pull-right">
+
+                    <form action="" method="" class="shadow-style">
+
+                        <div class="inner">
+
+                            <h2> <i class="icon-three-dots"></i> ثبت نام در سایت </h2>
+
+                            <div class="input-layer">
+                                <span><i class="icon-user-shape"></i> نام و نام خانوادگی </span>
+                                <input type="text" name="">
+                            </div>
+
+                            <div class="input-layer">
+                                <span><i class="icon-mail-envelope"></i> پست الکترونیک </span>
+                                <input type="email" name="">
+                            </div>
+
+                            <div class="input-layer">
+                                <span><i class="icon-phone-1"></i> موبایل </span>
+                                <input type="text" name="">
+                            </div>
+
+                            <div class="input-layer">
+                                <span><i class="icon-lock"></i> رمز عبور </span>
+                                <input type="password" name="">
+                            </div>
+
+                            <div class="input-layer">
+                                <span><i class="icon-lock"></i> تکرار رمز عبور </span>
+                                <input type="password" name="">
+                            </div>
+
+                            <div class="captcha-layer">
+                                <!-- کد کپچا در این لایه قرار بدید تا استایل بگیره-->
+                            </div>
+
+                            <button> ثبت نام در سایت </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

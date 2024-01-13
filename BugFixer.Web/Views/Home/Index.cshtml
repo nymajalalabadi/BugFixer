@@ -1,8 +1,182 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "صفحه اصلی";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+}
+
+@section Header
+{
+    <!-- lanfing page -->
+    <div class="landing-layer">
+        <div class="container">
+            <header>
+                <a href="" class="logo"><img src="/images/logo.svg"></a>
+                <h1> سامانه <span>پرسش و پاسخ</span> برنامه نویسان و توسعه دهندگان </h1>
+                <h2> آموزش ببینید ، مهارت ها و تخصص های خود را به اشتراک بگذارید ، بپرسید و به جواب برسید  </h2>
+            </header>
+
+            <div class="search-form">
+                <form action="" method="">
+                    <input type="text" name="" placeholder=" دنبال چه موضوعی میگردی ؟ ">
+                    <button><i class="icon-search-1"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /lanfing page -->
+    <!-- menu -->
+    <div class="top-menu">
+        <div class="container">
+
+            <nav>
+                <span><i class="icon-menu-2"></i></span>
+                <ul>
+                    <li><a href=""> تگ ها </a></li>
+                    <li><a href=""> پرسش و پاسخ ها </a></li>
+                    <li><a href=""> کاربران </a></li>
+                    <li><a href=""> راهنمای سایت </a></li>
+                </ul>
+            </nav>
+
+            <div class="clientarea-layer">
+                <div class="loggedin-status hidden">
+                    <i class="icon-profile"></i>
+                    <span> حساب کاربری شما  </span>
+                    <div class="sublayer">
+                        <div class="avatar">
+                            <a href=""><img src="/images/pic/avatar.jpg"></a>
+                            <div>
+                                <span class="fullname"> میترا رحیمی </span>
+                                <span class="detail"> 123 پرسش | 1236 پاسخ </span>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><a href=""> مشاهده حساب کاربری </a></li>
+                            <li><a href=""> تنظیمات حساب کاربری </a></li>
+                            <li><a href=""> ویرایش حساب کاربری </a></li>
+                            <li><a href=""> تغییر رمز عبور </a></li>
+                            <li><a href=""> پرسش های من </a></li>
+                            <li><a href=""> پاسخ های من </a></li>
+                            <li><a href=""> خروج از حساب کاربری </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="signout-status">
+                    <i class="icon-profile"></i>
+                    <a asp-action="Login" asp-controller="Account"> ورود / </a>
+                    <a asp-action="Register" asp-controller="Account"> عضویت </a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- /menu -->
+}
+
+<div class="container">
+    <!-- questions -->
+    <div class="questions-layer">
+        <!-- Top -->
+        <div class="top-layer">
+            <a href="" class="linkbutton blue"> ثبت پرسش جدید </a>
+            <div class="filter-layer">
+                <form action="" method="">
+                    <div class="select-layer">
+                        <select>
+                            <option> جدیدترین پرسش ها </option>
+                            <option> پربحث ترین پرسش ها </option>
+                            <option> پرامتیازترین پرسش ها </option>
+                            <option> پرسش های یک هفته اخیر  </option>
+                            <option> پرسش های یک ماه اخیر  </option>
+                        </select>
+                    </div>
+                    <button><i class="icon-sort"></i></button>
+                </form>
+            </div>
+        </div>
+        <!-- /Top -->
+        <!-- questions list -->
+        <div class="questions-list">
+            <!-- item -->
+            <article>
+                <h2><a href="">بهترین و ساده ترین روش برای پیاده سازی گرید ویو در لاراول نسخه ی آخر</a></h2>
+                <span> 0 <i class="icon-comment-1"></i> </span>
+                <ul>
+                    <li> پرسیده شده توسط  <a href=""> شیوا محمدی </a> در 1 ساعت پیش </li>
+                    <li> بدون پاسخ </li>
+                </ul>
+                <div class="detail">
+                    <div class="tags-layer">
+                        <a href=""> JavaScript </a>
+                        <a href=""> Jquery </a>
+                        <a href=""> PHP </a>
+                        <a href=""> Framework </a>
+                    </div>
+                    <div class="left-side">
+                        <span> 3 <i class="icon-star"></i> </span>
+                        <span> 256 <i class="icon-eye"></i> </span>
+                    </div>
+                </div>
+            </article>
+            <!-- /item -->
+            <!-- item -->
+            <article class="answered">
+                <h2><a href="">بهترین و ساده ترین روش برای پیاده سازی گرید ویو در لاراول نسخه ی آخر</a></h2>
+                <span> 236 <i class="icon-comment-1"></i> </span>
+                <ul>
+                    <li> پرسیده شده توسط  <a href=""> شیوا محمدی </a> در 1 ساعت پیش </li>
+                    <li> آخرین پاسخ توسط <a href=""> میترا رحیمی </a> در 15 دقیقه پسش </li>
+                </ul>
+                <div class="detail">
+                    <div class="tags-layer">
+                        <a href=""> Jquery </a>
+                        <a href=""> JavaScript </a>
+                        <a href=""> PHP </a>
+                        <a href=""> Ecommerce </a>
+                        <a href=""> Framework </a>
+                    </div>
+                    <div class="left-side">
+                        <span> 983 <i class="icon-star"></i> </span>
+                        <span> 264 <i class="icon-eye"></i> </span>
+                    </div>
+                </div>
+            </article>
+            <!-- /item -->
+            <!-- item -->
+            <article class="selected">
+                <h2><a href="">بهترین و ساده ترین روش برای پیاده سازی گرید ویو در لاراول نسخه ی آخر</a></h2>
+                <span> 1.2K <i class="icon-comment-1"></i> </span>
+                <ul>
+                    <li> پرسیده شده توسط  <a href=""> شیوا محمدی </a> در 1 ساعت پیش </li>
+                    <li> آخرین پاسخ توسط <a href=""> میترا رحیمی </a> در 15 دقیقه پسش </li>
+                </ul>
+                <div class="detail">
+                    <div class="tags-layer">
+                        <a href=""> Jquery </a>
+                        <a href=""> JavaScript </a>
+                        <a href=""> PHP </a>
+                        <a href=""> Ecommerce </a>
+                        <a href=""> Framework </a>
+                    </div>
+                    <div class="left-side">
+                        <span> 1.3K <i class="icon-star"></i> </span>
+                        <span> 264 <i class="icon-eye"></i> </span>
+                    </div>
+                </div>
+            </article>
+            <!-- /item -->
+        </div>
+        <!-- /questions list -->
+    </div>
+    <!-- /questions -->
+    <partial name="_LeftSide" />
+    <div class="clearfix"></div>
 </div>
+
+@section Scripts
+{
+    <script src="/js/home.js"></script>
+}
