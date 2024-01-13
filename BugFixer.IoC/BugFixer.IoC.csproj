@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BugFixer.Application\BugFixer.Application.csproj" />
+    <ProjectReference Include="..\BugFixer.DataLayer\BugFixer.DataLayer.csproj" />
+    <ProjectReference Include="..\BugFixer.domain\BugFixer.domain.csproj" />
+  </ItemGroup>
+
 </Project>

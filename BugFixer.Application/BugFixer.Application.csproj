@@ -14,4 +14,9 @@
     <Folder Include="Security\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BugFixer.DataLayer\BugFixer.DataLayer.csproj" />
+    <ProjectReference Include="..\BugFixer.domain\BugFixer.domain.csproj" />
+  </ItemGroup>
+
 </Project>
