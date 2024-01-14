@@ -35,13 +35,11 @@ namespace BugFixer.Application.Services.Implementations
                 return RegisterResult.EmailExists;
             }
 
-            var password = PasswordHelper.EncodePasswordMd5(register.Password);
-
             var user = new User()
             {
                 Avatar = PathTools.DefaultUserAvatar,
                 Email = register.Email.Trim().ToLower(),
-                Password = password,
+                Password = PasswordHelper.EncodePasswordMd5(register.Password),
                 EmailActivationCode = CodeGenerator.CreateActivationCode()
             };
 

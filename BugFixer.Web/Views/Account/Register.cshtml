@@ -1,6 +1,6 @@
 ﻿@model BugFixer.domain.ViewModels.Account.RegisterViewModel
 @{
-    ViewData["Title"] = "ورود";
+    ViewData["Title"] = "ثبت نام";
 }
 
 @section Styles
@@ -52,42 +52,31 @@
 
                 <div class="col-md-5 col-sm-12 col-xs-12 pull-right">
 
-                    <form action="" method="" class="shadow-style">
+                    <form asp-controller="account" asp-action="register" method="post" class="shadow-style">
 
                         <div class="inner">
 
                             <h2> <i class="icon-three-dots"></i> ثبت نام در سایت </h2>
 
                             <div class="input-layer">
-                                <span><i class="icon-user-shape"></i> نام و نام خانوادگی </span>
-                                <input type="text" name="">
-                            </div>
-
-                            <div class="input-layer">
                                 <span><i class="icon-mail-envelope"></i> پست الکترونیک </span>
-                                <input type="email" name="">
+                                <input type="email" asp-for="Email">
                             </div>
+                            <span class="error-style" asp-validation-for="Email"></span>
 
-                            <div class="input-layer">
-                                <span><i class="icon-phone-1"></i> موبایل </span>
-                                <input type="text" name="">
-                            </div>
-
-                            <div class="input-layer">
+                            <div class="input-layer mt-50">
                                 <span><i class="icon-lock"></i> رمز عبور </span>
-                                <input type="password" name="">
+                                <input type="password" asp-for="Password">
                             </div>
+                            <span class="error-style" asp-validation-for="Password"></span>
 
-                            <div class="input-layer">
+                            <div class="input-layer mt-50">
                                 <span><i class="icon-lock"></i> تکرار رمز عبور </span>
-                                <input type="password" name="">
+                                <input type="password" asp-for="RePassword">
                             </div>
+                            <span class="error-style" asp-validation-for="RePassword"></span>
 
-                            <div class="captcha-layer">
-                                <!-- کد کپچا در این لایه قرار بدید تا استایل بگیره-->
-                            </div>
-
-                            <button> ثبت نام در سایت </button>
+                            <button type="submit"> ثبت نام در سایت </button>
 
                         </div>
 
@@ -103,3 +92,7 @@
     </div>
 
 </div>
+
+@section Scripts{
+    <partial name="_JqueryValidation" />
+}

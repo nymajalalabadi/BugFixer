@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\common\" />
+    <Folder Include="wwwroot\common\jquery-validation\" />
+    <Folder Include="wwwroot\common\sweetalert\" />
     <Folder Include="wwwroot\content\user\" />
   </ItemGroup>
 

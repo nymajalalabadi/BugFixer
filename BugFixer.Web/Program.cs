@@ -1,6 +1,8 @@
 using BugFixer.DataLayer.Context;
 using BugFixer.IoC;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,13 @@ builder.Services.AddDbContext<BugFixerDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
+
+#endregion
+
+#region encode
+
+builder.Services.AddSingleton<HtmlEncoder>(
+    HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
 
 #endregion
 
