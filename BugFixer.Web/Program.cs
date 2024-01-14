@@ -1,4 +1,5 @@
 using BugFixer.DataLayer.Context;
+using BugFixer.IoC;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,12 @@ builder.Services.AddDbContext<BugFixerDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
+
+#endregion
+
+#region LoC
+
+RegisterService(builder.Services);
 
 #endregion
 
@@ -46,3 +53,8 @@ app.MapControllerRoute(
 app.Run();
 
 #endregion
+
+static void RegisterService(IServiceCollection services)
+{
+    DependencyContainer.RejosterService(services);
+}

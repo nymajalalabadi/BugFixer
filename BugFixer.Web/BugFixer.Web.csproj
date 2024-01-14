@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\common\" />
+    <Folder Include="wwwroot\content\user\" />
   </ItemGroup>
 
   <ItemGroup>
