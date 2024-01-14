@@ -29,7 +29,7 @@ builder.Services.AddSingleton<HtmlEncoder>(
 
 #region LoC
 
-RegisterService(builder.Services);
+DependencyContainer.RejosterService(builder.Services);
 
 #endregion
 
@@ -62,8 +62,3 @@ app.MapControllerRoute(
 app.Run();
 
 #endregion
-
-static void RegisterService(IServiceCollection services)
-{
-    DependencyContainer.RejosterService(services);
-}
