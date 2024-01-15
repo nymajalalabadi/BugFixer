@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BugFixer.domain.ViewModels.Account.LoginViewModel
+@{
     ViewData["Title"] = "ورود";
 }
 
@@ -41,7 +42,7 @@
                             </ul>
 
                             <div class="register-link">
-                                <i class="icon-add-user"></i> در صورتی که در سایت ، عضو نیستید ، ابتدا <a href=""> ثبت نام </a> کنید
+                                <i class="icon-add-user"></i> در صورتی که در سایت ، عضو نیستید ، ابتدا <a asp-controller="Account" asp-action="Register"> ثبت نام </a> کنید
                             </div>
                         </div>
                     </div>
@@ -50,48 +51,40 @@
 
                 <div class="col-md-5 col-sm-12 col-xs-12 pull-right">
 
-                    <form action="" method="" class="shadow-style">
+                    <form asp-controller="account" asp-action="Login" method="post" >
 
                         <div class="inner">
-
-                            <h2> <i class="icon-three-dots"></i> ورود به حساب کاربری </h2>
+                            <input type="hidden" asp-for="Captcha" />
+                            <h2> <i class="icon-three-dots"></i> ورود در سایت</h2>
 
                             <div class="input-layer">
                                 <span><i class="icon-mail-envelope"></i> پست الکترونیک </span>
-                                <input type="email" name="">
-                                <label class="error"> پست الکترونیکی را وارد نمایید </label>
+                                <input type="email" asp-for="Email">
                             </div>
+                            <span class="error-style" asp-validation-for="Email"></span>
 
-                            <div class="input-layer">
+                            <div class="input-layer mt-50">
                                 <span><i class="icon-lock"></i> رمز عبور </span>
-                                <input type="password" name="">
-                                <label class="error"> رمز عبور را وارد نمایید </label>
+                                <input type="password" asp-for="Password">
                             </div>
-
-                            <div class="captcha-layer">
-                                <!-- کد کپچا در این لایه قرار بدید تا استایل بگیره-->
-                            </div>
+                            <span class="error-style" asp-validation-for="Password"></span>
 
                             <div class="checkbox">
-                                <input type="checkbox" name="" id="remember-me">
-                                <label for="remember-me"> مرا بخاطر بسپار </label>
+                                <input type="checkbox" asp-for="RememberMe">
+                                <label for="RememberMe"> مرا بخاطر بسپار </label>
                             </div>
 
                             <div class="link">
-                                <a href=""> رمز عبور خود را فراموش کرده ام !</a>
+                                <a href="javascript:void(0)"> رمز عبور خود را فراموش کرده ام !</a>
                             </div>
 
-                            <button> ورود به حساب کاربری </button>
+                            <button type="submit"> ورود در سایت </button>
 
                         </div>
 
                     </form>
 
                     <div class="login-with-social shadow-style">
-                        <span>ورود با سایر حساب های کاربری </span>
-                        <a href="" class="shadow-style"><i class="icon-twitter"></i></a>
-                        <a href="" class="shadow-style"><i class="icon-github"></i></a>
-                        <a href="" class="shadow-style"><i class="icon-google-plus"></i></a>
                     </div>
 
                 </div>
@@ -104,5 +97,10 @@
     </div>
 
 </div>
+
+@section Scripts{
+    <partial name="_JqueryValidation" />
+    <partial name="_CaptchaScripts" />
+}
 
 

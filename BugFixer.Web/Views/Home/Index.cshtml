@@ -42,33 +42,39 @@
             </nav>
 
             <div class="clientarea-layer">
-                <div class="loggedin-status hidden">
-                    <i class="icon-profile"></i>
-                    <span> حساب کاربری شما  </span>
-                    <div class="sublayer">
-                        <div class="avatar">
-                            <a href=""><img src="/images/pic/avatar.jpg"></a>
-                            <div>
-                                <span class="fullname"> میترا رحیمی </span>
-                                <span class="detail"> 123 پرسش | 1236 پاسخ </span>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="loggedin-status">
+                        <i class="icon-profile"></i>
+                        <span> حساب کاربری شما  </span>
+                        <div class="sublayer">
+                            <div class="avatar">
+                                <a href=""><img src="/images/pic/avatar.jpg"></a>
+                                <div>
+                                    <span class="fullname"> میترا رحیمی </span>
+                                    <span class="detail"> 123 پرسش | 1236 پاسخ </span>
+                                </div>
                             </div>
+                            <ul>
+                                <li><a href=""> مشاهده حساب کاربری </a></li>
+                                <li><a href=""> تنظیمات حساب کاربری </a></li>
+                                <li><a href=""> ویرایش حساب کاربری </a></li>
+                                <li><a href=""> تغییر رمز عبور </a></li>
+                                <li><a href=""> پرسش های من </a></li>
+                                <li><a href=""> پاسخ های من </a></li>
+                                <li><a href=""> خروج از حساب کاربری </a></li>
+                            </ul>
                         </div>
-                        <ul>
-                            <li><a href=""> مشاهده حساب کاربری </a></li>
-                            <li><a href=""> تنظیمات حساب کاربری </a></li>
-                            <li><a href=""> ویرایش حساب کاربری </a></li>
-                            <li><a href=""> تغییر رمز عبور </a></li>
-                            <li><a href=""> پرسش های من </a></li>
-                            <li><a href=""> پاسخ های من </a></li>
-                            <li><a href=""> خروج از حساب کاربری </a></li>
-                        </ul>
                     </div>
-                </div>
-                <div class="signout-status">
-                    <i class="icon-profile"></i>
-                    <a asp-action="Login" asp-controller="Account"> ورود / </a>
-                    <a asp-action="Register" asp-controller="Account"> عضویت </a>
-                </div>
+                }
+                else
+                {
+                    <div class="signout-status">
+                        <i class="icon-profile"></i>
+                        <a asp-action="Login" asp-controller="Account"> ورود / </a>
+                        <a asp-action="Register" asp-controller="Account"> عضویت </a>
+                    </div>
+                }
             </div>
             <div class="clearfix"></div>
         </div>
