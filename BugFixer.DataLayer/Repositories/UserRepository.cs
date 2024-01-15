@@ -43,5 +43,15 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
         }
 
+        public async Task<User> GetUserByActivationCode(string activationCode)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.EmailActivationCode.Equals(activationCode));
+        }
+
+        public async Task UpdateUser(User user)
+        {
+            _context.Users.Update(user);
+        }
+
     }
 }

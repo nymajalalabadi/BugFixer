@@ -23,5 +23,11 @@ namespace BugFixer.Application.Services.Interfaces
         Task<User> GetUserByEmail(string email);
 
         #endregion
+
+        #region email activaiton 
+
+        Task<bool> ActivateUserEmail(string activationCode);
+
+        #endregion
     }
 }

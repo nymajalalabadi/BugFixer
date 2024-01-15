@@ -29,7 +29,7 @@ namespace BugFixer.Web.Controllers
 
         #region login
 
-        [HttpGet("Login")]
+        [HttpGet("login")]
         [RedirectHomeIfLoggedInActionFilter]
         public IActionResult Login(string ReturnUrl = "")
         {
@@ -48,7 +48,7 @@ namespace BugFixer.Web.Controllers
             return View(result);
         }
 
-        [HttpPost("Login"), ValidateAntiForgeryToken]
+        [HttpPost("login"), ValidateAntiForgeryToken]
         [RedirectHomeIfLoggedInActionFilter]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
@@ -160,6 +160,27 @@ namespace BugFixer.Web.Controllers
         {
             await HttpContext.SignOutAsync();
             return Redirect("/");
+        }
+
+        #endregion
+
+        #region email activation
+
+        [HttpGet("activate-email/{activationCode}")]
+        [RedirectHomeIfLoggedInActionFilter]
+        public async Task<IActionResult> ActivationUserEmail(string activationCode)
+        {
+            var result = await _userService.ActivateUserEmail(activationCode);
+
+            if (result)
+            {
+                TempData[SuccessMessage] = "حساب کاربری شما با موفقیت فعال شد .";
+            }
+            else
+            {
+                TempData[ErrorMessage] = "فعال سازی حساب کاربری با خطا مواجه شد .";
+            }
+            return RedirectToAction("Login", "Account");
         }
 
         #endregion
