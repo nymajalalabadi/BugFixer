@@ -50,5 +50,40 @@ namespace BugFixer.Application.Services.Implementations
         }
 
         #endregion
+
+        #region login
+
+        public async Task<LoginResult> CheckUserForLogin(LoginViewModel login)
+        {
+            var user = await _userRepository.GetUserByEmail(login.Email.Trim().ToLower().SanitizeText());
+
+            if (user == null)
+            {
+                return LoginResult.UserNotFound;
+            }
+
+            var hashPassword = PasswordHelper.EncodePasswordMd5(login.Password.SanitizeText());
+
+            if (hashPassword != user.Password)
+            {
+                return LoginResult.UserNotFound;
+            }
+
+            if (user.IsDelete) return LoginResult.UserNotFound;
+
+
+            if (user.IsBan) return LoginResult.UserIsBan;
+
+            if (!user.IsEmailConfirmed) return LoginResult.EmailNotActivated;
+
+            return LoginResult.Success;
+        }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await _userRepository.GetUserByEmail(email);
+        }
+
+        #endregion
     }
 }

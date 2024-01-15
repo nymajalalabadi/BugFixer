@@ -14,5 +14,7 @@ namespace BugFixer.domain.InterFaces
         Task CreateUser(User user);
 
         Task SaveChanges();
+
+        Task<User> GetUserByEmail(string email);
     }
 }

@@ -1,4 +1,5 @@
-﻿using BugFixer.domain.ViewModels.Account;
+﻿using BugFixer.domain.Entities.Account;
+using BugFixer.domain.ViewModels.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,14 @@ namespace BugFixer.Application.Services.Interfaces
         #region register
 
         Task<RegisterResult> RegisterUser(RegisterViewModel register);
+
+        #endregion
+
+        #region login
+
+        Task<LoginResult> CheckUserForLogin(LoginViewModel login);
+
+        Task<User> GetUserByEmail(string email);
 
         #endregion
     }
