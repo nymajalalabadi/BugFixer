@@ -2,6 +2,7 @@ using BugFixer.DataLayer.Context;
 using BugFixer.IoC;
 using GoogleReCaptcha.V3;
 using GoogleReCaptcha.V3.Interface;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -25,6 +26,24 @@ builder.Services.AddDbContext<BugFixerDbContext>(options =>
 });
 
 #endregion
+
+#region Authentication
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie(options =>
+{
+    options.LoginPath = "/Login";
+    options.LogoutPath = "/Logout";
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+});
+
+#endregion
+
 
 #region encode
 
