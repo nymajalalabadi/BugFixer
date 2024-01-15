@@ -1,5 +1,7 @@
 using BugFixer.DataLayer.Context;
 using BugFixer.IoC;
+using GoogleReCaptcha.V3;
+using GoogleReCaptcha.V3.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -10,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region reCAPTCHA 
+builder.Services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
+#endregion
 
 #region context
 

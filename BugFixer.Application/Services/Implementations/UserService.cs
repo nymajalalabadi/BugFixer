@@ -38,8 +38,8 @@ namespace BugFixer.Application.Services.Implementations
             var user = new User()
             {
                 Avatar = PathTools.DefaultUserAvatar,
-                Email = register.Email.Trim().ToLower(),
-                Password = PasswordHelper.EncodePasswordMd5(register.Password),
+                Email = register.Email.SanitizeText().Trim().ToLower(),
+                Password = PasswordHelper.EncodePasswordMd5(register.Password.SanitizeText()),
                 EmailActivationCode = CodeGenerator.CreateActivationCode()
             };
 

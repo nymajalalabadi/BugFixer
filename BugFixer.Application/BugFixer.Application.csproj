@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlSanitizer" Version="8.0.811" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BugFixer.DataLayer\BugFixer.DataLayer.csproj" />
     <ProjectReference Include="..\BugFixer.domain\BugFixer.domain.csproj" />
   </ItemGroup>

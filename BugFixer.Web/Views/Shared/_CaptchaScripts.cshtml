@@ -1,0 +1,11 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration _configuration
+
+<script src="https://www.google.com/recaptcha/api.js?render=@_configuration["googleReCaptcha:SiteKey"]"></script>
+
+<script>
+    grecaptcha.ready(function() {
+        window.grecaptcha.execute('@_configuration["googleReCaptcha:SiteKey"]', { action: 'home' }).then(function (token) {
+            $("#Captcha").val(token);
+        });
+    });
+</script>

@@ -1,6 +1,8 @@
 ﻿using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.ViewModels.Account;
+using GoogleReCaptcha.V3.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace BugFixer.Web.Controllers
 {
@@ -10,9 +12,12 @@ namespace BugFixer.Web.Controllers
 
         private readonly IUserService _userService;
 
-        public AccountController(IUserService userService)
+        private ICaptchaValidator _captchaValidator;
+
+        public AccountController(IUserService userService, ICaptchaValidator captchaValidator)
         {
             _userService = userService;
+            _captchaValidator = captchaValidator;
         }
 
         #endregion
@@ -35,9 +40,15 @@ namespace BugFixer.Web.Controllers
             return View();
         }
 
-        [HttpPost("register")]
+        [HttpPost("register"), ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel register)
         {
+            if (!await _captchaValidator.IsCaptchaPassedAsync(register.Captcha))
+            {
+                TempData[ErrorMessage] = "اعتبار سنجی Captcha با خطا مواجه شد لطفا مجدد تلاش کنید .";
+                return View(register);
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(register);

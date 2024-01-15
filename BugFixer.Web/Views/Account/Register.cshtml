@@ -55,7 +55,7 @@
                     <form asp-controller="account" asp-action="register" method="post" class="shadow-style">
 
                         <div class="inner">
-
+                            <input type="hidden" asp-for="Captcha" />
                             <h2> <i class="icon-three-dots"></i> ثبت نام در سایت </h2>
 
                             <div class="input-layer">
@@ -95,4 +95,5 @@
 
 @section Scripts{
     <partial name="_JqueryValidation" />
+    <partial name="_CaptchaScripts" />
 }

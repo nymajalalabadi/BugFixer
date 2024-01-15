@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BugFixer.domain.ViewModels.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BugFixer.domain.ViewModels.Account
 {
-    public class RegisterViewModel
+    public class RegisterViewModel : GoogleRecaptchaViewModel
     {
         [Display(Name = "ایمیل")]
         [MaxLength(100, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد")]
