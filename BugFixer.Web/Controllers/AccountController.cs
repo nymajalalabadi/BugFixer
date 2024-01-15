@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
 using System.Globalization;
 using System.Security.Claims;
+using BugFixer.Web.ActionFilters;
 
 namespace BugFixer.Web.Controllers
 {
@@ -28,13 +29,27 @@ namespace BugFixer.Web.Controllers
 
         #region login
 
-        [HttpGet("login")]
-        public IActionResult Login()
+        [HttpGet("Login")]
+        [RedirectHomeIfLoggedInActionFilter]
+        public IActionResult Login(string ReturnUrl = "")
         {
-            return View();
+            //if (HttpContext.User.Identity.IsAuthenticated)
+            //{
+            //    return Redirect("/");
+            //}
+
+            var result = new LoginViewModel();
+
+            if (!string.IsNullOrEmpty(ReturnUrl))
+            {
+                result.ReturnUrl = ReturnUrl;
+            }
+
+            return View(result);
         }
 
-        [HttpPost("Login")]
+        [HttpPost("Login"), ValidateAntiForgeryToken]
+        [RedirectHomeIfLoggedInActionFilter]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
             if (!await _captchaValidator.IsCaptchaPassedAsync(login.Captcha))
@@ -82,6 +97,12 @@ namespace BugFixer.Web.Controllers
                     #endregion
 
                     TempData[SuccessMessage] = "خوش آمدید";
+
+                    if (!string.IsNullOrEmpty(login.ReturnUrl))
+                    {
+                        return Redirect(login.ReturnUrl);
+                    }
+
                     return Redirect("/");
             }
 
@@ -93,12 +114,14 @@ namespace BugFixer.Web.Controllers
         #region register
 
         [HttpGet("register")]
+        [RedirectHomeIfLoggedInActionFilter]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost("register"), ValidateAntiForgeryToken]
+        [RedirectHomeIfLoggedInActionFilter]
         public async Task<IActionResult> Register(RegisterViewModel register)
         {
             if (!await _captchaValidator.IsCaptchaPassedAsync(register.Captcha))
@@ -126,6 +149,17 @@ namespace BugFixer.Web.Controllers
             }
 
             return View(register);
+        }
+
+        #endregion
+
+        #region logout
+
+        [HttpGet("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
         }
 
         #endregion
