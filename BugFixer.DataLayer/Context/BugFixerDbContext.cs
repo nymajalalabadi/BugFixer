@@ -1,4 +1,5 @@
 ﻿using BugFixer.domain.Entities.Account;
+using BugFixer.domain.Entities.SiteSetting;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,31 @@ namespace BugFixer.DataLayer.Context
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<EmailSetting> EmailSettings { get; set; }
+
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region Seed Data
 
+            var date = DateTime.MinValue;
+
+            modelBuilder.Entity<EmailSetting>().HasData(new EmailSetting()
+            {
+                CreateDate = date,
+                DisplayName = "BugFixer",
+                EnableSSL = true,
+                From = "nymasteam@gmail.com",
+                Id = 1,
+                IsDefault = true,
+                IsDelete = false,
+                Password = "qjymwzfmsycwpzza",
+                Port = 587,
+                SMTP = "smtp.gmail.com"
+            });
+
+            #endregion
             base.OnModelCreating(modelBuilder);
         }
     }

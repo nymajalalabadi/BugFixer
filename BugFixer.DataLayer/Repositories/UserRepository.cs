@@ -48,7 +48,7 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.EmailActivationCode.Equals(activationCode));
         }
 
-        public async Task UpdateUser(User user)
+        public void UpdateUser(User user)
         {
             _context.Users.Update(user);
         }

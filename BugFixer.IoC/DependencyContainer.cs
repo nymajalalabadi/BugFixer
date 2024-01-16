@@ -19,11 +19,15 @@ namespace BugFixer.IoC
 
             services.AddScoped<IUserService, UserService>();
 
+            services.AddScoped<IEmailService, EmailService>();
+
             #endregion
 
             #region repositories
 
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<ISiteSettingRepository, SiteSettingRepository>();
 
             #endregion
 

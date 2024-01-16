@@ -19,9 +19,13 @@ namespace BugFixer.Application.Services.Implementations
 
         private readonly IUserRepository _userRepository;
 
-        public UserService(IUserRepository userRepository)
+        private IEmailService _emailService;
+
+        public UserService(IUserRepository userRepository, IEmailService emailService)
         {
             _userRepository = userRepository;
+            _emailService = emailService;
+
         }
 
         #endregion
@@ -45,6 +49,17 @@ namespace BugFixer.Application.Services.Implementations
 
             await _userRepository.CreateUser(user);
             await _userRepository.SaveChanges();
+
+            #region Send Activation Email
+
+            var body = $@"
+                <div> برای فعالسازی حساب کاربری خود روی لینک زیر کلیک کنید . </div>
+                <a href='{PathTools.SiteAddress}/Activate-Email/{user.EmailActivationCode}'>فعالسازی حساب کاربری</a>
+                ";
+
+            await _emailService.SendEmail(user.Email, "فعالسازی حساب کاربری", body);
+
+            #endregion
 
             return RegisterResult.Success;
         }
@@ -105,7 +120,7 @@ namespace BugFixer.Application.Services.Implementations
             user.IsEmailConfirmed = true;
             user.EmailActivationCode = CodeGenerator.CreateActivationCode();
 
-            await _userRepository.UpdateUser(user);
+            _userRepository.UpdateUser(user);
             await _userRepository.SaveChanges();
 
             return true;

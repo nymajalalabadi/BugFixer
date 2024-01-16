@@ -13,5 +13,11 @@ namespace BugFixer.Application.Statics
         public static readonly string DefaultUserAvatar = "DefaultAvatar.png";
 
         #endregion
+
+        #region site
+
+        public static readonly string SiteAddress = "https://localhost:7109/";
+
+        #endregion
     }
 }

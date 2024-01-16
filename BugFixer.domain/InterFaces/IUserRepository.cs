@@ -19,6 +19,6 @@ namespace BugFixer.domain.InterFaces
 
         Task<User> GetUserByActivationCode(string activationCode);
 
-        Task UpdateUser(User user); 
+        void UpdateUser(User user); 
     }
 }

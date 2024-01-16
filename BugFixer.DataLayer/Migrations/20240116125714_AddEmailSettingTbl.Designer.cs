@@ -4,6 +4,7 @@ using BugFixer.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BugFixer.DataLayer.Migrations
 {
     [DbContext(typeof(BugFixerDbContext))]
-    partial class BugFixerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240116125714_AddEmailSettingTbl")]
+    partial class AddEmailSettingTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,7 +138,7 @@ namespace BugFixer.DataLayer.Migrations
                             From = "nymasteam@gmail.com",
                             IsDefault = true,
                             IsDelete = false,
-                            Password = "qjymwzfmsycwpzza",
+                            Password = "nymabign",
                             Port = 587,
                             SMTP = "smtp.gmail.com"
                         });
