@@ -83,6 +83,48 @@ namespace BugFixer.DataLayer.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("BugFixer.domain.Entities.Questions.Question", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsChecked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Questions");
+                });
+
             modelBuilder.Entity("BugFixer.domain.Entities.SiteSetting.EmailSetting", b =>
                 {
                     b.Property<long>("Id")
@@ -140,6 +182,22 @@ namespace BugFixer.DataLayer.Migrations
                             Port = 587,
                             SMTP = "smtp.gmail.com"
                         });
+                });
+
+            modelBuilder.Entity("BugFixer.domain.Entities.Questions.Question", b =>
+                {
+                    b.HasOne("BugFixer.domain.Entities.Account.User", "User")
+                        .WithMany("Questions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BugFixer.domain.Entities.Account.User", b =>
+                {
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

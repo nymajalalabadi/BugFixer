@@ -1,4 +1,5 @@
 ﻿using BugFixer.domain.Entities.Common;
+using BugFixer.domain.Entities.Questions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -53,7 +54,7 @@ namespace BugFixer.domain.Entities.Account
 
         #region Relations
 
-
+        public ICollection<Question> Questions { get; set; }
 
         #endregion
     }

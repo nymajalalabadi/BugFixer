@@ -1,4 +1,5 @@
 ﻿using BugFixer.domain.Entities.Account;
+using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.SiteSetting;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +19,8 @@ namespace BugFixer.DataLayer.Context
         public DbSet<User> Users { get; set; }
 
         public DbSet<EmailSetting> EmailSettings { get; set; }
+
+        public DbSet<Question> Questions { get; set; }
 
         #endregion
 

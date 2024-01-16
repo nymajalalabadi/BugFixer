@@ -23,4 +23,5 @@ namespace BugFixer.domain.Entities.SiteSetting
 
         public bool IsDefault { get; set; }
     }
+
 }
