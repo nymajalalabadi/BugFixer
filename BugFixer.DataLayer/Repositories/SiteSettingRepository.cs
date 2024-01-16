@@ -25,7 +25,7 @@ namespace BugFixer.DataLayer.Repositories
 
         public async Task<EmailSetting> GetDefaultEmail()
         {
-            return await _context.EmailSettings.FirstOrDefaultAsync(e => !e.IsDefault && e.IsDefault);
+            return await _context.EmailSettings.FirstOrDefaultAsync(s => !s.IsDelete && s.IsDefault);
         }
 
     }

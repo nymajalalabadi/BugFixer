@@ -57,7 +57,7 @@ namespace BugFixer.Application.Services.Implementations
                 <a href='{PathTools.SiteAddress}/Activate-Email/{user.EmailActivationCode}'>فعالسازی حساب کاربری</a>
                 ";
 
-            await _emailService.SendEmail(user.Email, "فعالسازی حساب کاربری", body);
+             _emailService.SendEmail(user.Email, "فعالسازی حساب کاربری", body);
 
             #endregion
 
@@ -147,7 +147,7 @@ namespace BugFixer.Application.Services.Implementations
                 <a href='{PathTools.SiteAddress}/Reset-Password/{user.EmailActivationCode}'>فراموشی کلمه عبور</a>
                 ";
 
-            await _emailService.SendEmail(user.Email, "فراموشی کلمه عبور", body);
+            _emailService.SendEmail(user.Email, "فراموشی کلمه عبور", body);
 
             #endregion
 

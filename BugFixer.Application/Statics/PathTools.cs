@@ -16,7 +16,7 @@ namespace BugFixer.Application.Statics
 
         #region site
 
-        public static readonly string SiteAddress = "https://localhost:7109/";
+        public static readonly string SiteAddress = "https://localhost:7109";
 
         #endregion
     }

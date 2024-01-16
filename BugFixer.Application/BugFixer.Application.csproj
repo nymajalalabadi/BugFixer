@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
     <Folder Include="Convertors\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
