@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using System.Globalization;
 using System.Security.Claims;
 using BugFixer.Web.ActionFilters;
+using Microsoft.Data.SqlClient.Server;
 
 namespace BugFixer.Web.Controllers
 {
@@ -166,9 +167,76 @@ namespace BugFixer.Web.Controllers
 
         #region email activation
 
-        [HttpGet("activate-email/{activationCode}")]
+        [HttpGet("Activate-Email/{activationCode}")]
         [RedirectHomeIfLoggedInActionFilter]
         public async Task<IActionResult> ActivationUserEmail(string activationCode)
+        {
+            var result = await _userService.ActivateUserEmail(activationCode);
+
+            if (result)
+            {
+                TempData[SuccessMessage] = "حساب کاربری شما با موفقیت فعال شد .";
+            }
+            else
+            {
+                TempData[ErrorMessage] = "فعال سازی حساب کاربری با خطا مواجه شد .";
+            }
+            return RedirectToAction("Login", "Account");
+        }
+
+        #endregion
+
+        #region forgot password
+
+        [HttpGet("forgot-password")]
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost("forgot-password")]
+        [RedirectHomeIfLoggedInActionFilter]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel forgotPassword)
+        {
+            if (!await _captchaValidator.IsCaptchaPassedAsync(forgotPassword.Captcha))
+            {
+                TempData[ErrorMessage] = "اعتبار سنجی Captcha با خطا مواجه شد لطفا مجدد تلاش کنید .";
+                return View(forgotPassword);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(forgotPassword);
+            }
+
+            var result = await _userService.ForgotPassword(forgotPassword);
+
+            switch (result)
+            {
+                case ForgotPasswordResult.UserBan:
+                    TempData[WarningMessage] = "دسترسی شما به حساب کاربری مسدود می باشد .";
+                    break;
+
+                case ForgotPasswordResult.UserNotFound:
+                    TempData[ErrorMessage] = "کاربری با مشخصات وارد شده یافت نشد .";
+                    break;
+
+                case ForgotPasswordResult.Success:
+                    TempData[InfoMessage] = "لینک بازیابی رمز عبور به ایمیل شما ارسال شد .";
+
+                    return RedirectToAction("Login", "Account");
+            }
+
+            return View(forgotPassword);
+        }
+
+        #endregion
+
+        #region Reset-Password
+
+        [HttpGet("Reset-Password/{activationCode}")]
+        [RedirectHomeIfLoggedInActionFilter]
+        public async Task<IActionResult> ResetPassword(string activationCode)
         {
             var result = await _userService.ActivateUserEmail(activationCode);
 

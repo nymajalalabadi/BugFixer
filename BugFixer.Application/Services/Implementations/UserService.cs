@@ -127,5 +127,33 @@ namespace BugFixer.Application.Services.Implementations
         }
 
         #endregion
+
+        #region Forgot Password
+
+        public async Task<ForgotPasswordResult> ForgotPassword(ForgotPasswordViewModel forgotPassword)
+        {
+            var email = forgotPassword.Email.Trim().ToLower().SanitizeText();
+
+            var user = await _userRepository.GetUserByEmail(email);
+
+            if (user == null || user.IsDelete) return ForgotPasswordResult.UserNotFound;
+
+            if (user.IsBan) return ForgotPasswordResult.UserBan;
+
+            #region Send Activation Email
+
+            var body = $@"
+                <div> برای فراموشی کلمه عبور روی لینک زیر کلیک کنید . </div>
+                <a href='{PathTools.SiteAddress}/Reset-Password/{user.EmailActivationCode}'>فراموشی کلمه عبور</a>
+                ";
+
+            await _emailService.SendEmail(user.Email, "فراموشی کلمه عبور", body);
+
+            #endregion
+
+            return ForgotPasswordResult.Success;
+        }
+
+        #endregion
     }
 }

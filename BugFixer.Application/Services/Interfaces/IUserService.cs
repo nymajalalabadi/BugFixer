@@ -29,5 +29,11 @@ namespace BugFixer.Application.Services.Interfaces
         Task<bool> ActivateUserEmail(string activationCode);
 
         #endregion
+
+        #region Forgot Password
+
+        Task<ForgotPasswordResult> ForgotPassword(ForgotPasswordViewModel forgotPassword);
+
+        #endregion
     }
 }
