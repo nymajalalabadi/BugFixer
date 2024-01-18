@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = ViewData["Title"];
+}
+
+@section Styles
+{
+    @await RenderSectionAsync("Styles", false)
+    <link rel="stylesheet" type="text/css" href="/css/account.css">
+}
+
+@section Header
+{
+    @await RenderSectionAsync("Header", true)
+}
+
+@section Scripts
+{
+    @await RenderSectionAsync("Scripts", false)
+    <script src="/js/account.js"></script>
+    <script src="/js/slimscroll.js"></script>
+    <script src="/js/progress.js"></script>
+}
+
+<div class="user-page-style">
+
+    <div class="breadcumb-layer">
+        <div class="container">
+            <ul itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> باگ فیکسر </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="javascript:void(0)" itemprop="item"><span itemprop="name"> پنل کاربری </span></a></li>
+                @await RenderSectionAsync("Breadcrumb", true)
+            </ul>
+        </div>
+    </div>
+
+    <div class="account-layer">
+        <div class="container">
+
+            @* @await Component.InvokeAsync("UserSideBar") *@
+
+            <div class="left-side">
+
+                @RenderBody()
+
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</div>

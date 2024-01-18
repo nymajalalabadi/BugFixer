@@ -1,0 +1,33 @@
+﻿
+<!-- right side -->
+<div class="right-side">
+    <!-- avatar -->
+    <div class="quick-access layer-style">
+        <div class="img-layer">
+            <a href="javascript:void(0)" class="change-image"><i class="icon-pencil-edit"></i></a>
+            @* <img src="@PathTools.UserAvatarPath@Model.Avatar"> *@
+        </div>
+        <div class="detail gold">
+            <h3> @Model.GetUserDisplayName() </h3>
+            <span> عضویت : @Model.CreateDate.ToShamsi() </span>
+        </div>
+        <ul>
+            <li><a href="" data-toggle="tooltip" data-placement="top" title=" داشبورد "><i class="icon-settings"></i></a></li>
+            <li><a href="" data-toggle="tooltip" data-placement="top" title=" ویرایش اطلاعات "><i class="icon-profile"></i></a></li>
+            <li><a href="" data-toggle="tooltip" data-placement="top" title=" تغییر رمز عبور "><i class="icon-safe"></i></a></li>
+            <li><a href="" data-toggle="tooltip" data-placement="top" title=" خروج از حساب "><i class="icon-power-symbol"></i></a></li>
+        </ul>
+    </div>
+    <!-- /avatar -->
+    <!-- side bar -->
+    <section class="sidebar layer-style">
+        <header><h3> منوی دسترسی </h3><i class="icon-chevron-down"></i></header>
+        <div class="inner">
+            <ul>
+                <li><a href="/"> مدیریت رزومه  </a>  </li>
+            </ul>
+        </div>
+    </section>
+    <!-- /side bar -->
+</div>
+<!-- /right side -->

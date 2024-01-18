@@ -247,7 +247,7 @@ namespace BugFixer.Web.Controllers
             });
         }
 
-        [HttpPost("Reset-Password/{activationCode}")]
+        [HttpPost("Reset-Password/{emailActivationCode}")]
         [RedirectHomeIfLoggedInActionFilter]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPassword)
         {
