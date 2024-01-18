@@ -171,6 +171,7 @@ namespace BugFixer.Application.Services.Implementations
             
             user.Password = password;
             user.IsEmailConfirmed = true;  
+            user.EmailActivationCode = CodeGenerator.CreateActivationCode();
 
             _userRepository.UpdateUser(user);
             await _userRepository.SaveChanges();
