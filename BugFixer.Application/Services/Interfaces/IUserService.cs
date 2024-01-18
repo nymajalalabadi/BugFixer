@@ -1,5 +1,6 @@
 ﻿using BugFixer.domain.Entities.Account;
 using BugFixer.domain.ViewModels.Account;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,15 @@ namespace BugFixer.Application.Services.Interfaces
 
         #region Forgot Password
 
-        Task<ForgotPasswordResult> ForgotPassword(ForgotPasswordViewModel forgotPassword);
+        Task<ForgotPasswordResult> ForgotPasswordForUser(ForgotPasswordViewModel forgotPassword);
+
+        #endregion
+
+        #region Reset Password
+
+        Task<ResetPasswordResult> ResetPasswordForUser(ResetPasswordViewModel resetPassword);
+
+        Task<User> GetUserByActivationCode(string activationCode);
 
         #endregion
     }

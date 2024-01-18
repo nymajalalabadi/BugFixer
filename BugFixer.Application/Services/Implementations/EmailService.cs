@@ -32,10 +32,6 @@ namespace BugFixer.Application.Services.Implementations
             mail.Body = body;
             mail.IsBodyHtml = true;
 
-            //System.Net.Mail.Attachment attachment;
-            // attachment = new System.Net.Mail.Attachment("c:/textfile.txt");
-            // mail.Attachments.Add(attachment);
-
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("nymasteam@gmail.com", "qjymwzfmsycwpzza");
             SmtpServer.EnableSsl = true;

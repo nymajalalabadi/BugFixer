@@ -5,6 +5,7 @@ using BugFixer.Application.Statics;
 using BugFixer.domain.Entities.Account;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Account;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -130,7 +131,7 @@ namespace BugFixer.Application.Services.Implementations
 
         #region Forgot Password
 
-        public async Task<ForgotPasswordResult> ForgotPassword(ForgotPasswordViewModel forgotPassword)
+        public async Task<ForgotPasswordResult> ForgotPasswordForUser(ForgotPasswordViewModel forgotPassword)
         {
             var email = forgotPassword.Email.Trim().ToLower().SanitizeText();
 
@@ -140,7 +141,7 @@ namespace BugFixer.Application.Services.Implementations
 
             if (user.IsBan) return ForgotPasswordResult.UserBan;
 
-            #region Send Activation Email
+            #region Send Email Code
 
             var body = $@"
                 <div> برای فراموشی کلمه عبور روی لینک زیر کلیک کنید . </div>
@@ -154,6 +155,33 @@ namespace BugFixer.Application.Services.Implementations
             return ForgotPasswordResult.Success;
         }
 
+        #endregion
+
+        #region reset password
+
+        public async Task<ResetPasswordResult> ResetPasswordForUser(ResetPasswordViewModel resetPassword)
+        {
+            var user = await _userRepository.GetUserByEmail(resetPassword.EmailActivationCode.SanitizeText());
+
+            if (user == null || user.IsDelete) return ResetPasswordResult.UserNotFound;
+
+            if (user.IsBan) return ResetPasswordResult.UserIsBan;
+
+            var password = PasswordHelper.EncodePasswordMd5(resetPassword.Password.SanitizeText());
+            
+            user.Password = password;
+            user.IsEmailConfirmed = true;  
+
+            _userRepository.UpdateUser(user);
+            await _userRepository.SaveChanges();
+
+            return ResetPasswordResult.Success;
+        }
+
+        public async Task<User> GetUserByActivationCode(string activationCode)
+        {
+            return await _userRepository.GetUserByActivationCode(activationCode);
+        }
         #endregion
     }
 }

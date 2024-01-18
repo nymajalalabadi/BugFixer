@@ -209,7 +209,7 @@ namespace BugFixer.Web.Controllers
                 return View(forgotPassword);
             }
 
-            var result = await _userService.ForgotPassword(forgotPassword);
+            var result = await _userService.ForgotPasswordForUser(forgotPassword);
 
             switch (result)
             {
@@ -234,23 +234,53 @@ namespace BugFixer.Web.Controllers
 
         #region Reset-Password
 
-        [HttpGet("Reset-Password/{activationCode}")]
-        [RedirectHomeIfLoggedInActionFilter]
-        public async Task<IActionResult> ResetPassword(string activationCode)
+        [HttpGet("Reset-Password/{emailActivationCode}")]
+        public async Task<IActionResult> ResetPassword(string emailActivationCode)
         {
-            var result = await _userService.ActivateUserEmail(activationCode);
+            var user = await _userService.GetUserByActivationCode(emailActivationCode);
 
-            if (result)
+            if (user == null || user.IsBan || user.IsDelete) return NotFound();
+
+            return View(new ResetPasswordViewModel()
             {
-                TempData[SuccessMessage] = "حساب کاربری شما با موفقیت فعال شد .";
-            }
-            else
-            {
-                TempData[ErrorMessage] = "فعال سازی حساب کاربری با خطا مواجه شد .";
-            }
-            return RedirectToAction("Login", "Account");
+                EmailActivationCode = user.EmailActivationCode,
+            });
         }
 
+        [HttpPost("Reset-Password/{activationCode}")]
+        [RedirectHomeIfLoggedInActionFilter]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPassword)
+        {
+            if (!await _captchaValidator.IsCaptchaPassedAsync(resetPassword.Captcha))
+            {
+                TempData[ErrorMessage] = "اعتبار سنجی Captcha با خطا مواجه شد لطفا مجدد تلاش کنید .";
+                return View(resetPassword);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(resetPassword);
+            }
+
+            var result = await _userService.ResetPasswordForUser(resetPassword);
+
+            switch (result)
+            {
+                case ResetPasswordResult.UserNotFound:
+                    TempData[ErrorMessage] = "کاربر مورد نظر یافت نشد .";
+                    break;
+
+                case ResetPasswordResult.UserIsBan:
+                    TempData[WarningMessage] = "دسترسی شما به سایت مسدود می باشد .";
+                    break;
+
+                case ResetPasswordResult.Success:
+                    TempData[SuccessMessage] = "عملیات با موفقیت انجام شد .";
+                    return RedirectToAction("Login", "Account");
+            }
+
+            return View(resetPassword);
+        }
         #endregion
     }
 }
