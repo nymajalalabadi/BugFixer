@@ -184,5 +184,14 @@ namespace BugFixer.Application.Services.Implementations
             return await _userRepository.GetUserByActivationCode(activationCode);
         }
         #endregion
+
+        #region user panel
+
+        public async Task<User?> GetUserById(long userId)
+        {
+            return await _userRepository.GetUserById(userId);
+        }
+
+        #endregion
     }
 }

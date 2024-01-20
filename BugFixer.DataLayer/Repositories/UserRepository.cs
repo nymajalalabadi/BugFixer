@@ -53,5 +53,10 @@ namespace BugFixer.DataLayer.Repositories
             _context.Users.Update(user);
         }
 
+        public async Task<User> GetUserById(long userId)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Id == userId && !u.IsDelete);
+        }
+
     }
 }
