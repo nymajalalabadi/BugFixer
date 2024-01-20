@@ -12,14 +12,18 @@ namespace BugFixer.Application.Statics
 
         public static readonly string DefaultUserAvatar = "DefaultAvatar.png";
 
-        public static readonly string UserAvatarServerPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwrroot/content/user/");
-        public static readonly string UserAvatarPath = "/content/user/";
+        public static readonly string UserAvatarServerPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/user/orgin/");
+        public static readonly string UserAvatarPath = "/content/user/orgin/";
+
+
+        public static readonly string UserAvatarServerThumb = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/user/thumb/");
+        public static readonly string UserAvatarThumb = "/content/user/thumb/";
 
         #endregion
 
         #region site
 
-        public static readonly string SiteAddress = "https://localhost:7109";
+        public static string SiteAddress = "https://localhost:7109";
 
         #endregion
     }

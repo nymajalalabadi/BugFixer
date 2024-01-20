@@ -9,7 +9,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\common\jquery-validation\" />
     <Folder Include="wwwroot\common\sweetalert\" />
-    <Folder Include="wwwroot\content\user\" />
+    <Folder Include="wwwroot\content\user\thumb\" />
   </ItemGroup>
 
   <ItemGroup>

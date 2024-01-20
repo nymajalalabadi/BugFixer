@@ -1,12 +1,14 @@
 ﻿@using BugFixer.Application.Extensions
 @using BugFixer.Application.Statics
 @model BugFixer.domain.Entities.Account.User
+
 <!-- right side -->
 <div class="right-side">
     <!-- avatar -->
-    <div class="quick-access layer-style">
+    <div class="quick-access layer-style" id="UserInfoBox">
         <div class="img-layer">
-            <a href="javascript:void(0)" class="change-image"><i class="icon-pencil-edit"></i></a>
+            <input type="file" onchange="UploadUserAvatar('@Url.Action("ChangeUserAvatar", "Home", new {area = "UserPanel"})')" name="UserAvatar" id="UserAvatar" accept=".png, .jpg, .jpeg" class="display-none" />
+            <a onclick="OpenAvatarInput()" class="change-image"><i class="icon-pencil-edit"></i></a>
             <img src="@PathTools.UserAvatarPath@Model.Avatar">
         </div>
         <div class="detail gold">
@@ -32,4 +34,3 @@
     </section>
     <!-- /side bar -->
 </div>
-<!-- /right side -->

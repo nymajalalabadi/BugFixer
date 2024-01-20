@@ -48,6 +48,8 @@ namespace BugFixer.Application.Services.Interfaces
         #region user panel
 
         Task<User?> GetUserById(long userId);
+
+        Task ChangeAvatarForUser(long userId, string FileName);
         
 
         #endregion

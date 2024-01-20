@@ -192,6 +192,16 @@ namespace BugFixer.Application.Services.Implementations
             return await _userRepository.GetUserById(userId);
         }
 
+        public async Task ChangeAvatarForUser(long userId, string FileName)
+        {
+            var user = await _userRepository.GetUserById(userId);
+
+            user.Avatar = FileName;
+
+            _userRepository.UpdateUser(user);
+            await _userRepository.SaveChanges();
+        }
+
         #endregion
     }
 }
