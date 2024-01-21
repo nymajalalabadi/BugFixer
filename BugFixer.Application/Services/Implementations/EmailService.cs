@@ -1,11 +1,6 @@
 ﻿using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.InterFaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BugFixer.Application.Services.Implementations
 {

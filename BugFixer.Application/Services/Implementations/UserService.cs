@@ -5,12 +5,6 @@ using BugFixer.Application.Statics;
 using BugFixer.domain.Entities.Account;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Account;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BugFixer.Application.Services.Implementations
 {
