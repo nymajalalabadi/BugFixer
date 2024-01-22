@@ -1,8 +1,10 @@
 ﻿using BugFixer.domain.Entities.Common;
+using BugFixer.domain.Entities.Location;
 using BugFixer.domain.Entities.Questions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +41,14 @@ namespace BugFixer.domain.Entities.Account
         [Display(Name = "توضیحات")]
         public string? Description { get; set; }
 
+        public DateTime? BirthDate { get; set; }
+
+        public int? CountryId { get; set; }
+
+        public int? CityId { get; set; }
+
+        public bool GetNewsLetter { get; set; }
+
         public bool IsEmailConfirmed { get; set; }
 
         public bool IsAdmin { get; set; }
@@ -53,6 +63,12 @@ namespace BugFixer.domain.Entities.Account
 
 
         #region Relations
+
+        [InverseProperty("UserCountries")]
+        public State? Country { get; set; }
+
+        [InverseProperty("UserCities")]
+        public State? City { get; set; }
 
         public ICollection<Question> Questions { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using BugFixer.domain.Entities.Account;
+using BugFixer.domain.Entities.Location;
 using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.SiteSetting;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ namespace BugFixer.DataLayer.Context
         #region Tables
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<State> States { get; set; }
 
         public DbSet<EmailSetting> EmailSettings { get; set; }
 
