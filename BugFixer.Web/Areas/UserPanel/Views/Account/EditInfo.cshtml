@@ -17,3 +17,95 @@
 }
 
 
+<div class="account-content-layer layer-style">
+    <h3> @ViewData["Title"] </h3>
+    <div class="inner">
+        <form class="form-layer-style" asp-action="EditInfo" asp-controller="Account" asp-area="UserPanel" method="post">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <!-- input -->
+                    <div class="input-layer">
+                        <label asp-for="FirstName"></label>
+                        <input type="text" asp-for="FirstName">
+                        <span asp-validation-for="FirstName"></span>
+                    </div>
+                    <!--/ input -->
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <!-- input -->
+                    <div class="input-layer">
+                        <label asp-for="LastName"></label>
+                        <input type="text" asp-for="LastName">
+                        <span asp-validation-for="LastName"></span>
+                    </div>
+                    <!--/ input -->
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <!-- input -->
+                    <div class="input-layer">
+                        <label asp-for="PhoneNumber"></label>
+                        <input type="text" asp-for="PhoneNumber">
+                        <span asp-validation-for="PhoneNumber"></span>
+                    </div>
+                    <!--/ input -->
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <!-- input -->
+                    <div class="input-layer">
+                        <label asp-for="BirthDate"></label>
+                        <input type="text" asp-for="BirthDate">
+                        <span asp-validation-for="BirthDate"></span>
+                    </div>
+                    <!--/ input -->
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <!-- select -->
+                    <div class="select-layer">
+                        <label asp-for="CountryId"></label>
+                        <select asp-for="CountryId"></select>
+                    </div>
+                    <!-- /select -->
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <!-- select -->
+                    <div class="select-layer">
+                        <label asp-for="CityId"></label>
+                        <select asp-for="CityId"></select>
+                    </div>
+                    <!-- /select -->
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!-- textarea -->
+                    <div class="textarea-layer">
+                        <label asp-for="Description"></label>
+                        <textarea asp-for="Description"> </textarea>
+                    </div>
+                    <!-- /textarea -->
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="radio-selected">
+                        <span> اطلاع از خبر نامه </span>
+                        <div class="select">
+                            <input type="checkbox" asp-for="GetNewsLetter" />
+                            <label for="GetNewsLetter"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-12 pull-left">
+                    <button type="submit" class="submit-button green"> <span>ویرایش اطلاعات</span> </button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
