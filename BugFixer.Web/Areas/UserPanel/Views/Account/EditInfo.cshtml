@@ -1,0 +1,19 @@
+﻿@model BugFixer.domain.ViewModels.UserPanel.Account.EditUserViewModel
+
+
+@{
+    ViewData["Title"] = "ویرایش اطلاعات کاربری";
+    Layout = "_UserPanelLayout";
+}
+
+@section Scripts
+{
+    <partial name="_JqueryValidation" />
+}
+
+@section Breadcrumb
+{
+    <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="javascript:void(0)" itemprop="item"><span itemprop="name"> @ViewData["Title"] </span></a></li>
+}
+
+
