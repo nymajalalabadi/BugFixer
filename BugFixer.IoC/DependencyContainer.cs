@@ -21,6 +21,8 @@ namespace BugFixer.IoC
 
             services.AddScoped<IEmailService, EmailService>();
 
+            services.AddScoped<IStateService, StateService>();
+
             #endregion
 
             #region repositories
@@ -28,6 +30,8 @@ namespace BugFixer.IoC
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<ISiteSettingRepository, SiteSettingRepository>();
+
+            services.AddScoped<IStateRepository, StateRepository>();
 
             #endregion
 
