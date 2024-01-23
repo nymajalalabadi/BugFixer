@@ -1,5 +1,6 @@
 ﻿using BugFixer.domain.Entities.Account;
 using BugFixer.domain.ViewModels.Account;
+using BugFixer.domain.ViewModels.UserPanel.Account;
 
 namespace BugFixer.Application.Services.Interfaces
 {
@@ -44,7 +45,10 @@ namespace BugFixer.Application.Services.Interfaces
         Task<User?> GetUserById(long userId);
 
         Task ChangeAvatarForUser(long userId, string FileName);
-        
+
+        Task<EditUserViewModel> FillEditUserViewModel(long userId);
+
+        Task<EditUserInfoResult> EditUserInfo(EditUserViewModel editUserViewModel, long userId);
 
         #endregion
     }

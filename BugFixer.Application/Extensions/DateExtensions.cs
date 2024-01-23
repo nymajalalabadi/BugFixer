@@ -23,6 +23,17 @@ namespace BugFixer.Application.Extensions
             return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, new PersianCalendar());
         }
 
+        public static DateTime ToMiladi(this string date)
+        {
+            var splitedDate = date.Split("/");
+
+            var year = Convert.ToInt32(splitedDate[0]);
+            var month = Convert.ToInt32(splitedDate[1]);
+            var day = Convert.ToInt32(splitedDate[2]);
+
+            return new DateTime(year, month, day, new PersianCalendar());
+        }
+
         public static DateTime GetDateNow()
         {
             return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);

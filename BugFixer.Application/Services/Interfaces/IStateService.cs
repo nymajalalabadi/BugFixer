@@ -9,6 +9,6 @@ namespace BugFixer.Application.Services.Interfaces
 {
     public interface IStateService
     {
-        Task<List<SelectListViewModel>> GetAllState(long? stateId = null);
+        Task<List<SelectListViewModel>> GetAllStates(long? stateId = null);
     }
 }

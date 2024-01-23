@@ -1,10 +1,12 @@
-﻿using BugFixer.Application.Generators;
+﻿using BugFixer.Application.Extensions;
+using BugFixer.Application.Generators;
 using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
 using BugFixer.Application.Statics;
 using BugFixer.domain.Entities.Account;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Account;
+using BugFixer.domain.ViewModels.UserPanel.Account;
 
 namespace BugFixer.Application.Services.Implementations
 {
@@ -52,7 +54,7 @@ namespace BugFixer.Application.Services.Implementations
                 <a href='{PathTools.SiteAddress}/Activate-Email/{user.EmailActivationCode}'>فعالسازی حساب کاربری</a>
                 ";
 
-             _emailService.SendEmail(user.Email, "فعالسازی حساب کاربری", body);
+            _emailService.SendEmail(user.Email, "فعالسازی حساب کاربری", body);
 
             #endregion
 
@@ -162,9 +164,9 @@ namespace BugFixer.Application.Services.Implementations
             if (user.IsBan) return ResetPasswordResult.UserIsBan;
 
             var password = PasswordHelper.EncodePasswordMd5(resetPassword.Password.SanitizeText());
-            
+
             user.Password = password;
-            user.IsEmailConfirmed = true;  
+            user.IsEmailConfirmed = true;
             user.EmailActivationCode = CodeGenerator.CreateActivationCode();
 
             _userRepository.UpdateUser(user);
@@ -195,6 +197,57 @@ namespace BugFixer.Application.Services.Implementations
             _userRepository.UpdateUser(user);
             await _userRepository.SaveChanges();
         }
+
+        public async Task<EditUserViewModel> FillEditUserViewModel(long userId)
+        {
+            var user = await GetUserById(userId);
+
+            var result = new EditUserViewModel
+            {
+                BirthDate = user.BirthDate != null ? user.BirthDate.Value.ToShamsiDate() : string.Empty,
+                CityId = user.CityId,
+                CountryId = user.CountryId,
+                Description= user.Description,
+                FirstName = user.FirstName ?? string.Empty,
+                LastName = user.LastName ?? string.Empty,
+                GetNewsLetter = user.GetNewsLetter,
+                PhoneNumber = user.PhoneNumber,
+            };
+            return result;
+        }
+
+        public async Task<EditUserInfoResult> EditUserInfo(EditUserViewModel editUserViewModel, long userId)
+        {
+            var user = await GetUserById(userId);
+
+            if (!string.IsNullOrEmpty(editUserViewModel.BirthDate))
+            {
+                try
+                {
+                    var date = editUserViewModel.BirthDate.ToMiladi();
+
+                    user.BirthDate = date;
+                }
+                catch (Exception exception)
+                {
+                    return EditUserInfoResult.NotValidDate;
+                }
+            }
+
+            user.FirstName = editUserViewModel.FirstName.SanitizeText();
+            user.LastName = editUserViewModel.LastName.SanitizeText();
+            user.Description = editUserViewModel.Description.SanitizeText();
+            user.PhoneNumber = editUserViewModel.PhoneNumber.SanitizeText();
+            user.GetNewsLetter = editUserViewModel.GetNewsLetter;
+            user.CountryId = Convert.ToInt32(editUserViewModel.CountryId);
+            user.CityId = Convert.ToInt32(editUserViewModel.CityId);
+
+            _userRepository.UpdateUser(user);
+            await _userRepository.SaveChanges();
+
+            return EditUserInfoResult.Success;
+        }
+
 
         #endregion
     }

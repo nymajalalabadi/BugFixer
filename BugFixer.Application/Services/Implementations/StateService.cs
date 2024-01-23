@@ -22,7 +22,7 @@ namespace BugFixer.Application.Services.Implementations
 
         #endregion
 
-        public async Task<List<SelectListViewModel>> GetAllState(long? stateId = null)
+        public async Task<List<SelectListViewModel>> GetAllStates(long? stateId = null)
         {
             var states = await _stateRepository.GetAllStates(stateId); 
 

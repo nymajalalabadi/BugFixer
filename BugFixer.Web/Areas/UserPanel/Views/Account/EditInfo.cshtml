@@ -5,6 +5,7 @@
     ViewData["Title"] = "ویرایش اطلاعات کاربری";
     Layout = "_UserPanelLayout";
     var states = ViewData["states"] as List<SelectListViewModel>;
+    var cities = ViewData["Cities"] as List<SelectListViewModel>;
 }
 
 @section Scripts
@@ -85,8 +86,15 @@
                     <!-- select -->
                     <div class="select-layer">
                         <label asp-for="CityId"></label>
-                        <select asp-for="CityId" disabled>
+                        <select asp-for="CityId">
                             <option> لطفا شهر خور را انتخاب کنید </option>
+                            @if (cities != null && cities.Any())
+                            {
+                                @foreach (var city in cities)
+                                {
+                                    <option value="@city.Id">@city.Title</option>
+                                }
+                            }
                         </select>
                     </div>
                     <!-- /select -->

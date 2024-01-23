@@ -38,4 +38,9 @@ namespace BugFixer.domain.ViewModels.UserPanel.Account
 
         public bool GetNewsLetter { get; set; }
     }
+    public enum EditUserInfoResult
+    {
+        Success,
+        NotValidDate
+    }
 }
