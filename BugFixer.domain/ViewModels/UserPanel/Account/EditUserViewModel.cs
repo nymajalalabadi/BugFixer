@@ -27,6 +27,7 @@ namespace BugFixer.domain.ViewModels.UserPanel.Account
         public string? Description { get; set; }
 
         [Display(Name = "تاریخ تولد")]
+        [RegularExpression(@"^\d{4}/((0[1-9])|(1[012]))/((0[1-9]|[12]\d)|3[01])$", ErrorMessage = "تاریخ وارد شده معتبر نمی باشد .")]
         public string? BirthDate { get; set; }
 
         [Display(Name = "کشور")]
