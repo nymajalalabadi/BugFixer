@@ -1,18 +1,19 @@
 ﻿@model BugFixer.domain.ViewModels.UserPanel.Account.EditUserViewModel
-
+@using BugFixer.domain.Entities.Common;
 
 @{
     ViewData["Title"] = "ویرایش اطلاعات کاربری";
     Layout = "_UserPanelLayout";
+    var states = ViewData["states"] as List<SelectListViewModel>;
 }
 
 @section Scripts
-{
+    {
     <partial name="_JqueryValidation" />
 }
 
 @section Breadcrumb
-{
+    {
     <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="javascript:void(0)" itemprop="item"><span itemprop="name"> @ViewData["Title"] </span></a></li>
 }
 
@@ -66,7 +67,16 @@
                     <!-- select -->
                     <div class="select-layer">
                         <label asp-for="CountryId"></label>
-                        <select asp-for="CountryId"></select>
+                        <select asp-for="CountryId" data-url="@Url.Action("LoadCities", "Account", new {area = "UserPanel"})">
+                            <option> لطفا کشور خور را انتخاب کنید </option>
+                            @if (states != null && states.Any())
+                            {
+                                foreach (var state in states)
+                                {
+                                    <option value="@state.Id">@state.Title</option>
+                                }
+                            }
+                        </select>
                     </div>
                     <!-- /select -->
                 </div>
@@ -75,7 +85,9 @@
                     <!-- select -->
                     <div class="select-layer">
                         <label asp-for="CityId"></label>
-                        <select asp-for="CityId"></select>
+                        <select asp-for="CityId" disabled>
+                            <option> لطفا شهر خور را انتخاب کنید </option>
+                        </select>
                     </div>
                     <!-- /select -->
                 </div>

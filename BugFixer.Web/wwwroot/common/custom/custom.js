@@ -62,3 +62,40 @@ function StartLoading(selector = 'body') {
 function EndLoading(selector = 'body') {
     $(selector).waitMe('hide');
 }
+
+$("#CountryId").on("change", function () {
+    var countryId = $("#CountryId").val();
+    if (countryId !== '' && countryId.length) {
+        $.ajax({
+            url: $("#CountryId").attr("data-url"),
+            type: "get",
+            data: {
+                countryId: countryId
+            },
+            beforeSend: function () {
+                StartLoading();
+            },
+            success: function (response) {
+                EndLoading();
+                $("#CityId option:not(:first)").remove();
+                $("#CityId").prop("disabled", false);
+                for (var city of response) {
+                    $("#CityId").append(`<option value="${city.id}">${city.title}</option>`);
+                }
+            },
+            error: function () {
+                EndLoading();
+                swal({
+                    title: "خطا",
+                    text: "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .",
+                    icon: "error",
+                    button: "باشه"
+                });
+            }
+        });
+    }
+    else {
+        $("#CityId option:not(:first)").remove();
+        $("#CityId").prop("disabled", true);
+    }
+})
