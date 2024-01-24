@@ -1,6 +1,7 @@
 ﻿using BugFixer.Application.Extensions;
 using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.ViewModels.UserPanel.Account;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugFixer.Web.Areas.UserPanel.Controllers
@@ -50,6 +51,7 @@ namespace BugFixer.Web.Areas.UserPanel.Controllers
                     case EditUserInfoResult.Success:
                         TempData[SuccessMessage] = "عملیات با موفقیت انجام شد .";
                         return RedirectToAction("EditInfo", "Account", new { area = "UserPanel" });
+
                     case EditUserInfoResult.NotValidDate:
                         TempData[ErrorMessage] = "تاریخ وارد شده معتبر نمی باشد .";
                         break;
@@ -70,6 +72,39 @@ namespace BugFixer.Web.Areas.UserPanel.Controllers
             var result = await _stateService.GetAllStates(countryId);
 
             return new JsonResult(result); 
+        }
+
+        #endregion
+
+        #region change user password
+
+        [HttpGet]
+        public async Task<IActionResult> ChangeUserPassword()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeUserPassword(ChnageUserPasswordViewModel changePassword)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _userService.ChangePasswordForUser(User.GetUserId(), changePassword);
+
+                switch (result)
+                {
+                    case ChangeUserPasswordResult.Success:
+                        TempData[SuccessMessage] = "عملیات با موفقیت انجام شد .";
+                        await HttpContext.SignOutAsync();
+                        return RedirectToAction("Login", "Account", new { area = "" });
+
+                    case ChangeUserPasswordResult.OldPasswordIsNotValid:
+                        ModelState.AddModelError("OldPassword", "کلمه عبور وارد شده اشتباه است .");
+                        break;
+                }
+            }
+
+            return View(changePassword);
         }
 
         #endregion

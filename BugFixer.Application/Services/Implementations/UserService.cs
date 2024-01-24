@@ -248,6 +248,24 @@ namespace BugFixer.Application.Services.Implementations
             return EditUserInfoResult.Success;
         }
 
+        public async Task<ChangeUserPasswordResult> ChangePasswordForUser(long userId, ChnageUserPasswordViewModel changePassword)
+        {
+            var user = await GetUserById(userId);
+
+            var password = PasswordHelper.EncodePasswordMd5(changePassword.OldPassword.SanitizeText());
+
+            if (password != user.Password)
+            {
+                return ChangeUserPasswordResult.OldPasswordIsNotValid;
+            }
+
+            user.Password = PasswordHelper.EncodePasswordMd5(changePassword.Password.SanitizeText());
+
+            _userRepository.UpdateUser(user);
+            await _userRepository.SaveChanges();
+
+            return ChangeUserPasswordResult.Success;
+        }
 
         #endregion
     }

@@ -50,6 +50,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<EditUserInfoResult> EditUserInfo(EditUserViewModel editUserViewModel, long userId);
 
+        Task<ChangeUserPasswordResult> ChangePasswordForUser(long userId, ChnageUserPasswordViewModel changePassword);
+
         #endregion
     }
 }
