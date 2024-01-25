@@ -2,6 +2,7 @@
 using BugFixer.domain.Entities.Location;
 using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.SiteSetting;
+using BugFixer.domain.Entities.Tags;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,27 @@ namespace BugFixer.DataLayer.Context
 
         public DbSet<Question> Questions { get; set; }
 
+        public DbSet<SelectQuestionTag> SelectQuestionTags { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<RequestTag> RequestTags { get; set; }
+
+        public DbSet<Answer> Answers { get; set; }
+
+        public DbSet<QuestionView> QuestionViews { get; set; }
+
+        public DbSet<UserQuestionBookmark> UserQuestionBookmarks { get; set; }
+
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            foreach (var relation in modelBuilder.Model.GetEntityTypes().SelectMany(s => s.GetForeignKeys()))
+            {
+                relation.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
             #region Seed Data
 
             var date = DateTime.MinValue;

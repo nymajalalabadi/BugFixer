@@ -38,6 +38,14 @@ namespace BugFixer.domain.Entities.Questions
 
         public User User { get; set; }
 
+        public ICollection<SelectQuestionTag> SelectQuestionTags { get; set; }
+
+        public ICollection<Answer> Answers { get; set; }
+
+        public ICollection<QuestionView> QuestionViews { get; set; }
+
+        public ICollection<UserQuestionBookmark> UserQuestionBookmarks { get; set; }
+
         #endregion
 
     }
