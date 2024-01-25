@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "ثبت پرسش جدید";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/css/question.css">
+}
+
+@section Header
+{
+    <partial name="_Header" />
+}
+
+<div class="user-page-style">
+
+    <div class="breadcumb-layer">
+        <div class="container">
+            <ul itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> صفحه اصلی </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a asp-action="CreateQuestion" asp-controller="Question" itemprop="item"><span itemprop="name"> @ViewData["Title"] </span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="questions-layer page-style">
+
+        <div class="container">
+
+            <div class="right-col">
+
+                <section class="question-submit-layer">
+
+                    <header class="top-heading"><h1> <a href="">ثبت پرسش جدید</a> </h1> <span><i>12K</i> پرسش تا بحال ثبت شده است </span></header>
+
+                    <div class="inner">
+                        <div class="rules-layer">
+                            <p> لطفا قبل از ثبت پرسش  ، ابتدا موضوع مورد نظر خود را در سایت جستجو نمایید ، در صورتی که پاسخ مورد نظر خود را دریافت نکردید ، به ثبت پرسش اقدام نمایید ، از ثبت پرسش های تکراری جدا خودداری فرمایید </p>
+
+                            <form>
+                                <input type="text" name="" placeholder="پرسش مورد نظر ...">
+                                <button><i class="icon-search"></i></button>
+                            </form>
+
+                        </div>
+
+                        <div class="submit-layer">
+                            <p> لطفا قبل از ثبت پرسش قوانین را مطالعه نمایید ، ثبت پرسش شما تایید قوانین محسوب خواهد شد :</p>
+                            <ul>
+                                <li> ادب و احترام در گفتگو می بایست رعایت شود ، در صورت مشاهده تخلف کاربری شما مسدود خواهد شد. </li>
+                                <li> از ثبت پرسش تکراری خودداری نمایید. </li>
+                                <li> عنوان پرسش واضح و تا حد امکان کوتاه باشد. </li>
+                                <li> از تگ های کاملا مرتبط استفاده نمایید. </li>
+                                <li> جهت کسب پاسخ صریح ، متن پرسش خود را کاملا واضح ارسال نمایید. </li>
+                            </ul>
+
+                            <form class="form-layer-style">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="input-layer">
+                                            <label> <i class="icon-document"></i> عنوان پرسش خود را وارد نمایید </label>
+                                            <input type="text" name="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="textarea-layer">
+                                            <label> <i class="icon-document"></i> متن کامل پرسش </label>
+                                            <textarea></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="input-layer">
+                                            <!-- Use YourSelf autocomplete Plugin -->
+                                            <label> <i class="icon-document"></i> تگ های مرتبط با پرسش شما </label>
+                                            <input type="text" name="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-7 pull-left">
+                                        <button class="submit-button green"> <span>ثبت پرسش</span> </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <partial name="_LeftSide" />
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_JqueryValidation" />
+    <script src="/js/question.js"></script>
+}
+

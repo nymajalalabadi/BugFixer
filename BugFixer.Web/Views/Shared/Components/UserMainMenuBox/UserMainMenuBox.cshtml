@@ -1,0 +1,23 @@
+﻿@model BugFixer.domain.Entities.Account.User
+@using BugFixer.Application.Statics
+@using BugFixer.Application.Extensions
+
+<div class="loggedin-status">
+    <i class="icon-profile"></i>
+    <span> حساب کاربری شما  </span>
+    <div class="sublayer">
+        <div class="avatar">
+            <a asp-area="UserPanel" asp-controller="Home" asp-action="Index"><img src="@(PathTools.UserAvatarPath + Model.Avatar)"></a>
+            <div>
+                <span class="fullname"> @Model.GetUserDisplayName() </span>
+                <span class="detail"> 123 پرسش | 1236 پاسخ </span>
+            </div>
+        </div>
+        <ul>
+            <li><a asp-area="UserPanel" asp-controller="Home" asp-action="Index"> مشاهده حساب کاربری </a></li>
+            <li><a asp-area="UserPanel" asp-controller="Account" asp-action="EditInfo"> ویرایش حساب کاربری </a></li>
+            <li><a asp-area="UserPanel" asp-controller="Account" asp-action="ChangeUserPassword"> تغییر رمز عبور </a></li>
+            <li><a asp-area="" asp-controller="Account" asp-action="Logout"> خروج از حساب کاربری </a></li>
+        </ul>
+    </div>
+</div>

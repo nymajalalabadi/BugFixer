@@ -60,6 +60,11 @@ namespace BugFixer.Web.Areas.UserPanel.Controllers
 
             ViewData["States"] = await _stateService.GetAllStates();
 
+            if (edit.CountryId.HasValue)
+            {
+                ViewData["Cities"] = await _stateService.GetAllStates(edit.CountryId.Value);
+            }
+
             return View(edit);
         }
 
