@@ -81,6 +81,8 @@ namespace BugFixer.domain.Entities.Account
 
         public ICollection<UserQuestionBookmark> UserQuestionBookmarks { get; set; }
 
+        public ICollection<QuestionUserScore> QuestionUserScores { get; set; }
+
         #endregion
     }
 }

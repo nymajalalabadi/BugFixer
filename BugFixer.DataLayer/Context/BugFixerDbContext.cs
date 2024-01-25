@@ -38,6 +38,8 @@ namespace BugFixer.DataLayer.Context
 
         public DbSet<UserQuestionBookmark> UserQuestionBookmarks { get; set; }
 
+        public DbSet<QuestionUserScore> QuestionUserScores { get; set; }
+
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
