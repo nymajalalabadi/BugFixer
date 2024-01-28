@@ -23,6 +23,8 @@ namespace BugFixer.IoC
 
             services.AddScoped<IStateService, StateService>();
 
+            services.AddScoped<IQuestionService, QuestionService>();
+
             #endregion
 
             #region repositories
@@ -32,6 +34,8 @@ namespace BugFixer.IoC
             services.AddScoped<ISiteSettingRepository, SiteSettingRepository>();
 
             services.AddScoped<IStateRepository, StateRepository>();
+
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
 
             #endregion
 

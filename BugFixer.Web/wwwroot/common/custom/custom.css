@@ -9,6 +9,14 @@
     margin-top: 50px;
 }
 
+.ms-helper {
+    margin-top: 50px !important;
+}
+
+.mb-8 {
+    margin-bottom: 8px !important;
+}
+
 .input-style {
     position: relative !important;
     top: 2px !important;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BugFixer.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugFixer.Web.Controllers
@@ -7,9 +8,11 @@ namespace BugFixer.Web.Controllers
     {
         #region constractor
 
-        public QuestionController()
+        private readonly IQuestionService _questionService;
+
+        public QuestionController(IQuestionService questionService)
         {
-            
+            _questionService = questionService;
         }
 
         #endregion
@@ -21,6 +24,23 @@ namespace BugFixer.Web.Controllers
         public async Task<IActionResult> CreateQuestion()
         {
             return View();
+        }
+
+        #endregion
+
+
+        #region Get Tags
+
+        [HttpGet("get-tags")]
+        public async Task<IActionResult> GetTagsForSuggest(string name)
+        {
+            var tags = await _questionService.GetAllTages();
+
+            var filteredTags = tags.Where(s => s.Title.Contains(name))
+                .Select(s => s.Title)
+                .ToList();
+
+            return Json(filteredTags);
         }
 
         #endregion
