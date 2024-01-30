@@ -1,4 +1,6 @@
-﻿@{
+﻿@model BugFixer.domain.ViewModels.Question.CreateQuestionViewModel
+
+@{
     ViewData["Title"] = "ثبت پرسش جدید";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -37,15 +39,8 @@
                     <header class="top-heading"><h1> <a href="">ثبت پرسش جدید</a> </h1> <span><i>12K</i> پرسش تا بحال ثبت شده است </span></header>
 
                     <div class="inner">
-                        <div class="rules-layer">
-                            <p> لطفا قبل از ثبت پرسش  ، ابتدا موضوع مورد نظر خود را در سایت جستجو نمایید ، در صورتی که پاسخ مورد نظر خود را دریافت نکردید ، به ثبت پرسش اقدام نمایید ، از ثبت پرسش های تکراری جدا خودداری فرمایید </p>
 
-                            <form>
-                                <input type="text" name="" placeholder="پرسش مورد نظر ...">
-                                <button><i class="icon-search"></i></button>
-                            </form>
-
-                        </div>
+                        <partial name="_CreateQuestionSearchBoxPartial" />
 
                         <div class="submit-layer">
                             <p> لطفا قبل از ثبت پرسش قوانین را مطالعه نمایید ، ثبت پرسش شما تایید قوانین محسوب خواهد شد :</p>
@@ -57,28 +52,31 @@
                                 <li> جهت کسب پاسخ صریح ، متن پرسش خود را کاملا واضح ارسال نمایید. </li>
                             </ul>
 
-                            <form class="form-layer-style">
+                            <form class="form-layer-style" asp-action="CreateQuestion" asp-controller="Question" asp-are>
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="input-layer">
-                                            <label> <i class="icon-document"></i> عنوان پرسش خود را وارد نمایید </label>
-                                            <input type="text" name="">
+                                            <label asp-for="Title"></label>
+                                            <input type="text" asp-for="Title">
+                                            <span asp-validation-for="Title"></span>
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
                                         <div class="textarea-layer">
-                                            <label class="mb-10"> <i class="icon-document"></i> متن کامل پرسش </label>
-                                            <textarea class="editor"></textarea>
+                                            <label asp-for="Description" class="mb-10"></label>
+                                            <textarea class="editor" asp-for="Description"></textarea>
+                                            <span asp-validation-for="Description"></span>
                                         </div>
                                     </div>
                                     <div class="col-xs-12">
                                         <div class="input-layer">
                                             <label class="mb-8"> <i class="icon-document"></i> تگ های مرتبط با پرسش شما </label>
-                                            <input class="magicsuggest" id="SelectTags">
+                                            <input class="magicsuggest" id="SelectTags" asp-for="SelectedTags">
                                         </div>
                                     </div>
+
                                     <div class="col-md-3 col-sm-4 col-xs-7 pull-left">
-                                        <button class="submit-button green"> <span>ثبت پرسش</span> </button>
+                                        <button type="submit" class="submit-button green"> <span>ثبت پرسش</span> </button>
                                     </div>
 
                                 </div>
@@ -102,7 +100,6 @@
 @section Scripts
 {
     <partial name="_JqueryValidation" />
-    @* <partial name="_CkeditorPartial" /> *@
     <script src="/js/question.js"></script>
 }
 

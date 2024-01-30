@@ -1,4 +1,5 @@
 ﻿using BugFixer.Application.Services.Interfaces;
+using BugFixer.domain.ViewModels.Question;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,13 @@ namespace BugFixer.Web.Controllers
         [Authorize]
         [HttpGet("create-question")]
         public async Task<IActionResult> CreateQuestion()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost("create-question"), ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateQuestion(CreateQuestionViewModel createQuestion)
         {
             return View();
         }
