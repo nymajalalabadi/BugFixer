@@ -31,7 +31,13 @@ namespace BugFixer.Web.Controllers
         [HttpPost("create-question"), ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateQuestion(CreateQuestionViewModel createQuestion)
         {
-            return View();
+            if (createQuestion.SelectedTags == null || !createQuestion.SelectedTags.Any())
+            {
+                TempData[WarningMessage] = "انتخاب تگ الزامی می باشد .";
+                return View(createQuestion);
+            }
+
+            return View(createQuestion);
         }
 
         #endregion
