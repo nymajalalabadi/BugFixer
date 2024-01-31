@@ -1,7 +1,9 @@
-﻿using BugFixer.Application.Services.Interfaces;
+﻿using BugFixer.Application.Security;
+using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Common;
+using BugFixer.domain.ViewModels.Question;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic.FileIO;
@@ -34,6 +36,71 @@ namespace BugFixer.Application.Services.Implementations
         public async Task<List<Tag>> GetAllTages()
         {
             return await _questionRepository.GetAllTages();
+        }
+
+        public async Task<CreateQuestionResult> CheckTagValidation(List<string>? tags, long userId)
+        {
+            if (tags != null && tags.Any())
+            {
+                foreach (var tag in tags)
+                {
+                    var isExistsTag = await _questionRepository.IsExistsTagByName(tag.SanitizeText().Trim().ToLower());
+
+                    if (isExistsTag) continue;
+
+                    var isUserRequestedForTag =
+                        await _questionRepository.CheckUserRequestedForTag(userId, tag.SanitizeText().Trim().ToLower());
+
+                    if (isUserRequestedForTag)
+                    {
+                        return new CreateQuestionResult
+                        {
+                            Status = CreateQuestionResultEnum.NotValidTag,
+                            Message = $"تگ {tag} برای اعتبارسنجی نیاز به {_scoreManagement.MinRequestCountForVerifyTag} درخواست دارد ."
+                        };
+                    }
+                    var tagRequest = new RequestTag()
+                    {
+                        Title = tag.SanitizeText().Trim().ToLower(),
+                        UserId = userId,
+                    };
+
+                    await _questionRepository.AddRequestTag(tagRequest);
+                    await _questionRepository.SaveChanges();
+
+                    var requestedCount =
+                        await _questionRepository.RequestCountForTag(tag.SanitizeText().Trim().ToLower());
+
+                    if (requestedCount < _scoreManagement.MinRequestCountForVerifyTag)
+                    {
+                        return new CreateQuestionResult
+                        {
+                            Status = CreateQuestionResultEnum.NotValidTag,
+                            Message = $"تگ {tag} برای اعتبارسنجی نیاز به {_scoreManagement.MinRequestCountForVerifyTag} درخواست دارد ."
+                        };
+                    }
+
+                    var newTag = new Tag
+                    {
+                        Title = tag.SanitizeText().Trim().ToLower()
+                    };
+
+                    await _questionRepository.AddTag(newTag);
+                    await _questionRepository.SaveChanges();
+                }
+
+                return new CreateQuestionResult
+                {
+                    Status = CreateQuestionResultEnum.Success,
+                    Message = "تگ های ورودی معتبر می باشد ."
+                };
+            }
+
+            return new CreateQuestionResult
+            {
+                Status = CreateQuestionResultEnum.NotValidTag,
+                Message = "تگ های ورودی نمی تواند خالی باشد ."
+            };
         }
 
         #endregion

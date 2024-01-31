@@ -1,4 +1,5 @@
 ﻿using BugFixer.domain.Entities.Tags;
+using BugFixer.domain.ViewModels.Question;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace BugFixer.Application.Services.Interfaces
         #region tag
 
         Task<List<Tag>> GetAllTages();
+
+        Task<CreateQuestionResult> CheckTagValidation(List<string>? tags, long userId);
 
         #endregion
 

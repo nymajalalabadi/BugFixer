@@ -1,4 +1,5 @@
-﻿using BugFixer.Application.Services.Interfaces;
+﻿using BugFixer.Application.Extensions;
+using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.ViewModels.Question;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +33,15 @@ namespace BugFixer.Web.Controllers
         [HttpPost("create-question"), ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateQuestion(CreateQuestionViewModel createQuestion)
         {
-            if (createQuestion.SelectedTags == null || !createQuestion.SelectedTags.Any())
+            var tagResult = await _questionService.CheckTagValidation(createQuestion.SelectedTags, HttpContext.User.GetUserId());
+
+            if (tagResult.Status == CreateQuestionResultEnum.NotValidTag)
             {
-                TempData[WarningMessage] = "انتخاب تگ الزامی می باشد .";
+                createQuestion.SelectedTagsJson = JsonConvert.SerializeObject(createQuestion.SelectedTags);
+                createQuestion.SelectedTags = null;
+
+                TempData[WarningMessage] = tagResult.Message;
+
                 return View(createQuestion);
             }
 

@@ -23,10 +23,44 @@ namespace BugFixer.DataLayer.Repositories
 
         #endregion
 
+        #region tags
+
         public async Task<List<Tag>> GetAllTages()
         {
             return await _context.Tags.Where(t => !t.IsDelete).ToListAsync();
         }
+
+        public async Task<bool> IsExistsTagByName(string name)
+        {
+            return await _context.Tags.AnyAsync(t => t.Title.Equals(name) && !t.IsDelete);
+        }
+
+        public async Task<bool> CheckUserRequestedForTag(long userId, string tag)
+        {
+            return await _context.RequestTags.AnyAsync(t => t.UserId == userId && t.Title.Equals(tag) && !t.IsDelete);
+        }
+
+        public async Task AddRequestTag(RequestTag requestTag)
+        {
+            await _context.RequestTags.AddAsync(requestTag);    
+        }
+
+        public async Task SaveChanges()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> RequestCountForTag(string tag)
+        {
+            return await _context.RequestTags.CountAsync(t => t.Title.Equals(tag) && !t.IsDelete);
+        }
+
+        public async Task AddTag(Tag tag)
+        {
+            await _context.Tags.AddAsync(tag);
+        }
+
+        #endregion
 
     }
 }

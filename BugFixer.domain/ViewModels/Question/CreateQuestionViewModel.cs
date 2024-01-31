@@ -25,4 +25,17 @@ namespace BugFixer.domain.ViewModels.Question
         public long UserId { get; set; }
     }
 
+    public class CreateQuestionResult
+    {
+        public CreateQuestionResultEnum Status { get; set; }
+
+        public string Message { get; set; }
+    }
+
+    public enum CreateQuestionResultEnum
+    {
+        Success,
+        NotValidTag
+    }
+
 }
