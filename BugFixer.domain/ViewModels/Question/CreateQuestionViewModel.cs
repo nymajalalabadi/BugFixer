@@ -18,7 +18,9 @@ namespace BugFixer.domain.ViewModels.Question
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Description { get; set; }
 
-        public List<string> SelectedTags { get; set; }
+        public List<string>? SelectedTags { get; set; }
+
+        public string? SelectedTagsJson { get; set; }
 
         public long UserId { get; set; }
     }

@@ -1,4 +1,5 @@
 using BugFixer.DataLayer.Context;
+using BugFixer.domain.ViewModels.Common;
 using BugFixer.IoC;
 using GoogleReCaptcha.V3;
 using GoogleReCaptcha.V3.Interface;
@@ -17,6 +18,7 @@ builder.Services.AddControllersWithViews();
 #region reCAPTCHA 
 builder.Services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
 #endregion
+builder.Services.Configure<ScoreManagementViewModel>(builder.Configuration.GetSection("ScoreManagement"));
 
 #region context
 

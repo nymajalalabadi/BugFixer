@@ -2,6 +2,7 @@
 using BugFixer.domain.ViewModels.Question;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace BugFixer.Web.Controllers
 {
@@ -37,6 +38,9 @@ namespace BugFixer.Web.Controllers
                 return View(createQuestion);
             }
 
+            createQuestion.SelectedTagsJson = JsonConvert.SerializeObject(createQuestion.SelectedTags);
+            createQuestion.SelectedTags = null;
+
             return View(createQuestion);
         }
 
@@ -48,6 +52,11 @@ namespace BugFixer.Web.Controllers
         [HttpGet("get-tags")]
         public async Task<IActionResult> GetTagsForSuggest(string name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                return Json(null);
+            }
+
             var tags = await _questionService.GetAllTages();
 
             var filteredTags = tags.Where(s => s.Title.Contains(name))
