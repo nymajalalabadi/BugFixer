@@ -53,5 +53,12 @@ namespace BugFixer.Application.Services.Interfaces
         Task<ChangeUserPasswordResult> ChangePasswordForUser(long userId, ChnageUserPasswordViewModel changePassword);
 
         #endregion
+
+
+        #region user quetion
+
+        Task UpdateUserScoreAndMedal(long userId, int score);
+
+        #endregion
     }
 }

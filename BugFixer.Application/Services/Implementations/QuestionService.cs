@@ -22,11 +22,14 @@ namespace BugFixer.Application.Services.Implementations
 
         private readonly IQuestionRepository _questionRepository;
 
+        private readonly IUserService _userService;
+
         private ScoreManagementViewModel _scoreManagement;
 
-        public QuestionService(IQuestionRepository questionRepository, IOptions<ScoreManagementViewModel> scoreManagement) 
+        public QuestionService(IQuestionRepository questionRepository, IUserService userService, IOptions<ScoreManagementViewModel> scoreManagement) 
         {
             _questionRepository = questionRepository;
+            _userService = userService;
             _scoreManagement = scoreManagement.Value;
         }
 
@@ -137,6 +140,8 @@ namespace BugFixer.Application.Services.Implementations
                 }
                 await _questionRepository.SaveChanges();
             }
+
+            await _userService.UpdateUserScoreAndMedal(createQuestion.UserId, _scoreManagement.AddNewQuestionScore);
 
             return true;
         }

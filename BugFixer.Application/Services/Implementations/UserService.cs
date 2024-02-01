@@ -4,9 +4,12 @@ using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
 using BugFixer.Application.Statics;
 using BugFixer.domain.Entities.Account;
+using BugFixer.domain.Enums;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Account;
+using BugFixer.domain.ViewModels.Common;
 using BugFixer.domain.ViewModels.UserPanel.Account;
+using Microsoft.Extensions.Options;
 
 namespace BugFixer.Application.Services.Implementations
 {
@@ -18,11 +21,13 @@ namespace BugFixer.Application.Services.Implementations
 
         private IEmailService _emailService;
 
-        public UserService(IUserRepository userRepository, IEmailService emailService)
+        private ScoreManagementViewModel _scoreManagement;
+
+        public UserService(IUserRepository userRepository, IEmailService emailService, IOptions<ScoreManagementViewModel> scoreManagement)
         {
             _userRepository = userRepository;
             _emailService = emailService;
-
+            _scoreManagement = scoreManagement.Value;
         }
 
         #endregion
@@ -265,6 +270,62 @@ namespace BugFixer.Application.Services.Implementations
             await _userRepository.SaveChanges();
 
             return ChangeUserPasswordResult.Success;
+        }
+
+        #endregion
+
+
+        #region user quetion
+
+        public async Task UpdateUserScoreAndMedal(long userId, int score)
+        {
+            var user = await GetUserById(userId);
+
+            if (user == null) return;
+
+            user.Score += score;
+
+            _userRepository.UpdateUser(user);
+            await _userRepository.SaveChanges();
+
+            if (user.Score >= _scoreManagement.MinScoreForBronzeMedal && user.Score < _scoreManagement.MinScoreForSilverMedal)
+            {
+                if (user.Medal != null && user.Medal == UserMedal.Bronze)
+                {
+                    return;
+                }
+
+                user.Medal = UserMedal.Bronze;
+
+                _userRepository.UpdateUser(user);
+                await _userRepository.SaveChanges();
+            }
+
+            else if (user.Score >= _scoreManagement.MinScoreForSilverMedal && user.Score < _scoreManagement.MinScoreForGoldMedal)
+            {
+                if (user.Medal != null && user.Medal == UserMedal.Silver)
+                {
+                    return;
+                }
+
+                user.Medal = UserMedal.Silver;
+
+                _userRepository.UpdateUser(user);
+                await _userRepository.SaveChanges();
+            }
+
+            else if (user.Score >= _scoreManagement.MinScoreForGoldMedal)
+            {
+                if (user.Medal != null && user.Medal == UserMedal.Gold)
+                {
+                    return;
+                }
+
+                user.Medal = UserMedal.Gold;
+
+                _userRepository.UpdateUser(user);
+                await _userRepository.SaveChanges();
+            }
         }
 
         #endregion
