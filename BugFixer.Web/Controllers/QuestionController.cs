@@ -45,6 +45,16 @@ namespace BugFixer.Web.Controllers
                 return View(createQuestion);
             }
 
+            createQuestion.UserId = User.GetUserId();
+
+            var result = await _questionService.CreateQuetion(createQuestion);
+
+            if (result)
+            {
+                TempData[SuccessMessage] = "عملیات با موفقیت انجام شد .";
+                return Redirect("/");
+            }
+
             createQuestion.SelectedTagsJson = JsonConvert.SerializeObject(createQuestion.SelectedTags);
             createQuestion.SelectedTags = null;
 

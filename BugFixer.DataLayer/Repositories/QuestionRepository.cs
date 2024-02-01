@@ -1,4 +1,5 @@
 ﻿using BugFixer.DataLayer.Context;
+using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.InterFaces;
 using Microsoft.EntityFrameworkCore;
@@ -58,6 +59,31 @@ namespace BugFixer.DataLayer.Repositories
         public async Task AddTag(Tag tag)
         {
             await _context.Tags.AddAsync(tag);
+        }
+
+        public async Task<Tag?> GetTagByName(string name)
+        {
+            return await _context.Tags.FirstOrDefaultAsync(t => !t.IsDelete && t.Title.Equals(name));
+        }
+
+        #endregion
+
+
+        #region quetion
+
+        public async Task AddQuestion(Question question)
+        {
+            await _context.Questions.AddAsync(question);
+        }
+
+        #endregion
+
+
+        #region Select QuestionTag
+
+        public async Task AddSelectQuestionTag(SelectQuestionTag selectQuestionTag)
+        {
+            await _context.SelectQuestionTags.AddAsync(selectQuestionTag);
         }
 
         #endregion

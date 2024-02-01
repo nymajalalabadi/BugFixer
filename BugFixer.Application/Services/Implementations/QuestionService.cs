@@ -1,5 +1,6 @@
 ﻿using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
+using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Common;
@@ -101,6 +102,43 @@ namespace BugFixer.Application.Services.Implementations
                 Status = CreateQuestionResultEnum.NotValidTag,
                 Message = "تگ های ورودی نمی تواند خالی باشد ."
             };
+        }
+
+        public async Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion)
+        {
+            var question = new Question()
+            {
+                Content = createQuestion.Description.SanitizeText(),
+                Title = createQuestion.Title.SanitizeText(),
+                UserId = createQuestion.UserId,
+            };
+
+            await _questionRepository.AddQuestion(question);
+            await _questionRepository.SaveChanges();
+
+            if (createQuestion.SelectedTags != null && createQuestion.SelectedTags.Any())
+            {
+                foreach (var quetionSelectedTag in createQuestion.SelectedTags)
+                {
+                    var tag = await _questionRepository.GetTagByName(quetionSelectedTag.SanitizeText().ToLower().Trim());
+
+                    if (tag == null)
+                    {
+                        continue;
+                    }
+
+                    var selectedTag = new SelectQuestionTag()
+                    {
+                        QuestionId = question.Id,
+                        TagId = tag.Id,
+                    };
+
+                    await _questionRepository.AddSelectQuestionTag(selectedTag);
+                }
+                await _questionRepository.SaveChanges();
+            }
+
+            return true;
         }
 
         #endregion

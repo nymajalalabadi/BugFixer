@@ -1,4 +1,5 @@
-﻿using BugFixer.domain.Entities.Tags;
+﻿using BugFixer.domain.Entities.Questions;
+using BugFixer.domain.Entities.Tags;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,20 @@ namespace BugFixer.domain.InterFaces
         Task<int> RequestCountForTag(string tag);
 
         Task AddTag(Tag tag);
+
+        Task<Tag?> GetTagByName(string name);
+
+        #endregion
+
+        #region quetion
+
+        Task AddQuestion(Question question);
+
+        #endregion
+
+        #region Select QuestionTag
+
+        Task AddSelectQuestionTag(SelectQuestionTag selectQuestionTag);
 
         #endregion
     }

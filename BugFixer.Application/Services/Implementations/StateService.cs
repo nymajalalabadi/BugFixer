@@ -1,11 +1,6 @@
 ﻿using BugFixer.Application.Services.Interfaces;
-using BugFixer.domain.Entities.Common;
 using BugFixer.domain.InterFaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BugFixer.domain.ViewModels.Common;
 
 namespace BugFixer.Application.Services.Implementations
 {

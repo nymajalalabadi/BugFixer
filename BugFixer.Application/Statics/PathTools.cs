@@ -15,9 +15,18 @@
 
         #endregion
 
+
         #region site
 
         public static string SiteAddress = "https://localhost:7109";
+
+        #endregion
+
+
+        #region Ckeditor
+
+        public static readonly string EditorImageServerPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/ckeditor/");
+        public static readonly string EditorImagePath = "/content/ckeditor/";
 
         #endregion
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BugFixer.domain.Entities.Common
+namespace BugFixer.domain.ViewModels.Common
 {
     public class SelectListViewModel
     {
@@ -12,4 +12,5 @@ namespace BugFixer.domain.Entities.Common
 
         public string Title { get; set; }
     }
+
 }
