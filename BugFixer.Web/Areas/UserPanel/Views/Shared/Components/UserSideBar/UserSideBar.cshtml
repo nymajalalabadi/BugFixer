@@ -7,51 +7,47 @@
 <div class="right-side">
     <!-- avatar -->
     <div class="quick-access layer-style" id="UserInfoBox">
-        <div class="quick-access layer-style" id="UserInfoBox">
-            <div class="img-layer">
-                <input type="file" onchange="UploadUserAvatar('@Url.Action("ChangeUserAvatar", "Home", new {area = "UserPanel"})')" name="UserAvatar" id="UserAvatar" accept=".png, .jpg, .jpeg" class="display-none" />
-                <a onclick="OpenAvatarInput()" class="change-image"><i class="icon-pencil-edit"></i></a>
-                <img src="@PathTools.UserAvatarPath@Model.Avatar">
-            </div>
-            @{
-                var className = string.Empty;
+        <div class="img-layer">
+            <input type="file" onchange="UploadUserAvatar('@Url.Action("ChangeUserAvatar", "Home", new {area = "UserPanel"})')" name="UserAvatar" id="UserAvatar" accept=".png, .jpg, .jpeg" class="display-none" />
+            <a onclick="OpenAvatarInput()" class="change-image"><i class="icon-pencil-edit"></i></a>
+            <img src="@PathTools.UserAvatarPath@Model.Avatar">
+        </div>
+        @{
+            var className = string.Empty;
 
-                if (Model.Medal != null)
+            if (Model.Medal != null)
+            {
+                switch (Model.Medal)
                 {
-                    switch (Model.Medal)
-                    {
-                        case UserMedal.Bronze:
-                            className = "bronze";
-                            break;
-
-                        case UserMedal.Silver:
-                            className = "silver";
-                            break;
-
-                        case UserMedal.Gold:
-                            className = "gold";
-                            break;
-                    }
+                    case UserMedal.Bronze:
+                        className = "bronze";
+                        break;
+                    case UserMedal.Silver:
+                        className = "silver";
+                        break;
+                    case UserMedal.Gold:
+                        className = "gold";
+                        break;
                 }
             }
-            <div class="detail @className">
-                @if (Model.Medal != null)
-                {
-                    <h3> <i class="icon-quality"></i> @Model.GetUserDisplayName() </h3>
-                }
-                else
-                {
-                    <h3>@Model.GetUserDisplayName() </h3>
-                }
-                <span> عضویت : @Model.CreateDate.ToShamsiDate() </span>
-                <span> امتیاز کاربر : @Model.Score </span>
-            </div>
-
+        }
+        <div class="detail @className">
+            @if (Model.Medal != null)
+            {
+                <h3> <i class="icon-quality"></i> @Model.GetUserDisplayName() </h3>
+            }
+            else
+            {
+                <h3>@Model.GetUserDisplayName() </h3>
+            }
+            <span> عضویت : @Model.CreateDate.ToShamsiDate() </span>
+            <span> امتیاز کاربر : @Model.Score </span>
+        </div>
         <ul>
             <li><a asp-action="Index" asp-controller="Home" asp-area="UserPanel" data-toggle="tooltip" data-placement="top" title=" داشبورد "><i class="icon-settings"></i></a></li>
             <li><a asp-action="EditInfo" asp-controller="Account" asp-area="UserPanel" data-toggle="tooltip" data-placement="top" title=" ویرایش اطلاعات "><i class="icon-profile"></i></a></li>
-            <li><a asp-action="ChangeUserPassword" asp-controller="Account" asp-area="UserPanel" data-toggle="tooltip" data-placement="top" title=" تغییر رمز عبور "><i class="icon-safe"></i></a></li>
-            <li><a asp-action="Logout" asp-controller="Account" asp-area="" data-toggle="tooltip" data-placement="top" title=" خروج از حساب "><i class="icon-power-symbol"></i></a></li>
+            <li><a asp-action="changeUserPassword" asp-controller="Account" asp-area="UserPanel" data-toggle="tooltip" data-placement="top" title=" تغییر رمز عبور "><i class="icon-safe"></i></a></li>
+            <li><a asp-action="Logout" asp-controller="Account" data-toggle="tooltip" data-placement="top" title=" خروج از حساب "><i class="icon-power-symbol"></i></a></li>
         </ul>
     </div>
     <!-- /avatar -->
@@ -60,12 +56,13 @@
         <header><h3> منوی دسترسی </h3><i class="icon-chevron-down"></i></header>
         <div class="inner">
             <ul>
-                <li><a asp-action="Index" asp-controller="Home" asp-area="UserPanel"> داشبورد </a></li>
-                <li><a asp-action="EditInfo" asp-controller="Account" asp-area="UserPanel"> ویرایش اطلاعات کاربری </a></li>
-                <li><a asp-action="ChangeUserPassword" asp-controller="Account" asp-area="UserPanel"> تغییر کلمه عبور کاربری </a></li>
-                <li><a asp-action="Logout" asp-controller="Account" asp-area=""> خروج </a></li>
+                <li><a asp-action="Index" asp-controller="Home" asp-area="UserPanel"> داشبورد  </a>  </li>
+                <li><a asp-action="EditInfo" asp-controller="Account" asp-area="UserPanel"> ویرایش اطلاعات کاربری  </a>  </li>
+                <li><a asp-action="changeUserPassword" asp-controller="Account" asp-area="UserPanel"> تغییر کلمه عبور  </a>  </li>
+                <li><a asp-action="Logout" asp-controller="Account"> خروج  </a>  </li>
             </ul>
         </div>
     </section>
     <!-- /side bar -->
 </div>
+<!-- /right side -->
