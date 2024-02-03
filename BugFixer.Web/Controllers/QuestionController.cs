@@ -85,5 +85,16 @@ namespace BugFixer.Web.Controllers
 
         #endregion
 
+        #region quetion list
+
+        [HttpGet]
+        public async Task<IActionResult> QuestionList()
+        {
+            return View();  
+        }
+
+
+        #endregion
+
     }
 }
