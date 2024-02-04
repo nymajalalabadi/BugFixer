@@ -21,5 +21,11 @@ namespace BugFixer.Application.Services.Interfaces
 
         #endregion
 
+        #region quetion
+
+        Task<FilterQuestionViewModel> FilterQuestion(FilterQuestionViewModel filterQuestion);
+
+        #endregion
+
     }
 }

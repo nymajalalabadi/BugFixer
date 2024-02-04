@@ -76,6 +76,11 @@ namespace BugFixer.DataLayer.Repositories
             await _context.Questions.AddAsync(question);
         }
 
+        public async Task<IQueryable<Question>> GetAllQuestions()
+        {
+            return _context.Questions.Where(q => !q.IsDelete).AsQueryable();
+        }
+
         #endregion
 
 

@@ -26,7 +26,7 @@ namespace BugFixer.Application.Services.Implementations
 
         private ScoreManagementViewModel _scoreManagement;
 
-        public QuestionService(IQuestionRepository questionRepository, IUserService userService, IOptions<ScoreManagementViewModel> scoreManagement) 
+        public QuestionService(IQuestionRepository questionRepository, IUserService userService, IOptions<ScoreManagementViewModel> scoreManagement)
         {
             _questionRepository = questionRepository;
             _userService = userService;
@@ -147,5 +147,52 @@ namespace BugFixer.Application.Services.Implementations
         }
 
         #endregion
+
+        #region quetion
+
+        public async Task<FilterQuestionViewModel> FilterQuestion(FilterQuestionViewModel filterQuestion)
+        {
+            var query = await _questionRepository.GetAllQuestions();
+
+            #region filter
+
+            if (!string.IsNullOrEmpty(filterQuestion.Title))
+            {
+                query = query.Where(q => q.Title.Contains(filterQuestion.Title.SanitizeText().Trim()));
+            }
+
+            #endregion
+
+            #region sort
+
+            switch (filterQuestion.Sort)
+            {
+                case FilterQuestionSortEnum.NewToOld:
+                    query = query.OrderByDescending(s => s.CreateDate);
+                    break;
+                case FilterQuestionSortEnum.OldToNew:
+                    query = query.OrderBy(s => s.CreateDate);
+                    break;
+                case FilterQuestionSortEnum.ScoreHighToLow:
+                    query = query.OrderByDescending(s => s.Score);
+                    break;
+                case FilterQuestionSortEnum.ScoreLowToHigh:
+                    query = query.OrderBy(s => s.Score);
+                    break;
+            }
+
+            #endregion
+
+            #region set paging
+
+            await filterQuestion.SetPaging(query);
+
+            return filterQuestion;
+
+            #endregion
+        }
+
+        #endregion
     }
+
 }

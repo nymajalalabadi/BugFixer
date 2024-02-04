@@ -88,11 +88,12 @@ namespace BugFixer.Web.Controllers
         #region quetion list
 
         [HttpGet]
-        public async Task<IActionResult> QuestionList()
+        public async Task<IActionResult> QuestionList(FilterQuestionViewModel filter)
         {
-            return View();  
-        }
+            var result = await _questionService.FilterQuestion(filter);
 
+            return View(result);  
+        }
 
         #endregion
 

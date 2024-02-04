@@ -34,6 +34,8 @@ namespace BugFixer.domain.InterFaces
 
         Task AddQuestion(Question question);
 
+        Task<IQueryable<Question>> GetAllQuestions();
+
         #endregion
 
         #region Select QuestionTag
