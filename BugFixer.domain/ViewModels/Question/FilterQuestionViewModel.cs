@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BugFixer.domain.ViewModels.Question
 {
-    public class FilterQuestionViewModel : Paging<Entities.Questions.Question>
+    public class FilterQuestionViewModel : Paging<QuestionListViewModel>
     {
         public string? Title { get; set; }
 

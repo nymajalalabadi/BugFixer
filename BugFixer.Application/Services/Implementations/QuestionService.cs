@@ -1,4 +1,5 @@
-﻿using BugFixer.Application.Security;
+﻿using BugFixer.Application.Extensions;
+using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
@@ -183,9 +184,31 @@ namespace BugFixer.Application.Services.Implementations
 
             #endregion
 
+            var result = query
+                .Include(s => s.Answers)
+                .Include(s => s.SelectQuestionTags)
+                .ThenInclude(a => a.Tag)
+                .Include(s => s.User)
+                .Select(s => new QuestionListViewModel()
+                {
+                    AnswersCount = s.Answers.Count(a => !a.IsDelete),
+                    HasAnyAnswer = s.Answers.Any(a => !a.IsDelete),
+                    HasAnyTrueAnswer = s.Answers.Any(a => !a.IsDelete && a.IsTrue),
+                    QuestionId = s.Id,
+                    Score = s.Score,
+                    Title = s.Title,
+                    ViewCount = s.ViewCount,
+                    UserDisplayName = s.User.GetUserDisplayName(),
+                    Tags = s.SelectQuestionTags.Where(a => !a.Tag.IsDelete).Select(a => a.Tag.Title).ToList(),
+                    AnswerByDisplayName = s.Answers.Any(a => !a.IsDelete) ? s.Answers.OrderByDescending(a => a.CreateDate).First().User.GetUserDisplayName() : null,
+                    CreateDate = s.CreateDate.TimeAgo(),
+                    AnswerByCreateDate = s.Answers.Any(a => !a.IsDelete) ? s.Answers.OrderByDescending(a => a.CreateDate).First().CreateDate.TimeAgo() : null
+                }).AsQueryable();
+
+
             #region set paging
 
-            await filterQuestion.SetPaging(query);
+            await filterQuestion.SetPaging(result);
 
             return filterQuestion;
 
