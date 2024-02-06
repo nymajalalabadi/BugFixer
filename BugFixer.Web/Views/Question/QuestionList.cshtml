@@ -39,6 +39,7 @@
                 </header>
                 <!-- Top -->
                 <form asp-controller="Question" asp-action="QuestionList" method="get" id="filter_form">
+                    <input type="hidden" asp-for="CurrentPage" />
                     <div class="top-layer">
                         <div class="search-layer">
                             <input type="text" asp-for="Title" placeholder="دنبال چه سوالی میگردی ؟ ">
