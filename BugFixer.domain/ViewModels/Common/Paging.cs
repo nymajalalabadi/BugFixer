@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BugFixer.domain.ViewModels.Common
 {
-     public class Paging<T>
-     {
+    public class Paging<T>
+    {
         public Paging()
         {
             CurrentPage = 1;
@@ -35,6 +35,18 @@ namespace BugFixer.domain.ViewModels.Common
 
         public List<T> Entities { get; set; }
 
+        public PagingViewModel GetPaging()
+        {
+            var result = new PagingViewModel
+            {
+                CurrentPage = this.CurrentPage,
+                EndPage = this.EndPage,
+                StartPage = this.StartPage
+            };
+
+            return result;
+        }
+
         public async Task SetPaging(IQueryable<T> query)
         {
             AllEntityCount = query.Count();
@@ -55,5 +67,14 @@ namespace BugFixer.domain.ViewModels.Common
 
             Entities = await query.Skip(SkipEntity).Take(TakeEntity).ToListAsync();
         }
-     }
+    }
+
+    public class PagingViewModel
+    {
+        public int CurrentPage { get; set; }
+
+        public int StartPage { get; set; }
+
+        public int EndPage { get; set; }
+    }
 }

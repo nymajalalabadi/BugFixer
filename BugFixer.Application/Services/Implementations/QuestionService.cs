@@ -200,9 +200,11 @@ namespace BugFixer.Application.Services.Implementations
                     ViewCount = s.ViewCount,
                     UserDisplayName = s.User.GetUserDisplayName(),
                     Tags = s.SelectQuestionTags.Where(a => !a.Tag.IsDelete).Select(a => a.Tag.Title).ToList(),
-                    AnswerByDisplayName = s.Answers.Any(a => !a.IsDelete) ? s.Answers.OrderByDescending(a => a.CreateDate).First().User.GetUserDisplayName() : null,
+                    AnswerByDisplayName = s.Answers.Any(a => !a.IsDelete) ? 
+                    s.Answers.OrderByDescending(a => a.CreateDate).First().User.GetUserDisplayName() : null,
                     CreateDate = s.CreateDate.TimeAgo(),
-                    AnswerByCreateDate = s.Answers.Any(a => !a.IsDelete) ? s.Answers.OrderByDescending(a => a.CreateDate).First().CreateDate.TimeAgo() : null
+                    AnswerByCreateDate = s.Answers.Any(a => !a.IsDelete) ? 
+                    s.Answers.OrderByDescending(a => a.CreateDate).First().CreateDate.TimeAgo() : null
                 }).AsQueryable();
 
 

@@ -149,3 +149,8 @@ if (editors.length) {
             }
         });
 }
+
+
+function SubmitQuestionForm() {
+    $("#filter_form").submit();
+}

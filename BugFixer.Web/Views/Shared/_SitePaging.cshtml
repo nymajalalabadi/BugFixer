@@ -1,0 +1,33 @@
+﻿@model BugFixer.domain.ViewModels.Common.PagingViewModel
+
+<!-- pagination -->
+<div class="pagination-layer">
+    <div class="inner">
+
+        @if (Model.CurrentPage > 1)
+        {
+            <a onclick="SubmitFilterFormPagination('@(Model.CurrentPage - 1)')" class="next-page"> <i class="icon-chevron-right"></i> </a>
+        }
+
+        <div class="pages">
+            @for (var i = Model.StartPage; i <= Model.EndPage; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <a href="javascript:void(0)" class="page current"> @i </a>
+                }
+                else
+                {
+                    <a onclick="SubmitFilterFormPagination('@i')" class="page"> @i </a>
+                }
+            }
+        </div>
+
+        @if (Model.CurrentPage < Model.EndPage)
+        {
+            <a onclick="SubmitFilterFormPagination('@(Model.CurrentPage + 1)')" class="prev-page"> <i class="icon-chevron-left"></i> </a>
+        }
+
+    </div>
+</div>
+<!-- /pagination -->

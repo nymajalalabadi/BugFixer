@@ -13,6 +13,11 @@
     margin-top: 50px !important;
 }
 
+.current {
+    color: green !important;
+    border: green 2px solid !important;
+}
+
 .mb-8 {
     margin-bottom: 8px !important;
 }
