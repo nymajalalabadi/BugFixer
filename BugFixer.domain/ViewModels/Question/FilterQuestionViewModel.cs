@@ -12,6 +12,8 @@ namespace BugFixer.domain.ViewModels.Question
     {
         public string? Title { get; set; }
 
+        public string? TagTitle { get; set; }
+
         public FilterQuestionSortEnum Sort { get; set; }
     }
 

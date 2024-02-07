@@ -155,6 +155,17 @@ namespace BugFixer.Application.Services.Implementations
         {
             var query = await _questionRepository.GetAllQuestions();
 
+            #region filter by tag
+
+            if (!string.IsNullOrEmpty(filterQuestion.TagTitle))
+            {
+                query = query.Include(q => q.SelectQuestionTags).ThenInclude(s => s.Tag)
+                    .Where(s => s.SelectQuestionTags.Any(s => s.Tag.Title.Equals(filterQuestion.TagTitle)));
+            }
+
+            #endregion
+
+
             #region filter
 
             if (!string.IsNullOrEmpty(filterQuestion.Title))

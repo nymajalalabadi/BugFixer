@@ -2,18 +2,18 @@
 @model BugFixer.domain.ViewModels.Question.FilterQuestionViewModel
 
 @{
-    ViewData["Title"] = "لیست سوالات";
+    ViewData["Title"] = $"لیست سوالات مروبط به {ViewBag.TagTitle}";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles
-{
+    {
     <link rel="stylesheet" type="text/css" href="/css/page.css">
     <link rel="stylesheet" type="text/css" href="/css/question.css">
 }
 
 @section Header
-{
+    {
     <partial name="_Header" />
 }
 
@@ -38,7 +38,7 @@
                     <span> <i>@Model.AllEntityCount</i> پرسش ثبت شده  </span>
                 </header>
                 <!-- Top -->
-                <form asp-controller="Question" asp-action="QuestionList" method="get" id="filter_form">
+                <form asp-action="QuestionListByTag" asp-route-tagName="@ViewBag.TagTitle" method="get" id="filter_form">
                     <input type="hidden" asp-for="CurrentPage" />
                     <div class="top-layer">
                         <div class="search-layer">
@@ -47,8 +47,7 @@
                         </div>
                         <div class="filter-layer">
                             <div class="select-layer">
-                                <select asp-for="Sort" onchange="SubmitQuestionForm()" asp-items="Html.GetEnumSelectList(typeof(FilterQuestionSortEnum))">
-                                </select>
+                                <select asp-for="Sort" onchange="SubmitQuestionForm()" asp-items="Html.GetEnumSelectList(typeof(FilterQuestionSortEnum))"></select>
                             </div>
                         </div>
                     </div>
@@ -58,9 +57,9 @@
                 <div class="questions-layer">
                     <!-- questions list -->
                     <div class="questions-list">
-                        @if (Model.Entities != null && Model.Entities.Any())
+                        @if (Model.Entities.Any())
                         {
-                            @foreach (var question in Model.Entities)
+                            foreach (var question in Model.Entities)
                             {
                                 var className = string.Empty;
 
@@ -72,6 +71,8 @@
                                 {
                                     className = "selected";
                                 }
+
+                                <!-- item -->
                                 <article class="@className">
                                     <h2><a href="javascript:void(0)">@question.Title</a></h2>
                                     <span> @question.AnswersCount <i class="icon-comment-1"></i> </span>
@@ -88,12 +89,9 @@
                                     </ul>
                                     <div class="detail">
                                         <div class="tags-layer">
-                                            @if (question.Tags.Any())
+                                            @foreach (var tag in question.Tags)
                                             {
-                                                @foreach (var tag in question.Tags)
-                                                {
-                                                    <a asp-action="QuestionListBtTag" asp-controller="Question" asp-route-tagName="@tag"> @tag </a>
-                                                }
+                                                <a asp-action="QuestionListBtTag" asp-controller="Question" asp-route-tagName="@tag"> @tag </a>
                                             }
                                         </div>
                                         <div class="left-side">
@@ -102,18 +100,16 @@
                                         </div>
                                     </div>
                                 </article>
+                                <!-- /item -->
                             }
                         }
-                        <!-- item -->
                     </div>
                     <!-- /questions list -->
                 </div>
                 <!-- /questions -->
-                <!-- pagination -->
 
                 <partial name="_SitePaging" model="Model.GetPaging()" />
 
-                <!-- /pagination -->
             </div>
 
             <partial name="_LeftSide" />
