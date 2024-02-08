@@ -63,7 +63,7 @@
                                 <!-- col -->
                                 <div class="col-md-4 col-sm-6 col-xs-6 tag-col">
                                     <article>
-                                        <h2><a asp-action="QuestionListBtTag" asp-route-tagName="@tag.Title"> @tag.Title </a></h2>
+                                        <h2><a asp-action="QuestionListByTag" asp-route-tagName="@tag.Title"> @tag.Title </a></h2>
                                         @if (!string.IsNullOrEmpty(tag.Description))
                                         {
                                             <p> @tag.Description </p>

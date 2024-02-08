@@ -65,7 +65,10 @@ namespace BugFixer.domain.ViewModels.Common
                 ? TotalPage
                 : CurrentPage + HowManyShowBeforeAfter;
 
-            Entities = await query.Skip(SkipEntity).Take(TakeEntity).ToListAsync();
+            if (query.Any())
+            {
+                Entities = await query.Skip(SkipEntity).Take(TakeEntity).ToListAsync();
+            }
         }
     }
 
