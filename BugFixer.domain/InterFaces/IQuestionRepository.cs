@@ -1,5 +1,6 @@
 ﻿using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace BugFixer.domain.InterFaces
 
         Task<Tag?> GetTagByName(string name);
 
+        Task<IQueryable<Tag>> GetAllTagsQueryable();
+
+        Task UpdateTag(Tag tag);
+
         #endregion
 
         #region quetion
@@ -43,5 +48,6 @@ namespace BugFixer.domain.InterFaces
         Task AddSelectQuestionTag(SelectQuestionTag selectQuestionTag);
 
         #endregion
+
     }
 }

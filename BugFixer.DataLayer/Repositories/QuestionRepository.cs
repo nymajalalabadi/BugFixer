@@ -66,6 +66,16 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.Tags.FirstOrDefaultAsync(t => !t.IsDelete && t.Title.Equals(name));
         }
 
+        public async Task<IQueryable<Tag>> GetAllTags()
+        {
+            return _context.Tags.Where(t => !t.IsDelete).AsQueryable();
+        }
+
+        public async Task UpdateTag(Tag tag)
+        {
+            _context.Tags.Update(tag);
+        }
+
         #endregion
 
 

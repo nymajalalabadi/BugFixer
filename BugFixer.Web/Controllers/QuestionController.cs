@@ -116,5 +116,19 @@ namespace BugFixer.Web.Controllers
 
         #endregion
 
+        #region Filter Tags
+
+        [HttpGet("tags")]
+        public async Task<IActionResult> FilterTags(FilterTagViewModel filter)
+        {
+            filter.TakeEntity = 12;
+
+            var result = await _questionService.FilterTags(filter);
+
+            return View(result);
+        }
+
+        #endregion
+
     }
 }

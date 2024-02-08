@@ -1,0 +1,99 @@
+﻿@using BugFixer.domain.ViewModels.Question
+@model BugFixer.domain.ViewModels.Question.FilterTagViewModel
+
+@{
+    ViewData["Title"] = "لیست تگ ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/css/tags.css">
+}
+
+@section Header
+{
+    <partial name="_Header" />
+}
+
+<div class="user-page-style">
+
+    <div class="breadcumb-layer">
+        <div class="container">
+            <ul itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> باگ فیکسر </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="javascript:void(0)" itemprop="item"><span itemprop="name"> @ViewData["Title"] </span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tags-page page-style">
+
+        <div class="container">
+
+            <div class="right-col">
+                <header class="top-heading">
+                    <h1><a href="javascript:void(0)"> @ViewData["Title"] </a></h1>
+                    <span> <i>@Model.AllEntityCount</i> تگ  </span>
+                </header>
+                <!-- Top -->
+                <form asp-action="FilterTags" method="get" id="filter_form">
+                    <input type="hidden" asp-for="CurrentPage" />
+                    <div class="top-layer">
+                        <div class="search-layer">
+                            <input type="text" asp-for="Title" placeholder="دنبال چه تگی میگردی ؟ ">
+                            <button type="submit"><i class="icon-search"></i></button>
+                        </div>
+                        <div class="filter-layer">
+                            <div class="select-layer">
+                                <select asp-for="Sort" onchange="SubmitTagForm()" asp-items="Html.GetEnumSelectList(typeof(FilterTagEnum))"></select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- /Top -->
+                <!-- tags layer -->
+                <div class="tags-list-layer">
+                    <div class="row">
+                        @if (Model.Entities.Any())
+                        {
+                            foreach (var tag in Model.Entities)
+                            {
+                                <!-- col -->
+                                <div class="col-md-4 col-sm-6 col-xs-6 tag-col">
+                                    <article>
+                                        <h2><a asp-action="QuestionListBtTag" asp-route-tagName="@tag.Title"> @tag.Title </a></h2>
+                                        @if (!string.IsNullOrEmpty(tag.Description))
+                                        {
+                                            <p> @tag.Description </p>
+                                        }
+                                        else
+                                        {
+                                            <p> توضیحات ثبت نشده است </p>
+                                        }
+                                        <div class="detail">
+                                            <span> <i>@tag.UseCount</i> پرسش </span>
+                                        </div>
+                                    </article>
+                                </div>
+                                <!-- /col -->
+                            }
+                        }
+                    </div>
+                </div>
+                <!-- /tags layer -->
+
+                <partial name="_SitePaging" model="Model.GetPaging()" />
+
+            </div>
+
+            <partial name="_LeftSide" />
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+
+</div>  

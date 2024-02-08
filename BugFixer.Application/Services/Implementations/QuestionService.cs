@@ -131,6 +131,10 @@ namespace BugFixer.Application.Services.Implementations
                         continue;
                     }
 
+                    tag.UseCount += 1;
+
+                    await _questionRepository.UpdateTag(tag);
+
                     var selectedTag = new SelectQuestionTag()
                     {
                         QuestionId = question.Id,
@@ -227,6 +231,49 @@ namespace BugFixer.Application.Services.Implementations
 
             #endregion
         }
+
+        public async Task<FilterTagViewModel> FilterTags(FilterTagViewModel filterTags)
+        {
+            var query = await _questionRepository.GetAllTagsQueryable();
+
+            #region filter
+
+            if (!string.IsNullOrEmpty(filterTags.Title))
+            {
+                query = query.Where(t => t.Title.Contains(filterTags.Title.SanitizeText().Trim()));   
+            }
+
+            #endregion
+
+            #region sort
+
+            switch (filterTags.Sort)
+            {
+                case FilterTagEnum.NewToOld:
+                    query = query.OrderByDescending(s => s.CreateDate);
+                    break;
+                case FilterTagEnum.OldToNew:
+                    query = query.OrderBy(s => s.CreateDate);
+                    break;
+                case FilterTagEnum.UseCountHighToLow:
+                    query = query.OrderByDescending(s => s.UseCount);
+                    break;
+                case FilterTagEnum.UseCountLowToHigh:
+                    query = query.OrderBy(s => s.UseCount);
+                    break;
+            }
+
+            #endregion
+
+            #region set paging
+
+            await filterTags.SetPaging(query);
+
+            return filterTags;
+
+            #endregion
+        }
+
 
         #endregion
     }

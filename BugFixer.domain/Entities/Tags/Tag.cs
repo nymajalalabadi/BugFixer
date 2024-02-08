@@ -21,6 +21,9 @@ namespace BugFixer.domain.Entities.Tags
         [Display(Name = "توضیحات")]
         public string? Description { get; set; }
 
+        public int UseCount { get; set; } = 0;
+
+
         #endregion
 
         #region Relations
