@@ -73,7 +73,7 @@
                                     className = "selected";
                                 }
                                 <article class="@className">
-                                    <h2><a href="javascript:void(0)">@question.Title</a></h2>
+                                    <h2><a asp-area="" asp-controller="Question" asp-action="QuestionDetail" asp-route-questionId="@question.QuestionId">@question.Title</a></h2>
                                     <span> @question.AnswersCount <i class="icon-comment-1"></i> </span>
                                     <ul>
                                         <li> پرسیده شده توسط <a href="javascript:void(0)"> @question.UserDisplayName </a> @question.CreateDate </li>
