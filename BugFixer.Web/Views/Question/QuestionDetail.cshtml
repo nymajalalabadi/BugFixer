@@ -1,0 +1,128 @@
+﻿@using BugFixer.Application.Extensions
+@using BugFixer.Application.Statics
+@model BugFixer.domain.Entities.Questions.Question
+
+@{
+    ViewData["Title"] = "جزئیات سوال";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/css/question.css">
+}
+
+@section Header
+{
+    <partial name="_Header" />
+}
+
+<div class="user-page-style">
+
+    <div class="breadcumb-layer">
+        <div class="container">
+            <ul itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> باگ فیکسر </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a asp-action="QuestionList" asp-controller="Question" itemprop="item"><span itemprop="name"> پرسش ها </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="javascript:void(0)" itemprop="item"><span itemprop="name"> @Model.Title </span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="questions-layer page-style">
+
+        <div class="container">
+
+            <div class="right-col">
+
+                <!-- question content -->
+                <section class="question-content-layer">
+
+                    <header>
+                        <!-- use this button for edit Post , show only for author -->
+                        <button><i class="icon-pencil-edit"></i></button>
+
+                        <h1><a href="javascript:void(0)"> @Model.Title </a></h1>
+                        <span> @Model.CreateDate.TimeAgo() </span>
+                        <span><i> @Model.ViewCount </i> بازدید </span>
+                        <span><i> @Model.Answers.Count(s => !s.IsDelete) </i> پاسخ </span>
+                        <span><i> @Model.Score </i> امتیاز </span>
+                    </header>
+
+                    <article>
+                        <div class="inner">
+
+                            @Html.Raw(Model.Content)
+
+                            <div class="rating-layer">
+                                <div class="scoring-layer">
+                                    <button class="plus"><i class="icon-caret-up"></i></button>
+                                    <span> @Model.Score </span>
+                                    <button class="negative"><i class="icon-caret-down"></i></button>
+                                </div>
+                                <div class="star-rating">
+                                    <button><i class="icon-star"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="detail-layer">
+                            <div class="author">
+                                <a href="javascript:void(0)" class="img-layer">
+                                    <img src="@(PathTools.UserAvatarPath + Model.User.Avatar)">
+                                </a>
+                                <h3><a href="javascript:void(0)"> @Model.User.GetUserDisplayName() </a></h3>
+                            </div>
+                            <a href="javascript:void(0)"> <i class="icon-back-arrow"></i> ثبت پاسخ به این پرسش </a>
+                            <div class="share-layer">
+                                <span> به اشتراک گذاری </span>
+                                <div class="share-detail">
+                                    <div class="short-link">
+                                        <p> لینک کوتاه شامل شناسه شما </p>
+                                        <input type="text" name="" readonly value="http://gl.co/ShKiLO">
+                                    </div>
+                                    <div class="socials">
+                                        <a href=""><i class="icon-facebook"></i></a>
+                                        <a href=""><i class="icon-twitter"></i></a>
+                                        <a href=""><i class="icon-linkedin"></i></a>
+                                        <a href=""><i class="icon-telegram"></i></a>
+                                        <a href=""><i class="icon-google-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- tags -->
+                    <div class="post-tags-layer">
+                        <div class="tags-layer">
+                            <a href=""> Jquery </a>
+                            <a href=""> php </a>
+                            <a href=""> Javascript </a>
+                            <a href=""> woocommerce </a>
+                            <a href=""> Framework </a>
+                            <a href=""> Jquery </a>
+                            <a href=""> php </a>
+                        </div>
+                    </div>
+                    <!-- /tags -->
+
+                </section>
+                <!-- /question content -->
+
+            </div>
+
+            <partial name="_LeftSide" />
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+    {
+    <script src="/js/question.js"></script>
+}

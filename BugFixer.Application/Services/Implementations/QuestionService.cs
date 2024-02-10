@@ -275,6 +275,11 @@ namespace BugFixer.Application.Services.Implementations
         }
 
 
+        public async Task<Question?> GetQuestionById(long id)
+        {
+            return await _questionRepository.GetQuestionById(id);
+        }
+
         #endregion
     }
 

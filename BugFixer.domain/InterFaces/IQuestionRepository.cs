@@ -47,6 +47,8 @@ namespace BugFixer.domain.InterFaces
 
         Task AddSelectQuestionTag(SelectQuestionTag selectQuestionTag);
 
+        Task<Question?> GetQuestionById(long id);
+
         #endregion
 
     }

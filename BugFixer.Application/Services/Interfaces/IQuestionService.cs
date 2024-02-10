@@ -1,4 +1,5 @@
-﻿using BugFixer.domain.Entities.Tags;
+﻿using BugFixer.domain.Entities.Questions;
+using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.ViewModels.Question;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,6 +27,8 @@ namespace BugFixer.Application.Services.Interfaces
         Task<FilterQuestionViewModel> FilterQuestion(FilterQuestionViewModel filterQuestion);
 
         Task<FilterTagViewModel> FilterTags(FilterTagViewModel filterTags);
+
+        Task<Question?> GetQuestionById(long id);
 
         #endregion
 
