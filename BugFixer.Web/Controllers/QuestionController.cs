@@ -2,6 +2,7 @@
 using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.ViewModels.Question;
+using BugFixer.Web.Extentions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -144,7 +145,33 @@ namespace BugFixer.Web.Controllers
             return View(question);
         }
 
+        #region Answer Question
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AnswerQuestion(AnswerQuestionViewModel answer)
+        {
+            if (string.IsNullOrEmpty(answer.Answer))
+            {
+                return new JsonResult(new { status = "EmptyAnswer" });
+            };
+
+            answer.UserId = User.GetUserId();
+
+            var result = await _questionService.AnswerQuestion(answer);
+
+            if (result)
+            {
+                return JsonResponseStatus.Success();
+            }
+
+            return JsonResponseStatus.Error();
+        }
+
         #endregion
+
+        #endregion
+
 
 
     }

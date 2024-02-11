@@ -115,5 +115,14 @@ namespace BugFixer.DataLayer.Repositories
         }
         #endregion
 
+
+        #region answer
+
+        public async Task AddAnswer(Answer answer)
+        {
+            await _context.Answers.AddAsync(answer);
+        }
+
+        #endregion
     }
 }

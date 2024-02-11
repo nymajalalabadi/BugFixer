@@ -163,3 +163,21 @@ function SubmitFilterFormPagination(pageId) {
     $("#CurrentPage").val(pageId);
     $("#filter_form").submit();
 }
+
+function AnswerQuestionFormDone(respone)
+{
+    EndLoading('#submit-comment');
+
+    if (response.status === "Success")
+    {
+        swal("اعلان", "پاسخ شما با موفقیت ثبت شد .", "success");
+    }
+    else if (response.status === "EmptyAnswer")
+    {
+        swal("هشدار", "متن پاسخ شما نمی تواند خالی  باشد .", "warning");
+    }
+    else if (response.status === "Error")
+    {
+        swal("خطا", "خطایی رخ داده است لطفا مجدد تلاش کنید .", "error");
+    }
+}

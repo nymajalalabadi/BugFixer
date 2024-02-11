@@ -3,6 +3,7 @@ using BugFixer.domain.Entities.Tags;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,12 @@ namespace BugFixer.domain.InterFaces
         Task AddSelectQuestionTag(SelectQuestionTag selectQuestionTag);
 
         Task<Question?> GetQuestionById(long id);
+
+        #endregion
+
+        #region answer
+
+        Task AddAnswer(Answer answer);
 
         #endregion
 

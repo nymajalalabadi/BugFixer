@@ -1,5 +1,6 @@
 ﻿@using BugFixer.Application.Extensions
 @using BugFixer.Application.Statics
+@using BugFixer.domain.ViewModels.Question
 @model BugFixer.domain.Entities.Questions.Question
 
 @{
@@ -111,6 +112,17 @@
                     </div>
                     <!-- /tags -->
 
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <partial name="_AnswerFormPartial" model="new AnswerQuestionViewModel { QuestionId = Model.Id }" />
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            برای پاسخ به سوال ابتدا باید وارد حساب کاربری خود شوید .
+                        </div>
+                    }
+
                 </section>
                 <!-- /question content -->
 
@@ -125,6 +137,7 @@
 </div>
 
 @section Scripts
-    {
+{
+    <partial name="_JqueryValidation" />
     <script src="/js/question.js"></script>
 }

@@ -285,6 +285,28 @@ namespace BugFixer.Application.Services.Implementations
             return await _questionRepository.GetTagListForQuestionId(quetionsId);
         }
 
+        public async Task<bool> AnswerQuestion(AnswerQuestionViewModel answerQuestion)
+        {
+            var question = await GetQuestionById(answerQuestion.QuestionId);
+
+            if (question == null)
+            {
+                return false;
+            }
+
+            var answer = new Answer()
+            {
+                Content = answerQuestion.Answer.SanitizeText(),
+                QuestionId = answerQuestion.QuestionId,
+                UserId = answerQuestion.UserId
+            };
+
+            await _questionRepository.AddAnswer(answer);
+            await _questionRepository.SaveChanges();
+
+            return true;
+        }
+
         #endregion
     }
 
