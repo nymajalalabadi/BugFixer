@@ -5,6 +5,8 @@
 @{
     ViewData["Title"] = "جزئیات سوال";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var tagList = ViewData["TagList"] as List<string>;
 }
 
 @section Styles
@@ -97,15 +99,15 @@
 
                     <!-- tags -->
                     <div class="post-tags-layer">
-                        <div class="tags-layer">
-                            <a href=""> Jquery </a>
-                            <a href=""> php </a>
-                            <a href=""> Javascript </a>
-                            <a href=""> woocommerce </a>
-                            <a href=""> Framework </a>
-                            <a href=""> Jquery </a>
-                            <a href=""> php </a>
-                        </div>
+                        @if (tagList != null && tagList.Any())
+                        {
+                            <div class="tags-layer">
+                                @foreach (var tag in tagList)
+                                {
+                                    <a asp-action="QuestionListByTag" asp-controller="Question" asp-route-tagName="@tag"> @tag </a>
+                                }
+                            </div>
+                        }
                     </div>
                     <!-- /tags -->
 

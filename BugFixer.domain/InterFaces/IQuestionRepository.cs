@@ -41,6 +41,8 @@ namespace BugFixer.domain.InterFaces
 
         Task<IQueryable<Question>> GetAllQuestions();
 
+        Task<List<string>> GetTagListForQuestionId(long quetionsId);
+
         #endregion
 
         #region Select QuestionTag

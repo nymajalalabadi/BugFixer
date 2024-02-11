@@ -30,6 +30,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<Question?> GetQuestionById(long id);
 
+        Task<List<string>> GetTagListForQuestionId(long quetionsId);
+
         #endregion
 
     }

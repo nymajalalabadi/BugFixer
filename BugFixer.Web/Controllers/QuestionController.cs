@@ -139,6 +139,8 @@ namespace BugFixer.Web.Controllers
 
             if (question == null) return NotFound();
 
+            ViewData["TagList"] = await _questionService.GetTagListForQuestionId(questionId);
+
             return View(question);
         }
 

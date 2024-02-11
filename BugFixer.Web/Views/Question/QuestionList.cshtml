@@ -72,6 +72,7 @@
                                 {
                                     className = "selected";
                                 }
+
                                 <article class="@className">
                                     <h2><a asp-area="" asp-controller="Question" asp-action="QuestionDetail" asp-route-questionId="@question.QuestionId">@question.Title</a></h2>
                                     <span> @question.AnswersCount <i class="icon-comment-1"></i> </span>
@@ -92,7 +93,7 @@
                                             {
                                                 @foreach (var tag in question.Tags)
                                                 {
-                                                    <a asp-action="QuestionListBtTag" asp-controller="Question" asp-route-tagName="@tag"> @tag </a>
+                                                    <a asp-action="QuestionListByTag" asp-controller="Question" asp-route-tagName="@tag"> @tag </a>
                                                 }
                                             }
                                         </div>

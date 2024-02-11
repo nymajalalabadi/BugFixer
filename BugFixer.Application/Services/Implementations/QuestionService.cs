@@ -280,6 +280,11 @@ namespace BugFixer.Application.Services.Implementations
             return await _questionRepository.GetQuestionById(id);
         }
 
+        public async Task<List<string>> GetTagListForQuestionId(long quetionsId)
+        {
+            return await _questionRepository.GetTagListForQuestionId(quetionsId);
+        }
+
         #endregion
     }
 
