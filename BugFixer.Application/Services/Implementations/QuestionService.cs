@@ -315,7 +315,7 @@ namespace BugFixer.Application.Services.Implementations
 
         public async Task<List<Answer>> GetAllQuestionAnswers(long questionId)
         {
-
+            return await _questionRepository.GetAllQuestionAnswers(questionId);
         }
 
         #endregion

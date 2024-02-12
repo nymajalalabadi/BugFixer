@@ -111,7 +111,15 @@
                         }
                     </div>
                     <!-- /tags -->
-                    @await Component.InvokeAsync("QuestionAnswersList", new { questionId = Model.Id });
+                    <!-- answer -->
+                    <div class="answers-layer" id="AnswersBox">
+                        <div class="top-layer">
+                            <h4><span> @Model.Answers.Count(s => !s.IsDelete) </span> پاسخ به این پرسش </h4>
+                        </div>
+
+                        @await Component.InvokeAsync("QuestionAnswersList", new { questionId = Model.Id })
+
+                    </div>
 
                     @if (User.Identity.IsAuthenticated)
                     {
