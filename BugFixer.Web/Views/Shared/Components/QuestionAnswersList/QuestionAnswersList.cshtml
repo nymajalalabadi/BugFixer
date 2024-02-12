@@ -1,0 +1,56 @@
+﻿@using BugFixer.Application.Extensions
+@using BugFixer.Application.Statics
+@model List<BugFixer.domain.Entities.Questions.Answer>
+
+@if (Model != null && Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <!-- Item -->
+        <div class="answer-item">
+            <div class="top-detail">
+                <span> @item.CreateDate.TimeAgo() </span>
+                <button><i class="icon-pencil-edit"></i></button>
+            </div>
+            <div class="inner">
+
+                @Html.Raw(item.Content)
+
+                <div class="rating-layer">
+                    <div class="scoring-layer">
+                        <button class="plus"><i class="icon-caret-up"></i></button>
+                        <span> @item.Score </span>
+                        <button class="negative"><i class="icon-caret-down"></i></button>
+                    </div>
+                    <div class="selected-answer">
+                        @if (item.IsTrue)
+                        {
+                            <button class="selected"><i class="icon-check"></i></button>
+                        }
+                        else
+                        {
+                            <button><i class="icon-check"></i></button>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-layer">
+                <div class="author">
+                    <a href="javascript:void(0)" class="img-layer">
+                        <img src="@(PathTools.UserAvatarPath + item.User.Avatar)">
+                    </a>
+                    <h3><a href="javascript:void(0)"> @item.User.GetUserDisplayName() </a></h3>
+                </div>
+            </div>
+
+        </div>
+        <!-- /Item -->
+    }
+}
+else
+{
+    <div class="alert alert-warning">
+        پاسخی یافت نشد .
+    </div>
+}

@@ -123,6 +123,14 @@ namespace BugFixer.DataLayer.Repositories
             await _context.Answers.AddAsync(answer);
         }
 
+        public async Task<List<Answer>> GetAllQuestionAnswers(long questionId)
+        {
+            return await _context.Answers
+               .Include(s => s.User)
+               .Where(s => s.QuestionId == questionId && !s.IsDelete)
+               .OrderByDescending(s => s.CreateDate).ToListAsync();
+        }
+
         #endregion
     }
 }

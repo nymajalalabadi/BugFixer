@@ -61,6 +61,16 @@ function AnswerQuestionFormDone(response) {
     }
     else if (response.status === "Error") {
         swal("خطا", "خطایی رخ داده است لطفا مجدد تلاش کنید .", "error");
+
+        for (var editor of editorsArray) {
+            editor.setData('');
+        }
+
+        $("#AnswersBox").load(location.href + " #AnswersBox");
+
+        $('html, body').animate({
+            scrollTop: $("#AnswersBox").offset().top
+        }, 1000);
     }
 }
 
@@ -130,6 +140,7 @@ $(function () {
 
 });
 
+var editorsArray = [];
 var editors = document.querySelectorAll(".editor");
 if (editors.length) {
     $.getScript("/common/ckeditor/build/ckeditor.js",
@@ -145,6 +156,7 @@ if (editors.length) {
                         })
                     .then(editor => {
                         window.editor = editor;
+                        editorsArray.push(editor);
                     })
                     .catch(error => {
                         console.log(error);

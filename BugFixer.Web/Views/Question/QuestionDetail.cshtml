@@ -111,6 +111,8 @@
                         }
                     </div>
                     <!-- /tags -->
+                    @await Component.InvokeAsync("QuestionAnswersList", new { questionId = Model.Id });
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <partial name="_AnswerFormPartial" model="new AnswerQuestionViewModel { QuestionId = Model.Id }" />

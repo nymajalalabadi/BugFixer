@@ -36,5 +36,12 @@ namespace BugFixer.Application.Services.Interfaces
 
         #endregion
 
+
+        #region Answer
+
+        Task<List<Answer>> GetAllQuestionAnswers(long questionId);
+
+        #endregion
+
     }
 }

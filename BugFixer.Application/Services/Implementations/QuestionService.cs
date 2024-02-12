@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -308,6 +309,15 @@ namespace BugFixer.Application.Services.Implementations
         }
 
         #endregion
-    }
 
+
+        #region Answer
+
+        public async Task<List<Answer>> GetAllQuestionAnswers(long questionId)
+        {
+
+        }
+
+        #endregion
+    }
 }

@@ -58,6 +58,8 @@ namespace BugFixer.domain.InterFaces
 
         Task AddAnswer(Answer answer);
 
+        Task<List<Answer>> GetAllQuestionAnswers(long questionId);
+
         #endregion
 
     }

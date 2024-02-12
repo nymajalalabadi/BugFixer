@@ -17,11 +17,15 @@ namespace BugFixer.Web.ViewComponents
 
         #endregion
 
+        #region Main Menu Box
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var user = await _userService.GetUserById(User.GetUserId());
 
             return View("UserMainMenuBox", user);
         }
+
+        #endregion
     }
 }
