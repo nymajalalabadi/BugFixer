@@ -149,23 +149,23 @@ namespace BugFixer.Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> AnswerQuestion(AnswerQuestionViewModel answer)
+        public async Task<IActionResult> AnswerQuestion(AnswerQuestionViewModel answerQuestion)
         {
-            if (string.IsNullOrEmpty(answer.Answer))
+            if (string.IsNullOrEmpty(answerQuestion.Answer))
             {
                 return new JsonResult(new { status = "EmptyAnswer" });
-            };
+            }
 
-            answer.UserId = User.GetUserId();
+            answerQuestion.UserId = User.GetUserId();
 
-            var result = await _questionService.AnswerQuestion(answer);
+            var result = await _questionService.AnswerQuestion(answerQuestion);
 
             if (result)
             {
-                return JsonResponseStatus.Success();
+                return new JsonResult(new { status = "Success" });
             }
 
-            return JsonResponseStatus.Error();
+            return new JsonResult(new { status = "Error" });
         }
 
         #endregion

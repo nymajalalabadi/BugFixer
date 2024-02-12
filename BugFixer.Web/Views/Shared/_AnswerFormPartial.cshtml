@@ -1,9 +1,10 @@
 ﻿@model BugFixer.domain.ViewModels.Question.AnswerQuestionViewModel
 
 <!-- submit comment -->
+<!-- submit comment -->
 <div class="submit-comment" id="submit-comment">
     <p> متن پاسخ شما </p>
-    <form asp-action="AnswerQuestion" asp-controller="Question" asp-area="" id="AnswerQuestionForm" method="post"
+    <form method="post" asp-action="AnswerQuestion" asp-controller="Question" id="AnswerQuestionForm"
           data-ajax="true"
           data-ajax-success="AnswerQuestionFormDone"
           data-ajax-begin="StartLoading('#submit-comment')">

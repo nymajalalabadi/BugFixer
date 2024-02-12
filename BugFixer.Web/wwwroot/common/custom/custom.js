@@ -50,18 +50,21 @@ function UploadUserAvatar(url) {
 
 }
 
-function StartLoading(selector = 'body') {
-    $(selector).waitMe({
-        effect: 'bounce',
-        text: 'لطفا صبر کنید ...',
-        bg: 'rgba(255, 255, 255, 0.7)',
-        color: '#000'
-    });
+function AnswerQuestionFormDone(response) {
+    EndLoading('#submit-comment');
+
+    if (response.status === "Success") {
+        swal("اعلان", "پاسخ شما با موفقیت ثبت شد .", "success");
+    }
+    else if (response.status === "EmptyAnswer") {
+        swal("هشدار", "متن پاسخ شما نمی تواند خالی  باشد .", "warning");
+    }
+    else if (response.status === "Error") {
+        swal("خطا", "خطایی رخ داده است لطفا مجدد تلاش کنید .", "error");
+    }
 }
 
-function EndLoading(selector = 'body') {
-    $(selector).waitMe('hide');
-}
+
 
 $("#CountryId").on("change", function () {
     var countryId = $("#CountryId").val();
@@ -164,20 +167,15 @@ function SubmitFilterFormPagination(pageId) {
     $("#filter_form").submit();
 }
 
-function AnswerQuestionFormDone(respone)
-{
-    EndLoading('#submit-comment');
+function StartLoading(selector = 'body') {
+    $(selector).waitMe({
+        effect: 'bounce',
+        text: 'لطفا صبر کنید ...',
+        bg: 'rgba(255, 255, 255, 0.7)',
+        color: '#000'
+    });
+}
 
-    if (response.status === "Success")
-    {
-        swal("اعلان", "پاسخ شما با موفقیت ثبت شد .", "success");
-    }
-    else if (response.status === "EmptyAnswer")
-    {
-        swal("هشدار", "متن پاسخ شما نمی تواند خالی  باشد .", "warning");
-    }
-    else if (response.status === "Error")
-    {
-        swal("خطا", "خطایی رخ داده است لطفا مجدد تلاش کنید .", "error");
-    }
+function EndLoading(selector = 'body') {
+    $(selector).waitMe('hide');
 }
