@@ -50,29 +50,7 @@ function UploadUserAvatar(url) {
 
 }
 
-function AnswerQuestionFormDone(response) {
-    EndLoading('#submit-comment');
 
-    if (response.status === "Success") {
-        swal("اعلان", "پاسخ شما با موفقیت ثبت شد .", "success");
-    }
-    else if (response.status === "EmptyAnswer") {
-        swal("هشدار", "متن پاسخ شما نمی تواند خالی  باشد .", "warning");
-    }
-    else if (response.status === "Error") {
-        swal("خطا", "خطایی رخ داده است لطفا مجدد تلاش کنید .", "error");
-
-        for (var editor of editorsArray) {
-            editor.setData('');
-        }
-
-        $("#AnswersBox").load(location.href + " #AnswersBox");
-
-        $('html, body').animate({
-            scrollTop: $("#AnswersBox").offset().top
-        }, 1000);
-    }
-}
 
 
 
@@ -165,6 +143,29 @@ if (editors.length) {
         });
 }
 
+function AnswerQuestionFormDone(response) {
+    EndLoading('#submit-comment');
+
+    if (response.status === "Success") {
+        swal("اعلان", "پاسخ شما با موفقیت ثبت شد .", "success");
+    }
+    else if (response.status === "EmptyAnswer") {
+        swal("هشدار", "متن پاسخ شما نمی تواند خالی  باشد .", "warning");
+    }
+    else if (response.status === "Error") {
+        swal("خطا", "خطایی رخ داده است لطفا مجدد تلاش کنید .", "error");
+    }
+
+    for (var editor of editorsArray) {
+        editor.setData('');
+    }
+
+    $("#AnswersBox").load(location.href + " #AnswersBox");
+
+    $('html, body').animate({
+        scrollTop: $("#AnswersBox").offset().top
+    }, 1000);
+}
 
 function SubmitQuestionForm() {
     $("#filter_form").submit();
