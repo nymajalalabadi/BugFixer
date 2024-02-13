@@ -34,6 +34,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<bool> AnswerQuestion(AnswerQuestionViewModel answerQuestion);
 
+        Task AddViewForQuestion(string userIp, Question question);
+
         #endregion
 
 

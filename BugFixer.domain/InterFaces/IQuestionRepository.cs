@@ -44,7 +44,10 @@ namespace BugFixer.domain.InterFaces
 
         Task<List<string>> GetTagListForQuestionId(long quetionsId);
 
+        Task UpdateQuestion(Question question);
+
         #endregion
+
 
         #region Select QuestionTag
 
@@ -52,13 +55,23 @@ namespace BugFixer.domain.InterFaces
 
         Task<Question?> GetQuestionById(long id);
 
+
         #endregion
+
 
         #region answer
 
         Task AddAnswer(Answer answer);
 
         Task<List<Answer>> GetAllQuestionAnswers(long questionId);
+
+        #endregion
+
+        #region view
+
+        Task<bool> IsExistsViewForQuestion(string userIp, long quetionsId);
+
+        Task AddQuestionView(QuestionView questionView);
 
         #endregion
 

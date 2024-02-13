@@ -148,6 +148,13 @@ function AnswerQuestionFormDone(response) {
 
     if (response.status === "Success") {
         swal("اعلان", "پاسخ شما با موفقیت ثبت شد .", "success");
+
+
+        $("#AnswersBox").load(location.href + " #AnswersBox");
+
+        $('html, body').animate({
+            scrollTop: $("#AnswersBox").offset().top
+        }, 1000);
     }
     else if (response.status === "EmptyAnswer") {
         swal("هشدار", "متن پاسخ شما نمی تواند خالی  باشد .", "warning");
@@ -159,12 +166,6 @@ function AnswerQuestionFormDone(response) {
     for (var editor of editorsArray) {
         editor.setData('');
     }
-
-    $("#AnswersBox").load(location.href + " #AnswersBox");
-
-    $('html, body').animate({
-        scrollTop: $("#AnswersBox").offset().top
-    }, 1000);
 }
 
 function SubmitQuestionForm() {

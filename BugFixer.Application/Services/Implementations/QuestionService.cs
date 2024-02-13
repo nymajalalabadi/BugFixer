@@ -305,7 +305,32 @@ namespace BugFixer.Application.Services.Implementations
             await _questionRepository.AddAnswer(answer);
             await _questionRepository.SaveChanges();
 
+            await _userService.UpdateUserScoreAndMedal(answerQuestion.UserId, _scoreManagement.AddNewAnswerScore);
+
             return true;
+        }
+
+        public async Task AddViewForQuestion(string userIp, Question question)
+        {
+            if (await _questionRepository.IsExistsViewForQuestion(userIp, question.Id))
+            {
+                return;
+            }
+
+            var view = new QuestionView()
+            {
+                QuestionId = question.Id,
+                UserIP = userIp
+            };
+
+            await _questionRepository.AddQuestionView(view);
+
+            question.ViewCount += 1;
+
+            await _questionRepository.UpdateQuestion(question);
+
+            await _questionRepository.SaveChanges();
+
         }
 
         #endregion

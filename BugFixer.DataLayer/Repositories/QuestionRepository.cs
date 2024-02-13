@@ -96,6 +96,10 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.SelectQuestionTags.Include(s => s.Tag).Where(s => s.QuestionId == quetionsId).Select(s => s.Tag.Title).ToListAsync();
         }
 
+        public async Task UpdateQuestion(Question question)
+        {
+           _context.Questions.Update(question);
+        }
         #endregion
 
 
@@ -113,6 +117,7 @@ namespace BugFixer.DataLayer.Repositories
                 .Include(q => q.Answers)
                 .FirstOrDefaultAsync(q => q.Id == id && !q.IsDelete);
         }
+
         #endregion
 
 
@@ -129,6 +134,21 @@ namespace BugFixer.DataLayer.Repositories
                .Include(s => s.User)
                .Where(s => s.QuestionId == questionId && !s.IsDelete)
                .OrderByDescending(s => s.CreateDate).ToListAsync();
+        }
+
+        #endregion
+
+
+        #region view
+
+        public async Task<bool> IsExistsViewForQuestion(string userIp, long quetionsId)
+        {
+            return await _context.QuestionViews.AnyAsync(s => s.UserIP.Equals(userIp) && s.QuestionId == quetionsId);
+        }
+
+        public async Task AddQuestionView(QuestionView questionView)
+        {
+           await _context.QuestionViews.AddAsync(questionView);
         }
 
         #endregion
