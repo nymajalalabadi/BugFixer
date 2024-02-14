@@ -193,3 +193,55 @@ function StartLoading(selector = 'body') {
 function EndLoading(selector = 'body') {
     $(selector).waitMe('hide');
 }
+
+
+function selectTrueAnswer(answerId) {
+    $.ajax({
+        url: "/SelectTrueAnswer",
+        type: "post",
+        data: {
+            answerId: answerId
+        },
+        beforeSend: function () {
+            StartLoading();
+        },
+        success: function (response) {
+            EndLoading();
+            if (response.status === "Success") {
+                swal({
+                    title: "اعلان",
+                    text: "عملیات با موفقیت انحام شد .",
+                    icon: "success",
+                    button: "بستن"
+                });
+
+                $("#AnswersBox").load(location.href + " #AnswersBox");
+            }
+            else if (response.status === "NotAuthorize") {
+                swal({
+                    title: "اعلان",
+                    text: "برای انتخاب پاسخ درست ابتدا وارد سایت شوید .",
+                    icon: "info",
+                    button: "باشه"
+                });
+            }
+            else if (response.status === "NotAccess") {
+                swal({
+                    title: "خطا",
+                    text: "شما به این عملیات دسترسی ندارید .",
+                    icon: "error",
+                    button: "بستن"
+                });
+            }
+        },
+        error: function () {
+            EndLoading();
+            swal({
+                title: "خطا",
+                text: "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .",
+                icon: "error",
+                button: "باشه"
+            });
+        }
+    });
+}

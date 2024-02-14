@@ -182,6 +182,7 @@ namespace BugFixer.Web.Controllers
 
         #region select true answer
 
+        [HttpPost("SelectTrueAnswer")]
         public async Task<IActionResult> SelectTrueAnswer(long answerId)
         {
             if (!User.Identity.IsAuthenticated)
@@ -191,7 +192,7 @@ namespace BugFixer.Web.Controllers
 
             if (!await _questionService.HasUserAccessToSelectTrueAnswer(User.GetUserId(), answerId))
             {
-                return new JsonResult(new { status = "NotAuthorize" });
+                return new JsonResult(new { status = "NotAccess" });
             }
 
             await _questionService.SelectTrueAnswer(User.GetUserId(), answerId);
