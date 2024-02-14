@@ -65,6 +65,10 @@ namespace BugFixer.domain.InterFaces
 
         Task<List<Answer>> GetAllQuestionAnswers(long questionId);
 
+        Task<Answer?> GetAnswerById(long answeredId);
+
+        Task UpdateAnswer(Answer answer);
+
         #endregion
 
         #region view

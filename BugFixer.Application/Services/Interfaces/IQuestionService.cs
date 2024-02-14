@@ -43,6 +43,10 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<List<Answer>> GetAllQuestionAnswers(long questionId);
 
+        Task<bool> HasUserAccessToSelectTrueAnswer(long userId, long answerId);
+
+        Task SelectTrueAnswer(long userId, long answerId);
+
         #endregion
 
     }

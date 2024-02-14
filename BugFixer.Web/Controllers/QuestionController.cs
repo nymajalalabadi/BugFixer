@@ -180,6 +180,25 @@ namespace BugFixer.Web.Controllers
         #endregion
 
 
+        #region select true answer
 
+        public async Task<IActionResult> SelectTrueAnswer(long answerId)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new JsonResult(new { status = "NotAuthorize" });
+            }
+
+            if (!await _questionService.HasUserAccessToSelectTrueAnswer(User.GetUserId(), answerId))
+            {
+                return new JsonResult(new { status = "NotAuthorize" });
+            }
+
+            await _questionService.SelectTrueAnswer(User.GetUserId(), answerId);
+
+            return new JsonResult(new { status = "Success" });
+        }
+
+        #endregion
     }
 }

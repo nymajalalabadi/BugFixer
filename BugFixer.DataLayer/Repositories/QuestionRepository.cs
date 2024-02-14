@@ -136,6 +136,16 @@ namespace BugFixer.DataLayer.Repositories
                .OrderByDescending(s => s.CreateDate).ToListAsync();
         }
 
+        public async Task<Answer?> GetAnswerById(long answeredId)
+        {
+            return await _context.Answers.Include(a => a.Question).FirstOrDefaultAsync(a => a.Id == answeredId && !a.IsDelete);
+        }
+
+        public async Task UpdateAnswer(Answer answer)
+        {
+            _context.Answers.Update(answer);
+        }
+
         #endregion
 
 
