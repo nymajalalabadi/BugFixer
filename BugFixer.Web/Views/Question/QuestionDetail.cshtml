@@ -87,11 +87,8 @@
                                         <input type="text" name="" readonly value="@($"{PathTools.SiteAddress}/q/{Model.Id}")">
                                     </div>
                                     <div class="socials">
-                                        <a href=""><i class="icon-facebook"></i></a>
-                                        <a href=""><i class="icon-twitter"></i></a>
-                                        <a href=""><i class="icon-linkedin"></i></a>
-                                        <a href=""><i class="icon-telegram"></i></a>
-                                        <a href=""><i class="icon-google-plus"></i></a>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=@($"{Context.Request.Scheme}://{Context.Request.Host + Context.Request.Path}")"><i class="icon-facebook"></i></a>
+                                        <a href="https://t.me/share/url?url=@($"{Context.Request.Scheme}://{Context.Request.Host + Context.Request.Path}")"><i class="icon-telegram"></i></a>
                                     </div>
                                 </div>
                             </div>
