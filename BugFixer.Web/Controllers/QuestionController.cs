@@ -152,6 +152,21 @@ namespace BugFixer.Web.Controllers
             return View(question);
         }
 
+
+        #region question detail by short link
+
+        [HttpGet("q/{questionId}")]
+        public async Task<IActionResult> QuestionDetailByShortLink(long questionId)
+        {
+            var question = await _questionService.GetQuestionById(questionId);
+
+            if (question == null) return NotFound();
+
+            return RedirectToAction("QuestionDetail", "Question", new { questionId  = questionId });
+        }
+
+        #endregion
+
         #region Answer Question
 
         [HttpPost]
