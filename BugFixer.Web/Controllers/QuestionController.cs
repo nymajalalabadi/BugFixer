@@ -1,6 +1,7 @@
 ﻿using BugFixer.Application.Extensions;
 using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
+using BugFixer.domain.Enums;
 using BugFixer.domain.ViewModels.Question;
 using BugFixer.Web.Extentions;
 using Microsoft.AspNetCore.Authorization;
@@ -191,6 +192,66 @@ namespace BugFixer.Web.Controllers
         }
 
         #endregion
+
+        #endregion
+
+        #region score answer
+
+        [HttpPost("ScoreUpForAnswer")]
+        public async Task<IActionResult> ScoreUpForAnswer(long answerId)
+        {
+            var result = await _questionService.CreateScoreForAnswer(answerId, AnswerScoreType.Plus, User.GetUserId());
+
+            switch (result)
+            {
+                case CreateScoreForAnswerResult.Error:
+                    return new JsonResult(new { status = "Error" });
+
+                case CreateScoreForAnswerResult.NotEnoughScoreForDown:
+                    return new JsonResult(new { status = "NotEnoughScoreForDown" });
+
+                case CreateScoreForAnswerResult.NotEnoughScoreForUp:
+                    return new JsonResult(new { status = "NotEnoughScoreForUp" });
+
+                case CreateScoreForAnswerResult.UserCreateScoreBefore:
+                    return new JsonResult(new { status = "UserCreateScoreBefore" });
+
+                case CreateScoreForAnswerResult.Success:
+                    return new JsonResult(new { status = "Success" });
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+        }
+
+        [HttpPost("ScoreDownForAnswer")]
+        public async Task<IActionResult> ScoreDownForAnswer(long answerId)
+        {
+            var result = await _questionService.CreateScoreForAnswer(answerId, AnswerScoreType.Minus, User.GetUserId());
+
+            switch (result)
+            {
+                case CreateScoreForAnswerResult.Error:
+                    return new JsonResult(new { status = "Error" });
+
+                case CreateScoreForAnswerResult.NotEnoughScoreForDown:
+                    return new JsonResult(new { status = "NotEnoughScoreForDown" });
+
+                case CreateScoreForAnswerResult.NotEnoughScoreForUp:
+                    return new JsonResult(new { status = "NotEnoughScoreForUp" });
+
+                case CreateScoreForAnswerResult.UserCreateScoreBefore:
+                    return new JsonResult(new { status = "UserCreateScoreBefore" });
+
+                case CreateScoreForAnswerResult.Success:
+                    return new JsonResult(new { status = "Success" });
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+        }
 
         #endregion
 

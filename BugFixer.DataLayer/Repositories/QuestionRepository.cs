@@ -146,6 +146,16 @@ namespace BugFixer.DataLayer.Repositories
             _context.Answers.Update(answer);
         }
 
+        public async Task<bool> IsExistsUserScoreForAnswer(long answerId, long userId)
+        {
+            return await _context.AnswerUserScores.AnyAsync(s => s.AnswerId == answerId && s.UserId == userId);
+        }
+
+        public async Task AddAnswerUserScore(AnswerUserScore score)
+        {
+            await _context.AnswerUserScores.AddAsync(score);
+        }
+
         #endregion
 
 
@@ -160,6 +170,7 @@ namespace BugFixer.DataLayer.Repositories
         {
            await _context.QuestionViews.AddAsync(questionView);
         }
+
 
         #endregion
     }

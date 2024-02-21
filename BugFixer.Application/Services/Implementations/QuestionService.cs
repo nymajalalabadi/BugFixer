@@ -3,6 +3,7 @@ using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
+using BugFixer.domain.Enums;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Common;
 using BugFixer.domain.ViewModels.Question;
@@ -374,6 +375,63 @@ namespace BugFixer.Application.Services.Implementations
             await _questionRepository.UpdateAnswer(answer);
             await _questionRepository.SaveChanges();
         }
+
+        public async Task<CreateScoreForAnswerResult> CreateScoreForAnswer(long asnwerId, AnswerScoreType type, long userId)
+        {
+            var answer = await _questionRepository.GetAnswerById(asnwerId);
+
+            if (answer == null)
+            {
+                return CreateScoreForAnswerResult.Error;
+            }
+
+            var user = await _userService.GetUserById(userId);
+
+            if (user == null)
+            {
+                return CreateScoreForAnswerResult.Error;
+            }
+
+            if (type == AnswerScoreType.Minus  && user.Score < _scoreManagement.MinScoreForDownScoreAnswer)
+            {
+                return CreateScoreForAnswerResult.NotEnoughScoreForDown;
+            }
+
+            if (type == AnswerScoreType.Plus && user.Score < _scoreManagement.MinScoreForUpScoreAnswer)
+            {
+                return CreateScoreForAnswerResult.NotEnoughScoreForUp;
+            }
+
+            if (await _questionRepository.IsExistsUserScoreForAnswer(asnwerId, userId))
+            {
+                return CreateScoreForAnswerResult.UserCreateScoreBefore;
+            }
+
+            var score = new AnswerUserScore()
+            {
+                AnswerId = asnwerId,
+                UserId = userId,
+                Type = type,
+            };
+
+            await _questionRepository.AddAnswerUserScore(score);
+
+            if (type == AnswerScoreType.Minus)
+            {
+                answer.Score -= 1;
+            }
+            else
+            {
+                answer.Score += 1;
+            }
+
+            await _questionRepository.UpdateAnswer(answer);
+
+            await _questionRepository.SaveChanges();
+
+            return CreateScoreForAnswerResult.Success;
+        }
+
 
         #endregion
     }

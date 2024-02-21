@@ -20,5 +20,9 @@ namespace BugFixer.domain.ViewModels.Common
 
         public int MinScoreForGoldMedal { get; set; }
 
+        public int MinScoreForUpScoreAnswer { get; set; }
+
+        public int MinScoreForDownScoreAnswer { get; set; }
+
     }
 }

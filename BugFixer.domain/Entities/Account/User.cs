@@ -83,6 +83,8 @@ namespace BugFixer.domain.Entities.Account
 
         public ICollection<QuestionUserScore> QuestionUserScores { get; set; }
 
+        public ICollection<AnswerUserScore> AnswerUserScores { get; set; }
+
         #endregion
     }
 }

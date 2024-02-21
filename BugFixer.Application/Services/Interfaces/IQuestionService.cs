@@ -1,5 +1,6 @@
 ﻿using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
+using BugFixer.domain.Enums;
 using BugFixer.domain.ViewModels.Question;
 
 namespace BugFixer.Application.Services.Interfaces
@@ -40,6 +41,8 @@ namespace BugFixer.Application.Services.Interfaces
         Task<bool> HasUserAccessToSelectTrueAnswer(long userId, long answerId);
 
         Task SelectTrueAnswer(long userId, long answerId);
+
+        Task<CreateScoreForAnswerResult> CreateScoreForAnswer(long asnwerId, AnswerScoreType type, long userId);
 
         #endregion
 

@@ -15,4 +15,22 @@ namespace BugFixer.domain.Enums
         [Display(Name = "منفی")] 
         Minus,
     }
+
+    public enum AnswerScoreType
+    {
+        [Display(Name = "مثبت")]
+        Plus,
+
+        [Display(Name = "منفی")]
+        Minus,
+    }
+
+    public enum CreateScoreForAnswerResult
+    {
+        Error,
+        NotEnoughScoreForDown,
+        NotEnoughScoreForUp,
+        Success,
+        UserCreateScoreBefore
+    }
 }

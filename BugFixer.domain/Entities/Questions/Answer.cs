@@ -2,6 +2,7 @@
 using BugFixer.domain.Entities.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,8 @@ namespace BugFixer.domain.Entities.Questions
         public User User { get; set; }
 
         public Question Question { get; set; }
+
+        public ICollection<AnswerUserScore> AnswerUserScores { get; set; }
 
         #endregion
     }
