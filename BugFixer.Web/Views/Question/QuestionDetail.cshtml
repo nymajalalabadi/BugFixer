@@ -60,9 +60,9 @@
 
                             <div class="rating-layer">
                                 <div class="scoring-layer">
-                                    <button class="plus"><i class="icon-caret-up"></i></button>
+                                    <button onclick="ScoreUpForQuestion('@Model.Id')" class="plus"><i class="icon-caret-up"></i></button>
                                     <span> @Model.Score </span>
-                                    <button class="negative"><i class="icon-caret-down"></i></button>
+                                    <button onclick="ScoreDownForQuestion('@Model.Id')" class="negative"><i class="icon-caret-down"></i></button>
                                 </div>
                                 <div class="star-rating">
                                     <button><i class="icon-star"></i></button>

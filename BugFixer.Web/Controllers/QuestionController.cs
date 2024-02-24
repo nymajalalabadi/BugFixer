@@ -222,8 +222,9 @@ namespace BugFixer.Web.Controllers
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
         }
+
+
 
         [HttpPost("ScoreDownForAnswer")]
         public async Task<IActionResult> ScoreDownForAnswer(long answerId)
@@ -250,7 +251,6 @@ namespace BugFixer.Web.Controllers
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
         }
 
         #endregion
@@ -283,14 +283,58 @@ namespace BugFixer.Web.Controllers
         [HttpPost("ScoreUpForQuestion")]
         public async Task<IActionResult> ScoreUpForQuestion(long questionId)
         {
-            return View();
+            var result = await _questionService.CreateScoreForQuestion(questionId, QuestionScoreType.Plus, User.GetUserId());
+
+            switch (result)
+            {
+                case CreateScoreForQuestionResult.Error:
+                    return new JsonResult(new { status = "Error" });
+
+                case CreateScoreForQuestionResult.NotEnoughScoreForDown:
+                    return new JsonResult(new { status = "NotEnoughScoreForDown" });
+
+                case CreateScoreForQuestionResult.NotEnoughScoreForUp:
+                    return new JsonResult(new { status = "NotEnoughScoreForUp" });
+
+                case CreateScoreForQuestionResult.UserCreateScoreBefore:
+                    return new JsonResult(new { status = "UserCreateScoreBefore" });
+
+                case CreateScoreForQuestionResult.Success:
+                    return new JsonResult(new { status = "Success" });
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         [HttpPost("ScoreDownForQuestion")]
         public async Task<IActionResult> ScoreDownForQuestion(long questionId)
         {
-            return View();
+            var result = await _questionService.CreateScoreForQuestion(questionId, QuestionScoreType.Minus, User.GetUserId());
+
+            switch (result)
+            {
+                case CreateScoreForQuestionResult.Error:
+                    return new JsonResult(new { status = "Error" });
+
+                case CreateScoreForQuestionResult.NotEnoughScoreForDown:
+                    return new JsonResult(new { status = "NotEnoughScoreForDown" });
+
+                case CreateScoreForQuestionResult.NotEnoughScoreForUp:
+                    return new JsonResult(new { status = "NotEnoughScoreForUp" });
+
+                case CreateScoreForQuestionResult.UserCreateScoreBefore:
+                    return new JsonResult(new { status = "UserCreateScoreBefore" });
+
+                case CreateScoreForQuestionResult.Success:
+                    return new JsonResult(new { status = "Success" });
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
+
+
 
         #endregion
     }
