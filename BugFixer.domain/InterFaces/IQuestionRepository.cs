@@ -63,8 +63,6 @@ namespace BugFixer.domain.InterFaces
 
         Task AddAnswer(Answer answer);
 
-        Task AddAnswerUserScore(AnswerUserScore score);
-
         Task<List<Answer>> GetAllQuestionAnswers(long questionId);
 
         Task<Answer?> GetAnswerById(long answeredId);
@@ -72,6 +70,12 @@ namespace BugFixer.domain.InterFaces
         Task UpdateAnswer(Answer answer);
 
         Task<bool> IsExistsUserScoreForAnswer(long answerId, long userId);
+
+        Task<bool> IsExistsUserScoreForQuestion(long questionId, long userId);
+
+        Task AddAnswerUserScore(AnswerUserScore score);
+
+        Task AddQuestionUserScore(QuestionUserScore score);
 
         #endregion
 

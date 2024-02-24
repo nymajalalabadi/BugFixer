@@ -44,6 +44,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<CreateScoreForAnswerResult> CreateScoreForAnswer(long asnwerId, AnswerScoreType type, long userId);
 
+        Task<CreateScoreForQuestionResult> CreateScoreForQuestion(long questionId, QuestionScoreType type, long userId);
+
         #endregion
 
     }

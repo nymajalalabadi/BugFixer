@@ -432,6 +432,61 @@ namespace BugFixer.Application.Services.Implementations
             return CreateScoreForAnswerResult.Success;
         }
 
+        public async Task<CreateScoreForQuestionResult> CreateScoreForQuestion(long questionId, QuestionScoreType type, long userId)
+        {
+            var question = await GetQuestionById(questionId);
+
+            if (question == null)
+            {
+                return CreateScoreForQuestionResult.Error;
+            }
+
+            var user = await _userService.GetUserById(userId);
+
+            if (user == null)
+            {
+                return CreateScoreForQuestionResult.Error;
+            }
+
+            if (type == QuestionScoreType.Minus && user.Score < _scoreManagement.MinScoreForDownScoreQuestion)
+            {
+                return CreateScoreForQuestionResult.NotEnoughScoreForDown;
+            }
+
+            if (type == QuestionScoreType.Plus && user.Score < _scoreManagement.MinScoreForUpScoreQuestion)
+            {
+                return CreateScoreForQuestionResult.NotEnoughScoreForUp;
+            }
+
+            if (await _questionRepository.IsExistsUserScoreForQuestion(questionId, userId))
+            {
+                return CreateScoreForQuestionResult.UserCreateScoreBefore;
+            }
+
+            var score = new QuestionUserScore
+            {
+                QuestionId = questionId,
+                UserId = userId,
+                Type = type
+            };
+
+            await _questionRepository.AddQuestionUserScore(score);
+
+            if (type == QuestionScoreType.Minus)
+            {
+                question.Score -= 1;
+            }
+            else
+            {
+                question.Score += 1;
+            }
+
+            await _questionRepository.UpdateQuestion(question);
+
+            await _questionRepository.SaveChanges();
+
+            return CreateScoreForQuestionResult.Success;
+        }
 
         #endregion
     }

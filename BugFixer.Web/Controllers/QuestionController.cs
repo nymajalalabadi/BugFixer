@@ -277,5 +277,21 @@ namespace BugFixer.Web.Controllers
         }
 
         #endregion
+
+        #region Score Question
+
+        [HttpPost("ScoreUpForQuestion")]
+        public async Task<IActionResult> ScoreUpForQuestion(long questionId)
+        {
+            return View();
+        }
+
+        [HttpPost("ScoreDownForQuestion")]
+        public async Task<IActionResult> ScoreDownForQuestion(long questionId)
+        {
+            return View();
+        }
+
+        #endregion
     }
 }

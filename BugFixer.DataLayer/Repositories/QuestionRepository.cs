@@ -151,9 +151,19 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.AnswerUserScores.AnyAsync(s => s.AnswerId == answerId && s.UserId == userId);
         }
 
+        public async Task<bool> IsExistsUserScoreForQuestion(long questionId, long userId)
+        {
+            return await _context.QuestionUserScores.AnyAsync(q => q.QuestionId == questionId && q.UserId == userId);
+        }
+
         public async Task AddAnswerUserScore(AnswerUserScore score)
         {
             await _context.AnswerUserScores.AddAsync(score);
+        }
+
+        public async Task AddQuestionUserScore(QuestionUserScore score)
+        {
+            await _context.QuestionUserScores.AddAsync(score);
         }
 
         #endregion
