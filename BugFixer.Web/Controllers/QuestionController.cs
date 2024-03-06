@@ -3,7 +3,6 @@ using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.Enums;
 using BugFixer.domain.ViewModels.Question;
-using BugFixer.Web.Extentions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;

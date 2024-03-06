@@ -1,14 +1,11 @@
 ﻿using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.ViewModels.Account;
-using GoogleReCaptcha.V3.Interface;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Win32;
-using System.Globalization;
-using System.Security.Claims;
 using BugFixer.Web.ActionFilters;
-using Microsoft.Data.SqlClient.Server;
+using GoogleReCaptcha.V3.Interface;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BugFixer.Web.Controllers
 {
