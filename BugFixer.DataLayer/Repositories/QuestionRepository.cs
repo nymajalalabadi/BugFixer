@@ -178,7 +178,7 @@ namespace BugFixer.DataLayer.Repositories
             await _context.QuestionUserScores.AddAsync(score);
         }
 
-        public async Task RemoveBookmark(UserQuestionBookmark bookmark)
+        public void RemoveBookmark(UserQuestionBookmark bookmark)
         {
             _context.UserQuestionBookmarks.Remove(bookmark);
         }

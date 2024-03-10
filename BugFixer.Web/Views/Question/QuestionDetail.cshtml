@@ -65,7 +65,7 @@
                                     <button onclick="ScoreDownForQuestion('@Model.Id')" class="negative"><i class="icon-caret-down"></i></button>
                                 </div>
                                 <div class="star-rating">
-                                    <button><i class="icon-star"></i></button>
+                                    <button onclick="AddQuestionToBookmark()" class="@((ViewBag.IsBookMark) ? "gold-color" : string.Empty)"><i class="icon-star"></i></button>
                                 </div>
                             </div>
 

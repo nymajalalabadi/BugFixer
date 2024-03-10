@@ -140,6 +140,13 @@ namespace BugFixer.Web.Controllers
 
             if (question == null) return NotFound();
 
+            ViewBag.IsBookMark = false;
+
+            if (User.Identity.IsAuthenticated && await _questionService.IsExistsQuestionInUserBookmarks(questionId, User.GetUserId()))
+            {
+                ViewBag.IsBookMark = true;
+            }
+
             var userIp = Request.HttpContext.Connection.RemoteIpAddress;
              
             if (userIp != null)
@@ -340,7 +347,20 @@ namespace BugFixer.Web.Controllers
         [HttpPost("AddQuestionToBookmark")]
         public async Task<IActionResult> AddQuestionToBookmark(long questionId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new JsonResult(new { status = "NotAuthorize" });
+            }
+
+            var result = await _questionService.AddQuestionToBookmark(questionId, User.GetUserId());
+
+            if (!result)
+            {
+                return new JsonResult(new { status = "Error" });
+            }
+
             return new JsonResult(new { status = "Success" });
+
         }
 
         #endregion

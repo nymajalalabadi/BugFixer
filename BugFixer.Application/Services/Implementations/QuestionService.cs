@@ -370,6 +370,10 @@ namespace BugFixer.Application.Services.Implementations
             return true;
         }
 
+        public async Task<bool> IsExistsQuestionInUserBookmarks(long questionId, long userId)
+        {
+            return await _questionRepository.IsExistsQuestionInUserBookmarks(questionId, userId);
+        }
 
         #endregion
 

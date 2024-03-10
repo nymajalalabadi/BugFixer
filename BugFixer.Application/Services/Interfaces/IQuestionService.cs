@@ -33,6 +33,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<bool> AddQuestionToBookmark(long questionId, long userId);
 
+        Task<bool> IsExistsQuestionInUserBookmarks(long questionId, long userId);
+
         #endregion
 
 

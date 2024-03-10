@@ -82,7 +82,7 @@ namespace BugFixer.domain.InterFaces
 
         Task AddQuestionUserScore(QuestionUserScore score);
 
-        Task RemoveBookmark(UserQuestionBookmark bookmark);
+        void RemoveBookmark(UserQuestionBookmark bookmark);
 
         Task AddBookmark(UserQuestionBookmark bookmark);
 

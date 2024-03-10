@@ -518,3 +518,55 @@ function ScoreDownForAnswer(answerId) {
         }
     });
 }
+
+function AddQuestionToBookmark(questionId) {
+    $.ajax({
+        url: "/AddQuestionToBookmark",
+        type: "post",
+        data: {
+            questionId: questionId
+        },
+        beforeSend: function () {
+            StartLoading();
+        },
+        success: function (response) {
+            EndLoading();
+
+            if (response.status === "Success") {
+                swal({
+                    title: "اعلان",
+                    text: "عملیات با موفقیت انحام شد .",
+                    icon: "success",
+                    button: "بستن"
+                });
+
+                $("#QuestionDetailMainBox").load(location.href + " #QuestionDetailMainBox");
+            }
+            else if (response.status === "NotAuthorize") {
+                swal({
+                    title: "اعلان",
+                    text: "برای انتخاب پاسخ درست ابتدا وارد سایت شوید .",
+                    icon: "info",
+                    button: "باشه"
+                });
+            }
+            else if (response.status === "Error") {
+                swal({
+                    title: "خطا",
+                    text: "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .",
+                    icon: "error",
+                    button: "بستن"
+                });
+            }
+        },
+        error: function () {
+            EndLoading();
+            swal({
+                title: "خطا",
+                text: "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .",
+                icon: "error",
+                button: "باشه"
+            });
+        }
+    });
+}
