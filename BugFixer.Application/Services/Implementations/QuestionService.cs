@@ -1,6 +1,7 @@
 ﻿using BugFixer.Application.Extensions;
 using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
+using BugFixer.domain.Entities.Account;
 using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.Enums;
@@ -333,6 +334,42 @@ namespace BugFixer.Application.Services.Implementations
             await _questionRepository.SaveChanges();
 
         }
+
+        public async Task<bool> AddQuestionToBookmark(long questionId, long userId)
+        {
+            var question = await GetQuestionById(questionId);
+
+            if (question == null)
+            {
+                return false;
+            }
+
+            if (await _questionRepository.IsExistsQuestionInUserBookmarks(questionId, userId))
+            {
+                var bookmark = await _questionRepository.GetBookmarkByQuestionAndUserId(questionId, userId);
+
+                if (bookmark == null)
+                {
+                    return false;
+                }
+                _questionRepository.RemoveBookmark(bookmark);
+            }
+            else
+            {
+                var newBookmark = new UserQuestionBookmark
+                {
+                    QuestionId = questionId,
+                    UserId = userId
+                };
+
+                await _questionRepository.AddBookmark(newBookmark);
+            }
+
+            await _questionRepository.SaveChanges();
+
+            return true;
+        }
+
 
         #endregion
 

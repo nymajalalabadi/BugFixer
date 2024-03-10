@@ -1,4 +1,5 @@
 ﻿using BugFixer.DataLayer.Context;
+using BugFixer.domain.Entities.Account;
 using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.InterFaces;
@@ -156,6 +157,17 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.QuestionUserScores.AnyAsync(q => q.QuestionId == questionId && q.UserId == userId);
         }
 
+        public async Task<bool> IsExistsQuestionInUserBookmarks(long questionId, long userId)
+        {
+            return await _context.UserQuestionBookmarks.AnyAsync(q => q.QuestionId == questionId && q.UserId == userId);
+        }
+
+        public async Task<UserQuestionBookmark?> GetBookmarkByQuestionAndUserId(long questionId, long userId)
+        {
+            return await _context.UserQuestionBookmarks.FirstOrDefaultAsync(q => q.QuestionId == questionId && q.UserId == userId);
+        }
+
+
         public async Task AddAnswerUserScore(AnswerUserScore score)
         {
             await _context.AnswerUserScores.AddAsync(score);
@@ -164,6 +176,16 @@ namespace BugFixer.DataLayer.Repositories
         public async Task AddQuestionUserScore(QuestionUserScore score)
         {
             await _context.QuestionUserScores.AddAsync(score);
+        }
+
+        public async Task RemoveBookmark(UserQuestionBookmark bookmark)
+        {
+            _context.UserQuestionBookmarks.Remove(bookmark);
+        }
+
+        public async Task AddBookmark(UserQuestionBookmark bookmark)
+        {
+           await _context.UserQuestionBookmarks.AddAsync(bookmark);
         }
 
         #endregion

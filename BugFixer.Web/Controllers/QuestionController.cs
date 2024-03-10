@@ -333,7 +333,15 @@ namespace BugFixer.Web.Controllers
             }
         }
 
+        #endregion
 
+        #region add question to bookMark
+
+        [HttpPost("AddQuestionToBookmark")]
+        public async Task<IActionResult> AddQuestionToBookmark(long questionId)
+        {
+            return new JsonResult(new { status = "Success" });
+        }
 
         #endregion
     }

@@ -31,6 +31,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task AddViewForQuestion(string userIp, Question question);
 
+        Task<bool> AddQuestionToBookmark(long questionId, long userId);
+
         #endregion
 
 

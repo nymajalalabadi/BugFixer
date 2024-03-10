@@ -1,4 +1,5 @@
-﻿using BugFixer.domain.Entities.Questions;
+﻿using BugFixer.domain.Entities.Account;
+using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -73,9 +74,17 @@ namespace BugFixer.domain.InterFaces
 
         Task<bool> IsExistsUserScoreForQuestion(long questionId, long userId);
 
+        Task<bool> IsExistsQuestionInUserBookmarks(long questionId, long userId);
+
+        Task<UserQuestionBookmark?> GetBookmarkByQuestionAndUserId(long questionId, long userId);
+
         Task AddAnswerUserScore(AnswerUserScore score);
 
         Task AddQuestionUserScore(QuestionUserScore score);
+
+        Task RemoveBookmark(UserQuestionBookmark bookmark);
+
+        Task AddBookmark(UserQuestionBookmark bookmark);
 
         #endregion
 
