@@ -196,6 +196,7 @@ function EndLoading(selector = 'body') {
 
 
 function selectTrueAnswer(answerId) {
+
     $.ajax({
         url: "/SelectTrueAnswer",
         type: "post",

@@ -101,7 +101,7 @@ namespace BugFixer.Web.Controllers
 
         #region filter question by tag 
 
-        [HttpGet("tags{tagName}")]
+        [HttpGet("tags/{tagName}")]
         public async Task<IActionResult> QuestionListByTag(FilterQuestionViewModel filter, string tagName)
         {
             tagName = tagName.Trim().ToLower().SanitizeText();
@@ -131,7 +131,7 @@ namespace BugFixer.Web.Controllers
 
         #endregion
 
-        #region Quesyion Detail
+        #region Question Detail
 
         [HttpGet("question/{questionId}")]
         public async Task<IActionResult> QuestionDetail(long questionId)
