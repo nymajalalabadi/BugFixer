@@ -94,7 +94,8 @@ namespace BugFixer.DataLayer.Repositories
 
         public async Task<List<string>> GetTagListForQuestionId(long quetionsId)
         {
-            return await _context.SelectQuestionTags.Include(s => s.Tag).Where(s => s.QuestionId == quetionsId).Select(s => s.Tag.Title).ToListAsync();
+            return await _context.SelectQuestionTags.Include(s => s.Tag).Where(s => s.QuestionId == quetionsId).Select(s => s.Tag.Title)
+                .ToListAsync();
         }
 
         public async Task UpdateQuestion(Question question)
@@ -117,15 +118,6 @@ namespace BugFixer.DataLayer.Repositories
                 .Include(q => q.User)
                 .Include(q => q.Answers)
                 .FirstOrDefaultAsync(q => q.Id == id && !q.IsDelete);
-        }
-
-        public async Task<List<string>> GetTagListByQuestionId(long questionId)
-        {
-            return await _context.SelectQuestionTags
-                .Include(s => s.Tag)
-                .Where(s => s.QuestionId == questionId)
-                .Select(s => s.Tag.Title)
-                .ToListAsync();
         }
 
         #endregion

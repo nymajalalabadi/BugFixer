@@ -15,8 +15,6 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion);
 
-        Task<List<string>> GetTagListByQuestionId(long questionId);
-
         #endregion
 
         #region quetion

@@ -155,12 +155,6 @@ namespace BugFixer.Application.Services.Implementations
             return true;
         }
 
-
-        public async Task<List<string>> GetTagListByQuestionId(long questionId)
-        {
-            return await _questionRepository.GetTagListByQuestionId(questionId);
-        }
-
         #endregion
 
         #region quetion
@@ -397,7 +391,7 @@ namespace BugFixer.Application.Services.Implementations
                 return null;
             }
 
-            var tags = await GetTagListByQuestionId(questionId);
+            var tags = await GetTagListForQuestionId(questionId);
 
             var result = new EditQuestionViewModel
             {

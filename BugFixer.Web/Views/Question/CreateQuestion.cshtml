@@ -55,7 +55,9 @@
 
                             <form class="form-layer-style" asp-action="CreateQuestion" asp-controller="Question" asp-are>
                                 <div class="row">
+
                                     <input type="hidden" id="SelectedTagsJson" name="SelectedTagsJson" value="@Model?.SelectedTagsJson" />
+
                                     <div class="col-xs-12">
                                         <div class="input-layer">
                                             <label asp-for="Title"></label>
@@ -105,7 +107,8 @@
     <script src="/js/question.js"></script>
     <script src="/common/magicsuggest/magicsuggest.js"></script>
     <script>
-        $(function () {
+        $(function () 
+        {
 
             var ms = $(`#SelectedTags`).magicSuggest({
                 data: '/get-tags',
@@ -126,7 +129,6 @@
             {
                 ms.setValue(JSON.parse(jsonValue));
             }
-
 
         })
     </script>

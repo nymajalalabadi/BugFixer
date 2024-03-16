@@ -98,7 +98,8 @@
     <script src="/js/question.js"></script>
     <script src="/common/magicsuggest/magicsuggest.js"></script>
     <script>
-        $(function () {
+        $(function () 
+        {
             var ms = $(`#SelectedTags`).magicSuggest({
                 data: '/get-tags',
                 queryParam: 'name',
@@ -114,7 +115,8 @@
 
             var jsonValue = $("#SelectedTagsJson").val();
 
-            if (jsonValue !== '') {
+            if (jsonValue !== '') 
+            {
                 ms.setValue(JSON.parse(jsonValue));
             }
         });
