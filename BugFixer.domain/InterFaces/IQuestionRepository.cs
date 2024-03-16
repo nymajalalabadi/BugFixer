@@ -56,6 +56,7 @@ namespace BugFixer.domain.InterFaces
 
         Task<Question?> GetQuestionById(long id);
 
+        Task<List<string>> GetTagListByQuestionId(long questionId);
 
         #endregion
 

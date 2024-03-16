@@ -119,6 +119,15 @@ namespace BugFixer.DataLayer.Repositories
                 .FirstOrDefaultAsync(q => q.Id == id && !q.IsDelete);
         }
 
+        public async Task<List<string>> GetTagListByQuestionId(long questionId)
+        {
+            return await _context.SelectQuestionTags
+                .Include(s => s.Tag)
+                .Where(s => s.QuestionId == questionId)
+                .Select(s => s.Tag.Title)
+                .ToListAsync();
+        }
+
         #endregion
 
 

@@ -15,6 +15,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion);
 
+        Task<List<string>> GetTagListByQuestionId(long questionId);
+
         #endregion
 
         #region quetion
@@ -34,6 +36,8 @@ namespace BugFixer.Application.Services.Interfaces
         Task<bool> AddQuestionToBookmark(long questionId, long userId);
 
         Task<bool> IsExistsQuestionInUserBookmarks(long questionId, long userId);
+
+        Task<EditQuestionViewModel?> FillEditQuestionViewModel(long questionId, long userId);
 
         #endregion
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="HtmlSanitizer" Version="8.0.811" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 
 	  <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
 	  <PackageReference Include="LazZiya.ImageResize" Version="4.1.4" />

@@ -66,6 +66,30 @@ namespace BugFixer.Web.Controllers
         #endregion
 
 
+        #region Edit Question 
+
+        [HttpGet("edit-question/{id}")]
+        [Authorize]
+        public async Task<IActionResult> EditQuestion(long id)
+        {
+            var result = await _questionService.FillEditQuestionViewModel(id, User.GetUserId());
+
+            if (result == null) return NotFound();
+
+            return View(result);
+        }
+
+        [HttpPost("edit-question/{id}"), ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> EditQuestion(EditQuestionViewModel edit)
+        {
+            return View();
+        }
+
+
+        #endregion
+
+
         #region Get Tags
 
         [HttpGet("get-tags")]

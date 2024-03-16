@@ -11,6 +11,7 @@ using BugFixer.domain.ViewModels.Question;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic.FileIO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Formats.Asn1;
@@ -152,6 +153,12 @@ namespace BugFixer.Application.Services.Implementations
             await _userService.UpdateUserScoreAndMedal(createQuestion.UserId, _scoreManagement.AddNewQuestionScore);
 
             return true;
+        }
+
+
+        public async Task<List<string>> GetTagListByQuestionId(long questionId)
+        {
+            return await _questionRepository.GetTagListByQuestionId(questionId);
         }
 
         #endregion
@@ -373,6 +380,34 @@ namespace BugFixer.Application.Services.Implementations
         public async Task<bool> IsExistsQuestionInUserBookmarks(long questionId, long userId)
         {
             return await _questionRepository.IsExistsQuestionInUserBookmarks(questionId, userId);
+        }
+
+        public async Task<EditQuestionViewModel?> FillEditQuestionViewModel(long questionId, long userId)
+        {
+            var question = await GetQuestionById(questionId);
+
+            if (question == null) return null;
+
+            var user = await _userService.GetUserById(userId);
+
+            if (user == null) return null;
+
+            if (question.UserId != user.Id && !user.IsAdmin)
+            {
+                return null;
+            }
+
+            var tags = await GetTagListByQuestionId(questionId);
+
+            var result = new EditQuestionViewModel
+            {
+                Id = question.Id,
+                Description = question.Content,
+                Title = question.Title,
+                SelectedTagsJson = JsonConvert.SerializeObject(tags)
+            };
+
+            return result;
         }
 
         #endregion
