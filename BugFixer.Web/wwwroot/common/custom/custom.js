@@ -571,3 +571,8 @@ function AddQuestionToBookmark(questionId) {
         }
     });
 }
+
+function LoadUrl(url)
+{
+    location.href = url;
+}
