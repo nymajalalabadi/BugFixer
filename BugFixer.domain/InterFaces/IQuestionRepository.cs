@@ -29,6 +29,10 @@ namespace BugFixer.domain.InterFaces
 
         Task AddTag(Tag tag);
 
+        Task RemoveTag(Tag tag);
+
+        Task RemoveSelectQuestionTag(SelectQuestionTag selectQuestionTag);
+
         Task<Tag?> GetTagByName(string name);
 
         Task<IQueryable<Tag>> GetAllTagsQueryable();

@@ -13,11 +13,13 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<CreateQuestionResult> CheckTagValidation(List<string>? tags, long userId);
 
-        Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion);
-
         #endregion
 
         #region quetion
+
+        Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion);
+
+        Task<bool> EditQuetion(EditQuestionViewModel editQuestion);
 
         Task<FilterQuestionViewModel> FilterQuestion(FilterQuestionViewModel filterQuestion);
 

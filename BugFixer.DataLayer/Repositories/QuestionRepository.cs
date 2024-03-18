@@ -62,6 +62,16 @@ namespace BugFixer.DataLayer.Repositories
             await _context.Tags.AddAsync(tag);
         }
 
+        public async Task RemoveTag(Tag tag)
+        {
+            _context.Tags.Remove(tag);
+        }
+
+        public async Task RemoveSelectQuestionTag(SelectQuestionTag selectQuestionTag)
+        {
+            _context.SelectQuestionTags.Remove(selectQuestionTag);
+        }
+
         public async Task<Tag?> GetTagByName(string name)
         {
             return await _context.Tags.FirstOrDefaultAsync(t => !t.IsDelete && t.Title.Equals(name));
@@ -117,6 +127,7 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.Questions
                 .Include(q => q.User)
                 .Include(q => q.Answers)
+                .Include(q => q.SelectQuestionTags)
                 .FirstOrDefaultAsync(q => q.Id == id && !q.IsDelete);
         }
 

@@ -47,6 +47,16 @@ namespace BugFixer.Web.Controllers
                 return View(createQuestion);
             }
 
+            if (!ModelState.IsValid)
+            {
+                createQuestion.SelectedTagsJson = JsonConvert.SerializeObject(createQuestion.SelectedTags);
+                createQuestion.SelectedTags = null;
+
+                TempData[WarningMessage] = "اطلاعلت ورودی شما معتبر نمی باشد.";
+
+                return View(createQuestion);
+            }
+
             createQuestion.UserId = User.GetUserId();
 
             var result = await _questionService.CreateQuetion(createQuestion);
@@ -83,7 +93,42 @@ namespace BugFixer.Web.Controllers
         [Authorize]
         public async Task<IActionResult> EditQuestion(EditQuestionViewModel edit)
         {
-            return View();
+            var tagResult = await _questionService.CheckTagValidation(edit.SelectedTags, HttpContext.User.GetUserId());
+
+            if (tagResult.Status == CreateQuestionResultEnum.NotValidTag)
+            {
+                edit.SelectedTagsJson = JsonConvert.SerializeObject(edit.SelectedTags);
+                edit.SelectedTags = null;
+
+                TempData[WarningMessage] = tagResult.Message;
+
+                return View(edit);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                edit.SelectedTagsJson = JsonConvert.SerializeObject(edit.SelectedTags);
+                edit.SelectedTags = null;
+
+                TempData[WarningMessage] = "اطلاعلت ورودی شما معتبر نمی باشد.";
+
+                return View(edit);
+            }
+
+            edit.UserId = User.GetUserId();
+
+            var result = await _questionService.EditQuetion(edit);
+
+            if (result)
+            {
+                TempData[SuccessMessage] = "عملیات با موفقیت انجام شد .";
+                return Redirect("/");
+            }
+
+            edit.SelectedTagsJson = JsonConvert.SerializeObject(edit.SelectedTags);
+            edit.SelectedTags = null;
+
+            return View(edit);
         }
 
 

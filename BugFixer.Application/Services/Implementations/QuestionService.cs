@@ -112,6 +112,10 @@ namespace BugFixer.Application.Services.Implementations
             };
         }
 
+        #endregion
+
+        #region quetion
+
         public async Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion)
         {
             var question = new Question()
@@ -155,9 +159,75 @@ namespace BugFixer.Application.Services.Implementations
             return true;
         }
 
-        #endregion
+        public async Task<bool> EditQuetion(EditQuestionViewModel editQuestion)
+        {
+            var question = await _questionRepository.GetQuestionById(editQuestion.Id);
 
-        #region quetion
+            if (question == null)
+            {
+                return false;
+            }
+
+            var user = await _userService.GetUserById(editQuestion.UserId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            if (question.UserId != editQuestion.UserId && !user.IsAdmin)
+            {
+                return false;
+            }
+
+            question.Title = editQuestion.Title;
+            question.Content = editQuestion.Description;
+
+            #region Delete Current Tags
+
+            var currentTags = question.SelectQuestionTags.ToList();
+
+            foreach (var tag in currentTags)
+            {
+                await _questionRepository.RemoveSelectQuestionTag(tag);
+            }
+
+            await _questionRepository.SaveChanges();
+
+            #endregion
+
+            #region Add New Tag
+
+            if (editQuestion.SelectedTags != null && editQuestion.SelectedTags.Any())
+            {
+                foreach (var quetionSelectedTag in editQuestion.SelectedTags)
+                {
+                    var tag = await _questionRepository.GetTagByName(quetionSelectedTag.SanitizeText().ToLower().Trim());
+
+                    if (tag == null)
+                    {
+                        continue;
+                    }
+
+                    var selectedTag = new SelectQuestionTag()
+                    {
+                        QuestionId = question.Id,
+                        TagId = tag.Id,
+                    };
+
+                    await _questionRepository.AddSelectQuestionTag(selectedTag);
+                }
+                await _questionRepository.SaveChanges();
+            }
+
+            #endregion
+
+            await _questionRepository.UpdateQuestion(question);
+            await _questionRepository.SaveChanges();
+
+            return true;
+
+        }
 
         public async Task<FilterQuestionViewModel> FilterQuestion(FilterQuestionViewModel filterQuestion)
         {
@@ -219,10 +289,10 @@ namespace BugFixer.Application.Services.Implementations
                     ViewCount = s.ViewCount,
                     UserDisplayName = s.User.GetUserDisplayName(),
                     Tags = s.SelectQuestionTags.Where(a => !a.Tag.IsDelete).Select(a => a.Tag.Title).ToList(),
-                    AnswerByDisplayName = s.Answers.Any(a => !a.IsDelete) ? 
+                    AnswerByDisplayName = s.Answers.Any(a => !a.IsDelete) ?
                     s.Answers.OrderByDescending(a => a.CreateDate).First().User.GetUserDisplayName() : null,
                     CreateDate = s.CreateDate.TimeAgo(),
-                    AnswerByCreateDate = s.Answers.Any(a => !a.IsDelete) ? 
+                    AnswerByCreateDate = s.Answers.Any(a => !a.IsDelete) ?
                     s.Answers.OrderByDescending(a => a.CreateDate).First().CreateDate.TimeAgo() : null
                 }).AsQueryable();
 
@@ -244,7 +314,7 @@ namespace BugFixer.Application.Services.Implementations
 
             if (!string.IsNullOrEmpty(filterTags.Title))
             {
-                query = query.Where(t => t.Title.Contains(filterTags.Title.SanitizeText().Trim()));   
+                query = query.Where(t => t.Title.Contains(filterTags.Title.SanitizeText().Trim()));
             }
 
             #endregion
@@ -462,7 +532,7 @@ namespace BugFixer.Application.Services.Implementations
                 return CreateScoreForAnswerResult.Error;
             }
 
-            if (type == AnswerScoreType.Minus  && user.Score < _scoreManagement.MinScoreForDownScoreAnswer)
+            if (type == AnswerScoreType.Minus && user.Score < _scoreManagement.MinScoreForDownScoreAnswer)
             {
                 return CreateScoreForAnswerResult.NotEnoughScoreForDown;
             }
