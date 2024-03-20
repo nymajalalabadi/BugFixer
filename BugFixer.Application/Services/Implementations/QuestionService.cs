@@ -628,6 +628,66 @@ namespace BugFixer.Application.Services.Implementations
             return CreateScoreForQuestionResult.Success;
         }
 
+        public async Task<EditAnswerViewModel?> FillEditAnswerViewModel(long answerId, long userId)
+        {
+            var answer = await _questionRepository.GetAnswerById(answerId);
+
+            if (answer == null)
+            {
+                return null;
+            }
+
+            var user = await _userService.GetUserById(userId);
+
+            if (user == null) return null;
+
+            if (answer.UserId != user.Id && !user.IsAdmin)
+            {
+                return null;
+            }
+
+            var result = new EditAnswerViewModel()
+            {
+                AnswerId = answer.Id,
+                QuestionId = answer.QuestionId,
+                Answer = answer.Content
+            };
+
+            return result;
+        }
+
+        public async Task<bool> EditAnswer(EditAnswerViewModel editAnswerViewModel)
+        {
+            var answer = await _questionRepository.GetAnswerById(editAnswerViewModel.AnswerId);
+
+            if (answer == null)
+            {
+                return false;
+            }
+
+            if (answer.QuestionId != editAnswerViewModel.QuestionId)
+            {
+                return false;
+            }
+
+            var user = await _userService.GetUserById(editAnswerViewModel.UserId);
+
+            if (user == null) return false;
+
+            if (answer.UserId != user.Id && !user.IsAdmin)
+            {
+                return false;
+            }
+
+            answer.Content = editAnswerViewModel.Answer;
+
+            await _questionRepository.UpdateAnswer(answer);
+            await _questionRepository.SaveChanges();
+
+            return true;
+
+        }
+
         #endregion
     }
 }

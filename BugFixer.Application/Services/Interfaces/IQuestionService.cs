@@ -54,6 +54,10 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<CreateScoreForQuestionResult> CreateScoreForQuestion(long questionId, QuestionScoreType type, long userId);
 
+        Task<EditAnswerViewModel?> FillEditAnswerViewModel(long answerId, long userId);
+
+        Task<bool> EditAnswer(EditAnswerViewModel editAnswerViewModel);
+
         #endregion
 
     }
