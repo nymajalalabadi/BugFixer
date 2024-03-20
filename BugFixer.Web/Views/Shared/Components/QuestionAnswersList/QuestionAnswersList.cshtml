@@ -10,7 +10,7 @@
         <div class="answer-item">
             <div class="top-detail">
                 <span> @item.CreateDate.TimeAgo() </span>
-                <button><i class="icon-pencil-edit"></i></button>
+                <button onclick="LoadUrl('@Url.Action("EditAnswer", "Question", new {answerId = item.Id})')"><i class="icon-pencil-edit"></i></button>
             </div>
             <div class="inner">
 

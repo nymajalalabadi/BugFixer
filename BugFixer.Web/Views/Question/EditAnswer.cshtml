@@ -1,0 +1,86 @@
+﻿@model BugFixer.domain.ViewModels.Question.EditAnswerViewModel
+
+@{
+    ViewData["Title"] = "ویرایش پاسخ سوال";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/css/question.css">
+}
+
+@section Header
+{
+    <partial name="_Header" />
+}
+
+<div class="user-page-style">
+
+    <div class="breadcumb-layer">
+        <div class="container">
+            <ul itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> صفحه اصلی </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="javascript:void(0)" itemprop="item"><span itemprop="name"> @ViewData["Title"] </span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="questions-layer page-style">
+
+        <div class="container">
+
+            <div class="right-col">
+
+                <section class="question-submit-layer">
+
+                    <header class="top-heading"><h1> <a href="javascript:void(0)">@ViewData["Title"]</a> </h1></header>
+
+                    <div class="inner">
+
+                        <div class="submit-layer">
+
+                            <form class="form-layer-style" asp-action="EditAnswer" asp-controller="Question">
+                                <div class="row">
+                                    <input type="hidden" asp-for="AnswerId" />
+                                    <input type="hidden" asp-for="QuestionId" />
+
+                                    <div class="col-xs-12">
+                                        <div class="textarea-layer">
+                                            <label asp-for="Answer" class="mb-10"></label>
+                                            <textarea class="editor" asp-for="Answer"></textarea>
+                                            <span asp-validation-for="Answer"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-4 col-xs-7 pull-left">
+                                        <button type="submit" class="submit-button green"> <span>ویرایش پاسخ سوال</span> </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <partial name="_LeftSide" />
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <partial name="_JqueryValidation" />
+    <script src="/js/question.js"></script>
+}
+
+
