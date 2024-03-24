@@ -310,6 +310,7 @@ namespace BugFixer.Web.Controllers
         #region score answer
 
         [HttpPost("ScoreUpForAnswer")]
+        [Authorize]
         public async Task<IActionResult> ScoreUpForAnswer(long answerId)
         {
             var result = await _questionService.CreateScoreForAnswer(answerId, AnswerScoreType.Plus, User.GetUserId());
@@ -339,6 +340,7 @@ namespace BugFixer.Web.Controllers
 
 
         [HttpPost("ScoreDownForAnswer")]
+        [Authorize]
         public async Task<IActionResult> ScoreDownForAnswer(long answerId)
         {
             var result = await _questionService.CreateScoreForAnswer(answerId, AnswerScoreType.Minus, User.GetUserId());
@@ -420,6 +422,7 @@ namespace BugFixer.Web.Controllers
         }
 
         [HttpPost("ScoreDownForQuestion")]
+        [Authorize]
         public async Task<IActionResult> ScoreDownForQuestion(long questionId)
         {
             var result = await _questionService.CreateScoreForQuestion(questionId, QuestionScoreType.Minus, User.GetUserId());
@@ -451,6 +454,7 @@ namespace BugFixer.Web.Controllers
         #region add question to bookMark
 
         [HttpPost("AddQuestionToBookmark")]
+        [Authorize]
         public async Task<IActionResult> AddQuestionToBookmark(long questionId)
         {
             if (!User.Identity.IsAuthenticated)
