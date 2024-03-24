@@ -8,7 +8,7 @@
             @foreach (var question in Model.Entities)
             {
                 <li>
-                    <span> @question.Score <i class="icon-comment"></i></span>
+                    <span> @question.AnswersCount <i class="icon-comment"></i></span>
                     <h2><a asp-action="QuestionDetail" asp-controller="Question" asp-route-questionId="@question.QuestionId"> @question.Title </a></h2>
                 </li>
             }
