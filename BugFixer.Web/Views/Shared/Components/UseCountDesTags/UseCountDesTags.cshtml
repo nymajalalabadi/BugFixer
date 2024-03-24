@@ -1,0 +1,14 @@
+﻿@model BugFixer.domain.ViewModels.Question.FilterTagViewModel
+
+<section class="most-controversial-tags">
+    <header><h2> پر بحث ترین تگ ها </h2></header>
+    <div class="tags-layer">
+        @if (Model != null && Model.Entities.Any())
+        {
+            @foreach (var tag in Model.Entities)
+            {
+                <a asp-action="QuestionListByTag" asp-controller="Question" asp-route-tagName="@tag.Title"> @tag.Title </a>
+            }
+        }
+    </div>
+</section>
