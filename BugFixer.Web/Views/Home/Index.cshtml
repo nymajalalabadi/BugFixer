@@ -1,5 +1,8 @@
-﻿@{
+﻿@using BugFixer.domain.ViewModels.Question
+@{
     ViewData["Title"] = "صفحه اصلی";
+
+    var questions = ViewData["Questions"] as FilterQuestionViewModel;
 }
 
 @section Styles
@@ -39,7 +42,8 @@
             <div class="clientarea-layer">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @await Component.InvokeAsync("UserMainMenuBox");
+                    @await Component.InvokeAsync("UserMainMenuBox")
+                    ;
                 }
                 else
                 {
@@ -59,95 +63,57 @@
 <div class="container">
     <!-- questions -->
     <div class="questions-layer">
-        <!-- Top -->
-        <div class="top-layer">
-            <a href="" class="linkbutton blue"> ثبت پرسش جدید </a>
-            <div class="filter-layer">
-                <form action="" method="">
-                    <div class="select-layer">
-                        <select>
-                            <option> جدیدترین پرسش ها </option>
-                            <option> پربحث ترین پرسش ها </option>
-                            <option> پرامتیازترین پرسش ها </option>
-                            <option> پرسش های یک هفته اخیر  </option>
-                            <option> پرسش های یک ماه اخیر  </option>
-                        </select>
-                    </div>
-                    <button><i class="icon-sort"></i></button>
-                </form>
-            </div>
-        </div>
-        <!-- /Top -->
+
         <!-- questions list -->
         <div class="questions-list">
+            @if (questions != null && questions.Entities.Any())
+            {
+                @foreach (var question in questions.Entities)
+                {
+                    var className = string.Empty;
+
+                    if (question.HasAnyAnswer && !question.HasAnyTrueAnswer)
+                    {
+                        className = "answered";
+                    }
+                    else if (question.HasAnyTrueAnswer)
+                    {
+                        className = "selected";
+                    }
+
+                    <article class="@className">
+                        <h2><a asp-area="" asp-controller="Question" asp-action="QuestionDetail" asp-route-questionId="@question.QuestionId">@question.Title</a></h2>
+                        <span> @question.AnswersCount <i class="icon-comment-1"></i> </span>
+                        <ul>
+                            <li> پرسیده شده توسط <a href="javascript:void(0)"> @question.UserDisplayName </a> @question.CreateDate </li>
+                            @if (!string.IsNullOrEmpty(question.AnswerByDisplayName) && !string.IsNullOrEmpty(question.AnswerByCreateDate))
+                            {
+                                <li> پاسخ داده شده توسط <a href="javascript:void(0)"> @question.AnswerByDisplayName </a> @question.AnswerByCreateDate </li>
+                            }
+                            else
+                            {
+                                <li> پاسخی ثبت نشده است . </li>
+                            }
+                        </ul>
+                        <div class="detail">
+                            <div class="tags-layer">
+                                @if (question.Tags.Any())
+                                {
+                                    @foreach (var tag in question.Tags)
+                                    {
+                                        <a asp-action="QuestionListByTag" asp-controller="Question" asp-route-tagName="@tag"> @tag </a>
+                                    }
+                                }
+                            </div>
+                            <div class="left-side">
+                                <span> @question.Score <i class="icon-star"></i> </span>
+                                <span> @question.ViewCount <i class="icon-eye"></i> </span>
+                            </div>
+                        </div>
+                    </article>
+                }
+            }
             <!-- item -->
-            <article>
-                <h2><a href="">بهترین و ساده ترین روش برای پیاده سازی گرید ویو در لاراول نسخه ی آخر</a></h2>
-                <span> 0 <i class="icon-comment-1"></i> </span>
-                <ul>
-                    <li> پرسیده شده توسط  <a href=""> شیوا محمدی </a> در 1 ساعت پیش </li>
-                    <li> بدون پاسخ </li>
-                </ul>
-                <div class="detail">
-                    <div class="tags-layer">
-                        <a href=""> JavaScript </a>
-                        <a href=""> Jquery </a>
-                        <a href=""> PHP </a>
-                        <a href=""> Framework </a>
-                    </div>
-                    <div class="left-side">
-                        <span> 3 <i class="icon-star"></i> </span>
-                        <span> 256 <i class="icon-eye"></i> </span>
-                    </div>
-                </div>
-            </article>
-            <!-- /item -->
-            <!-- item -->
-            <article class="answered">
-                <h2><a href="">بهترین و ساده ترین روش برای پیاده سازی گرید ویو در لاراول نسخه ی آخر</a></h2>
-                <span> 236 <i class="icon-comment-1"></i> </span>
-                <ul>
-                    <li> پرسیده شده توسط  <a href=""> شیوا محمدی </a> در 1 ساعت پیش </li>
-                    <li> آخرین پاسخ توسط <a href=""> میترا رحیمی </a> در 15 دقیقه پسش </li>
-                </ul>
-                <div class="detail">
-                    <div class="tags-layer">
-                        <a href=""> Jquery </a>
-                        <a href=""> JavaScript </a>
-                        <a href=""> PHP </a>
-                        <a href=""> Ecommerce </a>
-                        <a href=""> Framework </a>
-                    </div>
-                    <div class="left-side">
-                        <span> 983 <i class="icon-star"></i> </span>
-                        <span> 264 <i class="icon-eye"></i> </span>
-                    </div>
-                </div>
-            </article>
-            <!-- /item -->
-            <!-- item -->
-            <article class="selected">
-                <h2><a href="">بهترین و ساده ترین روش برای پیاده سازی گرید ویو در لاراول نسخه ی آخر</a></h2>
-                <span> 1.2K <i class="icon-comment-1"></i> </span>
-                <ul>
-                    <li> پرسیده شده توسط  <a href=""> شیوا محمدی </a> در 1 ساعت پیش </li>
-                    <li> آخرین پاسخ توسط <a href=""> میترا رحیمی </a> در 15 دقیقه پسش </li>
-                </ul>
-                <div class="detail">
-                    <div class="tags-layer">
-                        <a href=""> Jquery </a>
-                        <a href=""> JavaScript </a>
-                        <a href=""> PHP </a>
-                        <a href=""> Ecommerce </a>
-                        <a href=""> Framework </a>
-                    </div>
-                    <div class="left-side">
-                        <span> 1.3K <i class="icon-star"></i> </span>
-                        <span> 264 <i class="icon-eye"></i> </span>
-                    </div>
-                </div>
-            </article>
-            <!-- /item -->
         </div>
         <!-- /questions list -->
     </div>

@@ -29,7 +29,7 @@ namespace BugFixer.Web.ViewComponents
 
             var result = await _questionService.FilterQuestion(options);
 
-            return View("ScoreDesQuestions", options);
+            return View("ScoreDesQuestions", result);
         }
     }
 
@@ -60,7 +60,7 @@ namespace BugFixer.Web.ViewComponents
 
             var result = await _questionService.FilterQuestion(options);
 
-            return View("CreateDateDesQuestions", options);
+            return View("CreateDateDesQuestions", result);
         }
     }
 
