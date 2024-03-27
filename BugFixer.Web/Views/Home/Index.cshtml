@@ -22,9 +22,9 @@
             </header>
 
             <div class="search-form">
-                <form action="" method="">
-                    <input type="text" name="" placeholder=" دنبال چه موضوعی میگردی ؟ ">
-                    <button><i class="icon-search-1"></i></button>
+                <form asp-controller="Question" asp-action="QuestionList" method="get" id="QuestionSearchForm">
+                    <input question-autocomplete type="text" name="Title" id="QuestionSearchInput" placeholder=" دنبال چه موضوعی میگردی ؟ ">
+                    <button type="submit"><i class="icon-search-1"></i></button>
                 </form>
             </div>
         </div>
@@ -123,6 +123,7 @@
 </div>
 
 @section Scripts
-    {
+{
     <script src="/js/home.js"></script>
+    <partial name="_AutoCompletePartial" />
 }

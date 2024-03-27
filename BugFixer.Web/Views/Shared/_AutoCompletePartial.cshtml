@@ -2,8 +2,10 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
 <script>
-    $(function () {
-        $("[question-autocomplete]").autocomplete({
+    $(function () 
+    {
+        $("[question-autocomplete]").autocomplete
+        ({
             source: function (request, response) 
             {
                 var currentValue = request.term;
@@ -25,7 +27,8 @@
                 });
             },
             minLength: 2,
-            select: function (event, item) {
+            select: function (event, item) 
+            {
                 $("#QuestionSearchInput").val(item.item.value);
                 $("#QuestionSearchForm").submit();
             }

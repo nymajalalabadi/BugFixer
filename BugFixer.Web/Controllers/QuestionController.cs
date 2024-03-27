@@ -158,7 +158,7 @@ namespace BugFixer.Web.Controllers
 
         #region Get Questions Ajax
 
-        [HttpGet("get-Questions")]
+        [HttpGet("get-questions")]
         public async Task<IActionResult> GetQuestionsForSuggest(string name)
         {
             if (string.IsNullOrEmpty(name))

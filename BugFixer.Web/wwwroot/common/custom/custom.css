@@ -57,3 +57,14 @@
 .mb-10 {
     margin-bottom: 10px !important;
 }
+
+.ui-menu-item-wrapper {
+    font-family: 'IRANSans' !important;
+    padding: 6px !important;
+}
+
+.ui-autocomplete {
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
