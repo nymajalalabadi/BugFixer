@@ -115,6 +115,11 @@ namespace BugFixer.Application.Services.Implementations
         #endregion
 
         #region quetion
+        public async Task<IQueryable<Question>> GetAllQuestions()
+        {
+            return await _questionRepository.GetAllQuestions();
+        }
+
 
         public async Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion)
         {

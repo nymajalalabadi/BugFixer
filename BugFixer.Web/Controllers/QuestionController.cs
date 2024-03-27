@@ -135,7 +135,7 @@ namespace BugFixer.Web.Controllers
         #endregion
 
 
-        #region Get Tags
+        #region Get Tags Ajax
 
         [HttpGet("get-tags")]
         public async Task<IActionResult> GetTagsForSuggest(string name)
@@ -152,6 +152,27 @@ namespace BugFixer.Web.Controllers
                 .ToList();
 
             return Json(filteredTags);
+        }
+
+        #endregion
+
+        #region Get Questions Ajax
+
+        [HttpGet("get-Questions")]
+        public async Task<IActionResult> GetQuestionsForSuggest(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return Json(null);
+            }
+
+            var Questions = await _questionService.GetAllQuestions();
+
+            var filteredQuestions = Questions.Where(s => s.Title.Contains(name))
+                .Select(s => s.Title)
+                .ToList();
+
+            return Json(filteredQuestions);
         }
 
         #endregion

@@ -17,6 +17,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         #region quetion
 
+        Task<IQueryable<Question>> GetAllQuestions();
+
         Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion);
 
         Task<bool> EditQuetion(EditQuestionViewModel editQuestion);

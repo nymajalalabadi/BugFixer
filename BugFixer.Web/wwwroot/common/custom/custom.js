@@ -120,23 +120,29 @@ $(function () {
 
 var editorsArray = [];
 var editors = document.querySelectorAll(".editor");
-if (editors.length) {
+if (editors.length)
+{
     $.getScript("/common/ckeditor/build/ckeditor.js",
-        function (data, textStatus, jqxhr) {
-            for (editor of editors) {
+        function (data, textStatus, jqxhr)
+        {
+            for (editor of editors)
+            {
                 ClassicEditor
                     .create(editor,
                         {
                             licenseKey: '',
-                            simpleUpload: {
+                            simpleUpload:
+                            {
                                 uploadUrl: '/Home/UploadEditorImage'
                             }
                         })
-                    .then(editor => {
+                    .then(editor =>
+                    {
                         window.editor = editor;
                         editorsArray.push(editor);
                     })
-                    .catch(error => {
+                    .catch(error =>
+                    {
                         console.log(error);
                     });
             }
