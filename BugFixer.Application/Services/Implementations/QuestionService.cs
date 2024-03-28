@@ -1,6 +1,7 @@
 ﻿using BugFixer.Application.Extensions;
 using BugFixer.Application.Security;
 using BugFixer.Application.Services.Interfaces;
+using BugFixer.Application.Statics;
 using BugFixer.domain.Entities.Account;
 using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
@@ -120,7 +121,6 @@ namespace BugFixer.Application.Services.Implementations
             return await _questionRepository.GetAllQuestions();
         }
 
-
         public async Task<bool> CreateQuetion(CreateQuestionViewModel createQuestion)
         {
             var question = new Question()
@@ -184,6 +184,12 @@ namespace BugFixer.Application.Services.Implementations
             {
                 return false;
             }
+
+            #region Delete Avatar Editor
+
+            FileExtensions.ManageEditorImages(question.Content, editQuestion.Description, PathTools.EditorImageServerPath);
+
+            #endregion
 
             question.Title = editQuestion.Title;
             question.Content = editQuestion.Description;
@@ -683,6 +689,12 @@ namespace BugFixer.Application.Services.Implementations
             {
                 return false;
             }
+
+            #region Delete Avatar Editor
+
+            FileExtensions.ManageEditorImages(answer.Content, editAnswerViewModel.Answer, PathTools.EditorImageServerPath);
+
+            #endregion
 
             answer.Content = editAnswerViewModel.Answer;
 

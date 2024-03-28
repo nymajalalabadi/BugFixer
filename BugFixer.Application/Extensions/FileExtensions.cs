@@ -82,11 +82,14 @@ namespace BugFixer.Application.Extensions
                 }
             }
 
-            foreach (var img in currentSrcs)
+            if (newSrcs.Count != 0)
             {
-                if (newSrcs.All(s => s != img))
+                foreach (var img in currentSrcs)
                 {
-                    img.DeleteFile(path);
+                    if (newSrcs.All(s => s != img))
+                    {
+                        img.DeleteFile(path);
+                    }
                 }
             }
         }
