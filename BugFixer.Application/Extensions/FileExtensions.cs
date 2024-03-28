@@ -32,5 +32,14 @@ namespace BugFixer.Application.Extensions
             return true;
         }
 
+        public static void DeleteFile(this string fileName, string path)
+        {
+            var finalPath = path + fileName;
+
+            if (File.Exists(finalPath))
+            {
+                File.Delete(finalPath);
+            }
+        }
     }
 }

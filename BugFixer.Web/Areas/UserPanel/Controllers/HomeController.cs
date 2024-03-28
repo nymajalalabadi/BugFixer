@@ -30,7 +30,7 @@ namespace BugFixer.Web.Areas.UserPanel.Controllers
         {
             var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(userAvatar.FileName);
 
-            var result = userAvatar.AddImageToServer(fileName, PathTools.UserAvatarServerPath, 150, 150, PathTools.UserAvatarThumb);
+            var result = userAvatar.AddImageToServer(fileName, PathTools.UserAvatarServerPath, 150, 150, PathTools.UserAvatarServerThumb);
 
             if (!result)
             {
