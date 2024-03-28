@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="HtmlSanitizer" Version="8.0.811" />
+	<PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 

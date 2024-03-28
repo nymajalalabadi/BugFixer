@@ -6,8 +6,8 @@ function UploadUserAvatar(url) {
 
     var avatarInput = document.getElementById("UserAvatar");
 
-    if (avatarInput.files.length) {
-
+    if (avatarInput.files.length)
+    {
         var file = avatarInput.files[0];
 
         var formData = new FormData();
