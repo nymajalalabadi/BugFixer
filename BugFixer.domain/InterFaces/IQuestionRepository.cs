@@ -47,6 +47,8 @@ namespace BugFixer.domain.InterFaces
 
         Task<IQueryable<Question>> GetAllQuestions();
 
+        IQueryable<UserQuestionBookmark> GetAllBookmarks();
+
         Task<List<string>> GetTagListForQuestionId(long quetionsId);
 
         Task UpdateQuestion(Question question);

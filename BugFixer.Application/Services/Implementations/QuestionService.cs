@@ -9,6 +9,7 @@ using BugFixer.domain.Enums;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Common;
 using BugFixer.domain.ViewModels.Question;
+using BugFixer.domain.ViewModels.UserPanel.Question;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic.FileIO;
@@ -311,6 +312,21 @@ namespace BugFixer.Application.Services.Implementations
             #region set paging
 
             await filterQuestion.SetPaging(result);
+
+            return filterQuestion;
+
+            #endregion
+        }
+
+        public async Task<FilterQuestionBookmarksViewModel> FilterQuestionBookmarks(FilterQuestionBookmarksViewModel filterQuestion)
+        {
+            var query = _questionRepository.GetAllBookmarks();
+
+            query = query.Where(s => s.UserId == filterQuestion.UserId);
+
+            #region set paging
+
+            await filterQuestion.SetPaging(query.Select(s => s.Question).AsQueryable());
 
             return filterQuestion;
 

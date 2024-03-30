@@ -102,6 +102,11 @@ namespace BugFixer.DataLayer.Repositories
             return _context.Questions.Where(q => !q.IsDelete).AsQueryable();
         }
 
+        public IQueryable<UserQuestionBookmark> GetAllBookmarks()
+        {
+            return _context.UserQuestionBookmarks.Include(s => s.Question).AsQueryable();
+        }
+
         public async Task<List<string>> GetTagListForQuestionId(long quetionsId)
         {
             return await _context.SelectQuestionTags.Include(s => s.Tag).Where(s => s.QuestionId == quetionsId).Select(s => s.Tag.Title)

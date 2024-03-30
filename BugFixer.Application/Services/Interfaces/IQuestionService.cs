@@ -2,6 +2,7 @@
 using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.Enums;
 using BugFixer.domain.ViewModels.Question;
+using BugFixer.domain.ViewModels.UserPanel.Question;
 
 namespace BugFixer.Application.Services.Interfaces
 {
@@ -24,6 +25,8 @@ namespace BugFixer.Application.Services.Interfaces
         Task<bool> EditQuetion(EditQuestionViewModel editQuestion);
 
         Task<FilterQuestionViewModel> FilterQuestion(FilterQuestionViewModel filterQuestion);
+
+        Task<FilterQuestionBookmarksViewModel> FilterQuestionBookmarks(FilterQuestionBookmarksViewModel filterQuestion);
 
         Task<FilterTagViewModel> FilterTags(FilterTagViewModel filterTags);
 
