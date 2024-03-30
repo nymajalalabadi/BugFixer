@@ -1,0 +1,58 @@
+﻿@using BugFixer.Application.Extensions
+@model BugFixer.domain.ViewModels.UserPanel.Question.FilterQuestionBookmarksViewModel
+
+@{
+    ViewData["Title"] = "سوالات نشان شده";
+    Layout = "_UserPanelLayout";
+}
+
+@section Breadcrumb
+{
+    <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement">
+        <a href="javascript:void(0)" itemprop="item">
+            <span itemprop="name"> @ViewData["Title"] </span>
+        </a>
+    </li>
+}
+
+<section class="questions-layer layer-style">
+    <header>
+        <h2>
+            <i>@ViewData["Title"]</i>
+        </h2>
+    </header>
+
+    <form asp-action="QuestionBookmarks" asp-controller="Question" asp-area="UserPanel" method="get" id="filter_form">
+
+        <input type="hidden" asp-for="CurrentPage" />
+
+    </form>
+
+    @if (Model.Entities.Any())
+    {
+        @foreach (var question in Model.Entities)
+        {
+            <!-- item -->
+            <article>
+                <h3>
+                    <a asp-action="QuestionDetail" asp-controller="Question" asp-route-questionId="@question.Id"> @question.Title </a> <span> @question.CreateDate.TimeAgo() </span>
+                </h3>
+                <div class="detail">
+                    <span><i class="icon-eye"></i> @question.ViewCount بازدید </span>
+                    <span><i class="icon-star"></i> @question.Score امتیاز </span>
+                </div>
+            </article>
+            <!-- item -->
+        }
+    }
+    else
+    {
+        <div class="alert alert-info">
+            آیتمی یافت نشد.
+        </div>
+    }
+
+    <partial name="_SitePaging" model="Model.GetPaging()" />
+
+</section>
+
