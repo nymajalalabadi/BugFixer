@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>پنل ادمین | @ViewData["Title"]</title>
+    <meta name="description" content="Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/admin/img/favicon.png" type="image/x-icon">
+    <partial name="_AdminStyles" />
+    @await RenderSectionAsync("Styles", false)
+</head>
+<body>
+    <div class="loading-container">
+        <div class="loader"></div>
+    </div>
+    <partial name="_AdminNavbar" />
+    <div class="main-container container-fluid">
+        <div class="page-container">
+            <partial name="_AdminSidebar" />
+            <div class="page-content">
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a asp-action="Dashboard" asp-controller="Home" asp-area="Admin">داشبورد</a>
+                        </li>
+                        <li class="active">@ViewData["Title"]</li>
+                    </ul>
+                </div>
+                <div class="page-body">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <partial name="_AdminScripts" />
+    @await RenderSectionAsync("Scripts", false)
+</body>
+</html>
