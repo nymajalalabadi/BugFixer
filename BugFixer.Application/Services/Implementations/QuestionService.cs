@@ -7,6 +7,7 @@ using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.Enums;
 using BugFixer.domain.InterFaces;
+using BugFixer.domain.ViewModels.Admin.Tag;
 using BugFixer.domain.ViewModels.Common;
 using BugFixer.domain.ViewModels.Question;
 using BugFixer.domain.ViewModels.UserPanel.Question;
@@ -719,6 +720,25 @@ namespace BugFixer.Application.Services.Implementations
 
             return true;
 
+        }
+
+        #endregion
+
+
+        #region Admin
+
+        public async Task<List<TagViewModelJson>> GetTagViewModelJson()
+        {
+            var tags = await _questionRepository.GetAllTagsQueryable();
+
+            return tags.OrderByDescending(t => t.UseCount)
+                .Take(10)
+                .Select(t => new TagViewModelJson()
+                {
+                    Title = t.Title,
+                    UseCount = t.UseCount,
+                })
+                .ToList();
         }
 
         #endregion

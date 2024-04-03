@@ -1,6 +1,7 @@
 ﻿using BugFixer.domain.Entities.Questions;
 using BugFixer.domain.Entities.Tags;
 using BugFixer.domain.Enums;
+using BugFixer.domain.ViewModels.Admin.Tag;
 using BugFixer.domain.ViewModels.Question;
 using BugFixer.domain.ViewModels.UserPanel.Question;
 
@@ -65,5 +66,11 @@ namespace BugFixer.Application.Services.Interfaces
 
         #endregion
 
+
+        #region Admin
+
+        Task<List<TagViewModelJson>> GetTagViewModelJson();
+
+        #endregion
     }
 }
