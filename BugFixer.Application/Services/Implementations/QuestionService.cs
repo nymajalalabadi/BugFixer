@@ -732,7 +732,7 @@ namespace BugFixer.Application.Services.Implementations
             var tags = await _questionRepository.GetAllTagsQueryable();
 
             return tags.OrderByDescending(t => t.UseCount)
-                .Take(10)
+                .Take(8)
                 .Select(t => new TagViewModelJson()
                 {
                     Title = t.Title,

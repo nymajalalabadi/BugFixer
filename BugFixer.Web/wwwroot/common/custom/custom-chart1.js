@@ -1,15 +1,11 @@
-﻿function loadChart(json)
-{
+﻿function loadChart(json) {
     const ctx = document.getElementById('LineChartQuestions').getContext('2d');
 
     const chartData = [];
-
     const labels = [];
-
     const dataArray = JSON.parse(json.replace(/&quot;/g, '"'));
 
-    for (const item of dataArray)
-    {
+    for (const item of dataArray) {
         chartData.push(item.UseCount);
         labels.push(item.Title);
     }
@@ -24,7 +20,6 @@
             tension: 0.1
         }]
     };
-
 
     const config = {
         type: 'line',
@@ -51,33 +46,25 @@
                 }
             },
             maintainAspectRatio: false,
-            plugins:
-            {
-                legend:
-                {
-                    labels:
-                    {
-                        font:
-                        {
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
                             size: 14,
                             family: "WYekan"
                         }
                     }
                 },
-                tooltip:
-                {
-                    titleFont:
-                    {
+                tooltip: {
+                    titleFont: {
                         size: 12,
                         family: "WYekan"
                     },
-                    bodyFont:
-                    {
+                    bodyFont: {
                         size: 12,
                         family: "WYekan"
                     },
-                    footerFont:
-                    {
+                    footerFont: {
                         size: 12,
                         family: "WYekan"
                     }
