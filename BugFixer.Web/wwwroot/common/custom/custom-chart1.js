@@ -1,16 +1,21 @@
-﻿function loadChart(json) {
+﻿function loadChart(json)
+{
     const ctx = document.getElementById('LineChartQuestions').getContext('2d');
 
     const chartData = [];
+
     const labels = [];
+
     const dataArray = JSON.parse(json.replace(/&quot;/g, '"'));
 
-    for (const item of dataArray) {
+    for (const item of dataArray)
+    {
         chartData.push(item.UseCount);
         labels.push(item.Title);
     }
 
-    const data = {
+    const data =
+    {
         labels: labels,
         datasets: [{
             label: 'آمار سوالات بر اساس تگ',
@@ -21,14 +26,20 @@
         }]
     };
 
-    const config = {
+    const config =
+    {
         type: 'line',
         data: data,
-        options: {
-            scales: {
-                x: {
-                    ticks: {
-                        font: {
+        options:
+        {
+            scales:
+            {
+                x:
+                {
+                    ticks:
+                    {
+                        font:
+                        {
                             size: 14,
                             family: "WYekan"
                         }
@@ -46,25 +57,32 @@
                 }
             },
             maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    labels: {
-                        font: {
+            plugins:
+            {
+                legend:
+                {
+                    labels:
+                    {
+                        font:
+                        {
                             size: 14,
                             family: "WYekan"
                         }
                     }
                 },
                 tooltip: {
-                    titleFont: {
+                    titleFont:
+                    {
                         size: 12,
                         family: "WYekan"
                     },
-                    bodyFont: {
+                    bodyFont:
+                    {
                         size: 12,
                         family: "WYekan"
                     },
-                    footerFont: {
+                    footerFont:
+                    {
                         size: 12,
                         family: "WYekan"
                     }
