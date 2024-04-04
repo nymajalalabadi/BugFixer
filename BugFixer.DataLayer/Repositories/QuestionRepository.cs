@@ -132,7 +132,7 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.Questions
                 .Include(q => q.User)
                 .Include(q => q.Answers)
-                .Include(q => q.SelectQuestionTags)
+                .Include(q => q.SelectQuestionTags).ThenInclude(q => q.Tag)
                 .FirstOrDefaultAsync(q => q.Id == id && !q.IsDelete);
         }
 

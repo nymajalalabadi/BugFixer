@@ -202,6 +202,9 @@ namespace BugFixer.Application.Services.Implementations
 
             foreach (var tag in currentTags)
             {
+                tag.Tag.UseCount -= 1;
+                await _questionRepository.UpdateTag(tag.Tag);
+
                 await _questionRepository.RemoveSelectQuestionTag(tag);
             }
 
@@ -221,6 +224,9 @@ namespace BugFixer.Application.Services.Implementations
                     {
                         continue;
                     }
+
+                    tag.UseCount += 1;
+                    await _questionRepository.UpdateTag(tag);
 
                     var selectedTag = new SelectQuestionTag()
                     {
