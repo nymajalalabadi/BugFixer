@@ -5,8 +5,20 @@
     margin-top: -20px;
 }
 
-.mt-50{
-    margin-top: 50px;
+.mt-50 {
+    margin-top: 50px
+}
+
+.vertical-align-middle {
+    vertical-align: middle !important;
+}
+
+.mt-15 {
+    margin-top: 15px !important;
+}
+
+.mb-15 {
+    margin-bottom: 15px !important;
 }
 
 .gold-color {
@@ -15,6 +27,10 @@
 
 .ms-helper {
     margin-top: 50px !important;
+}
+
+.mt-15 {
+    margin-top: 15px !important;
 }
 
 .current {
