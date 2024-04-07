@@ -17,12 +17,25 @@ namespace BugFixer.Web.Areas.Admin.Controllers
 
         #endregion
 
+        #region Dashboard
+
         public async Task<IActionResult> Dashboard()
         {
             ViewData["ChartDataJson"] = JsonConvert.SerializeObject(await _questionService.GetTagViewModelJson());
 
             return View();
         }
+
+        #endregion
+
+        #region Filter Tags
+
+        public async Task<IActionResult> LoadFilterTagsPartial()
+        {
+            return PartialView("_FilterTagsPartial");
+        }
+
+        #endregion
 
     }
 }
