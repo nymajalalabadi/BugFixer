@@ -33,7 +33,7 @@ namespace BugFixer.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> LoadFilterTagsPartial(FilterTagAdminViewModel filter)
         {
-            filter.TakeEntity = 5;
+            filter.TakeEntity = 3;
 
             var result = await _questionService.FilterTagAdmin(filter);
 

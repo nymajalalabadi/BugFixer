@@ -187,6 +187,11 @@ function SubmitFilterFormPagination(pageId) {
     $("#filter_form").submit();
 }
 
+function SubmitFilterFormAjaxPagination(pageId) {
+    $("#CurrentPage").val(pageId);
+    $("#filter_ajax_form").submit();
+}
+
 function StartLoading(selector = 'body') {
     $(selector).waitMe({
         effect: 'bounce',
