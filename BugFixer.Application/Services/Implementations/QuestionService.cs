@@ -747,6 +747,37 @@ namespace BugFixer.Application.Services.Implementations
                 .ToList();
         }
 
+        public async Task<FilterTagAdminViewModel> FilterTagAdmin(FilterTagAdminViewModel filter)
+        {
+            var query = await _questionRepository.GetAllTagsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.Title))
+            {
+                query = query.Where(s => s.Title.Contains(filter.Title));
+            }
+
+            switch (filter.Status)
+            {
+                case FilterTagAdminStatus.All:
+                    break;
+                case FilterTagAdminStatus.HasDescription:
+                    query = query.Where(s => !string.IsNullOrEmpty(s.Description));
+                    break;
+                case FilterTagAdminStatus.NoDescription:
+                    query = query.Where(s => string.IsNullOrEmpty(s.Description));
+                    break;
+            }
+
+            #region paging
+
+            await filter.SetPaging(query);
+
+            #endregion
+
+            return filter;
+
+        }
+
         #endregion
     }
 }

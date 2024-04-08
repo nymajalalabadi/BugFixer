@@ -1,0 +1,35 @@
+﻿@model BugFixer.domain.ViewModels.Common.PagingViewModel
+
+<ul class="pagination mt-15">
+    @if (Model.CurrentPage > 1)
+    {
+        <li>
+            <a onclick="SubmitFilterFormAjaxPagination('@(Model.CurrentPage - 1)')" href="#">«</a>
+        </li>
+    }
+
+    @for (var i = Model.StartPage; i <= Model.EndPage; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <li class="active">
+                <a href="#">
+                    @i <span class="sr-only">(current)</span>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a onclick="SubmitFilterFormAjaxPagination('@i')" href="#"> @i </a>
+            </li>
+        }
+    }
+
+    @if (Model.CurrentPage < Model.EndPage)
+    {
+        <li>
+            <a onclick="SubmitFilterFormAjaxPagination('@(Model.CurrentPage + 1)')" href="#">»</a>
+        </li>
+    }
+</ul>

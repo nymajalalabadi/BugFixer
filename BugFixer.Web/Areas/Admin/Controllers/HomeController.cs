@@ -1,4 +1,5 @@
 ﻿using BugFixer.Application.Services.Interfaces;
+using BugFixer.domain.ViewModels.Admin.Tag;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -30,9 +31,13 @@ namespace BugFixer.Web.Areas.Admin.Controllers
 
         #region Filter Tags
 
-        public async Task<IActionResult> LoadFilterTagsPartial()
+        public async Task<IActionResult> LoadFilterTagsPartial(FilterTagAdminViewModel filter)
         {
-            return PartialView("_FilterTagsPartial");
+            filter.TakeEntity = 5;
+
+            var result = await _questionService.FilterTagAdmin(filter);
+
+            return PartialView("_FilterTagsPartial", result);
         }
 
         #endregion

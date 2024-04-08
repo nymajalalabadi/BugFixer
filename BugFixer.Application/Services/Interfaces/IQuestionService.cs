@@ -71,6 +71,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<List<TagViewModelJson>> GetTagViewModelJson();
 
+        Task<FilterTagAdminViewModel> FilterTagAdmin(FilterTagAdminViewModel filter);
+
         #endregion
     }
 }

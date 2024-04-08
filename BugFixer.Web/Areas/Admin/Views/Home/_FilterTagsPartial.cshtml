@@ -1,79 +1,93 @@
-﻿<div class="row">
-    <div class="col-md-12">
-        <form class="form-horizontal mb-15">
-            <div class="row">
-                <div class="col-md-5">
-                    <input type="email" name="to" placeholder="To" class="form-control">
-                </div>
-                <div class="col-md-5">
-                    <select class="form-control" name="country" data-bv-field="country">
-                        <option value="">Select a country</option>
-                        <option value="FR">France</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-success btn-block">Success</button>
-                </div>
-            </div>
-        </form>
-    </div>
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using BugFixer.domain.ViewModels.Admin.Tag
+@model BugFixer.domain.ViewModels.Admin.Tag.FilterTagAdminViewModel
 
-    <div class="col-md-12 text-center">
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <thead class="bordered-darkorange">
-                    <tr>
-                        <th class="text-center">
-                            عنوان
-                        </th>
-                        <th class="text-center">
-                            تعداد استفاده
-                        </th>
-                        <th class="text-center">
-                            وضعیت
-                        </th>
-                        <th class="text-center">
-                            امکانات
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    <tr>
-                        <td class="vertical-align-middle">
-                            1
-                        </td>
-                        <td class="vertical-align-middle">
-                            Steve
-                        </td>
-                        <td class="vertical-align-middle">
-                            Jobs
-                        </td>
-                        <td class="vertical-align-middle">
-                            <a href="javascript:void(0);" class="btn btn-danger btn-circle btn-xs">
-                                <i class="glyphicon glyphicon-trash"></i>
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-sky btn-circle btn-xs">
-                                <i class="glyphicon glyphicon-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div id="FilterTagsRow">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal mb-15" asp-action="LoadFilterTagsPartial" asp-controller="Home" asp-area="Admin" id="filter_ajax_form" data-ajax-update="#FilterTagsRow"
+                  data-ajax="true" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-begin="StartLoading('#LargeModal')" data-ajax-complete="EndLoading('#LargeModal')">
+                <div class="row">
+                    <input type="hidden" asp-for="CurrentPage" />
+                    <div class="col-md-5">
+                        <input type="text" asp-for="Title" placeholder="عنوان تگ" class="form-control">
+                    </div>
+                    <div class="col-md-5">
+                        <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList(typeof(FilterTagAdminStatus))"></select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-success btn-block">اعمال فیلتر</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
-        <ul class="pagination mt-15">
-            <li class="disabled">
-                <a href="#">«</a>
-            </li>
-            <li class="active">
-                <a href="#">1 <span class="sr-only">(current)</span></a>
-            </li>
-            <li>
-                <a href="#">2</a>
-            </li>
-            <li>
-                <a href="#">»</a>
-            </li>
-        </ul>
+        <div class="col-md-12 text-center">
+            @if (Model.Entities.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="bordered-darkorange">
+                            <tr>
+                                <th class="text-center">
+                                    عنوان
+                                </th>
+                                <th class="text-center">
+                                    تعداد استفاده
+                                </th>
+                                <th class="text-center">
+                                    وضعیت
+                                </th>
+                                <th class="text-center">
+                                    امکانات
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            @foreach (var tag in Model.Entities)
+                            {
+                                <tr>
+                                    <td class="vertical-align-middle">
+                                        @tag.Title
+                                    </td>
+                                    <td class="vertical-align-middle">
+                                        @tag.UseCount
+                                    </td>
+                                    <td class="vertical-align-middle @(string.IsNullOrEmpty(tag.Description) ? "danger" : "success")">
+                                        @if (string.IsNullOrEmpty(tag.Description))
+                                        {
+                                            <span>توضیحات ندارد</span>
+                                        }
+                                        else
+                                        {
+                                            <span>توضیحات دارد</span>
+                                        }
+                                    </td>
+                                    <td class="vertical-align-middle">
+                                        <a href="javascript:void(0);" class="btn btn-danger btn-circle btn-xs">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-sky btn-circle btn-xs">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <partial name="_AdminPaging" model="@Model.GetPaging()" />
+            }
+            else
+            {
+                <div class="alert alert-warning fade in">
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    هیچ تگی یافت نشد.
+                </div>
+            }
+        </div>
     </div>
 </div>
