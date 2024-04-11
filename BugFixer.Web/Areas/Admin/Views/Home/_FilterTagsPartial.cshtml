@@ -5,17 +5,17 @@
 <div id="FilterTagsRow">
     <div class="row">
         <div class="col-md-12">
-            <form class="form-horizontal mb-15" asp-action="LoadFilterTagsPartial" asp-controller="Home" asp-area="Admin" id="filter_ajax_form" data-ajax-update="#FilterTagsRow"
-                  data-ajax="true" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-begin="StartLoading('#LargeModal')" data-ajax-complete="EndLoading('#LargeModal')">
+            <form class="form-horizontal" asp-action="LoadFilterTagsPartial" asp-controller="Home" asp-area="Admin" id="filter_ajax_form" data-ajax-update="#FilterTagsRow"
+                  data-ajax="true" data-ajax-method="Get" data-ajax-mode="replace" data-ajax-begin="StartLoading('#LargeModalBody')" data-ajax-complete="EndLoading('#LargeModalBody')">
                 <div class="row">
                     <input type="hidden" asp-for="CurrentPage" />
-                    <div class="col-md-5">
+                    <div class="col-md-5 mb-15">
                         <input type="text" asp-for="Title" placeholder="عنوان تگ" class="form-control">
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 mb-15">
                         <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList(typeof(FilterTagAdminStatus))"></select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 mb-15">
                         <button type="submit" class="btn btn-success btn-block">اعمال فیلتر</button>
                     </div>
                 </div>
