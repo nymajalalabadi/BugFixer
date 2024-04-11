@@ -42,5 +42,20 @@ namespace BugFixer.Web.Areas.Admin.Controllers
 
         #endregion
 
+        #region Create Tag
+
+        public async Task<IActionResult> LoadCreateTagPartial()
+        {
+
+            return PartialView("_CreateTagPartial");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTag(CreateTagAdminViewModel create)
+        {
+            return Ok();
+        }
+
+        #endregion
     }
 }

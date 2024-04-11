@@ -1,0 +1,20 @@
+﻿@model BugFixer.domain.ViewModels.Admin.Tag.CreateTagAdminViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <form id="create-tag-form" asp-action="CreateTag" asp-controller="Home" asp-area="Admin" data-ajax="true" data-ajax-method="Post"
+              data-ajax-begin="StartLoading('#MediumModalBody')" data-ajax-complete="EndLoading('#MediumModalBody')">
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input type="text" class="form-control" asp-for="Title">
+                <span asp-validation-for="Title" class="admin-error-style"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control" rows="10"></textarea>
+                <span asp-validation-for="Description" class="admin-error-style"></span>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">افزودن تگ</button>
+        </form>
+    </div>
+</div>
