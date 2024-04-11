@@ -1,4 +1,5 @@
-﻿function LoadTagsModal(url) {
+﻿function loadTagsModal(url)
+{
 
     $.ajax({
         url: url,
@@ -32,10 +33,11 @@
 
 
 
-function LoadCraeteTagModal() {
+function LoadCraeteTagModal()
+{
 
     $.ajax({
-        url: "/admin/home/LoadCreateTagPartial"
+        url: "/admin/home/LoadCreateTagPartial",
         type: "get",
         beforeSend: function () {
             StartLoading("#LargeModalBody");
@@ -43,8 +45,11 @@ function LoadCraeteTagModal() {
         success: function (response) {
             EndLoading("#LargeModalBody");
 
-            $("#MediumModalBody").html(response);
             $("#MediumModalLabel").html("افزودن تگ جدید");
+            $("#MediumModalBody").html(response);
+
+            $('#create-tag-form').removeData('validator', 'unobtrusiveValidation');
+            $.validator.unobtrusive.parse('#create-tag-form');
 
             $("#MediumModal").modal("show");
         },

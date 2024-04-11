@@ -6,7 +6,16 @@
 }
 
 .mt-50 {
-    margin-top: 50px
+    margin-top: 50px !important;
+}
+
+.admin-error-style {
+    color: tomato;
+    font-size: 13px;
+}
+
+.mb-30 {
+    margin-bottom: 30px !important;
 }
 
 .vertical-align-middle {
