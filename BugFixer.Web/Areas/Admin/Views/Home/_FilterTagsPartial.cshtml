@@ -48,7 +48,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            @foreach (var tag in Model.Entities.OrderByDescending(s => s.CreateDate))
+                            @foreach (var tag in Model.Entities)
                             {
                                 <tr>
                                     <td class="vertical-align-middle">
@@ -74,7 +74,7 @@
                                         <a href="javascript:void(0);" class="btn btn-danger btn-circle btn-xs">
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </a>
-                                        <a href="javascript:void(0);" class="btn btn-sky btn-circle btn-xs">
+                                        <a onclick="LoadEditTagModal('@tag.Id')" class="btn btn-sky btn-circle btn-xs">
                                             <i class="glyphicon glyphicon-edit"></i>
                                         </a>
                                     </td>

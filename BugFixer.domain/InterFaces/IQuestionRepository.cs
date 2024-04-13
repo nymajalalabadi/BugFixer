@@ -15,6 +15,8 @@ namespace BugFixer.domain.InterFaces
     {
         #region tags
 
+        Task<Tag?> GetTagById(long id);
+
         Task<List<Tag>> GetAllTages();
 
         Task<bool> IsExistsTagByName(string name);

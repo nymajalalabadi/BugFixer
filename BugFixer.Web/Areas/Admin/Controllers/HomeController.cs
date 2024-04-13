@@ -64,5 +64,39 @@ namespace BugFixer.Web.Areas.Admin.Controllers
         }
 
         #endregion
+
+        #region Edit Tag
+
+        public async Task<IActionResult> LoadEditTagPartial(long id)
+        {
+            var result = await _questionService.FillEditTagAdminViewModel(id);
+
+            if (result == null)
+            {
+                return PartialView("_NotFoundDataPartial");
+            }
+
+            return PartialView("_EditTagPartial", result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTag(EditTagAdminViewModel edit)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new JsonResult(new { status = "error", message = "مقادیر ورودی معتبر نمی باشد." });
+            }
+
+            var result = await _questionService.EditTagAdmin(edit);
+
+            if (!result)
+            {
+                return new JsonResult(new { status = "error", message = "مقادیر ورودی معتبر نمی باشد." });
+            }
+
+            return new JsonResult(new { status = "success", message = "عملیات با موفقیت انجام شد." });
+        }
+
+        #endregion
     }
 }

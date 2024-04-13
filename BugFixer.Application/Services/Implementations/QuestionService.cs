@@ -770,7 +770,7 @@ namespace BugFixer.Application.Services.Implementations
 
             #region paging
 
-            await filter.SetPaging(query);
+            await filter.SetPaging(query.OrderByDescending(s => s.CreateDate));
 
             #endregion
 
@@ -789,6 +789,44 @@ namespace BugFixer.Application.Services.Implementations
             await _questionRepository.AddTag(tag);
             await _questionRepository.SaveChanges();
         }
+
+        public async Task<EditTagAdminViewModel?> FillEditTagAdminViewModel(long id)
+        {
+            var tag = await _questionRepository.GetTagById(id);
+
+            if (tag == null || tag.IsDelete)
+            {
+                return null;
+            }
+
+            var result = new EditTagAdminViewModel()
+            {
+                Id = tag.Id,
+                Description = tag.Description,
+                Title = tag.Title
+            };
+
+            return result;
+        }
+
+        public async Task<bool> EditTagAdmin(EditTagAdminViewModel editTag)
+        {
+            var tag = await _questionRepository.GetTagById(editTag.Id);
+
+            if (tag == null || tag.IsDelete)
+            {
+                return false;
+            }
+
+            tag.Title = editTag.Title;
+            tag.Description = editTag.Description;
+
+            await _questionRepository.UpdateTag(tag);
+            await _questionRepository.SaveChanges();
+
+            return true;
+        }
+
 
         #endregion
     }
