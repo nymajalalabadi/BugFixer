@@ -154,3 +154,65 @@ function EditTagDone(response)
         });
     }
 }
+
+
+function DeleteTag(id)
+{
+    swal({
+        title: "آیا مطمئن هستی ؟",
+        text: "در صورت حذف قادر به بازگردانی آن نمی باشد.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) =>
+        {
+            if (willDelete)
+            {
+                $.ajax({
+                    url: "/admin/home/DeleteTag",
+                    type: "post",
+                    data: {
+                        id: id
+                    },
+                    beforeSend: function () {
+                        StartLoading("#LargeModalBody");
+                    },
+                    success: function (response)
+                    {
+                        EndLoading("#LargeModalBody");
+
+                        if (response.status === "error")
+                        {
+                            swal({
+                                title: "خطا",
+                                text: response.message,
+                                icon: "error",
+                                button: "باشه"
+                            });
+                        }
+                        else
+                        {
+                            $(`#tag-row-${id}`).fadeOut(1000);
+
+                            swal({
+                                title: "اعلان",
+                                text: response.message,
+                                icon: "success",
+                                button: "باشه"
+                            });
+                        }
+                    },
+                    error: function () {
+                        EndLoading("#LargeModalBody");
+                        swal({
+                            title: "خطا",
+                            text: "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .",
+                            icon: "error",
+                            button: "باشه"
+                        });
+                    }
+                });
+            }
+        });
+}

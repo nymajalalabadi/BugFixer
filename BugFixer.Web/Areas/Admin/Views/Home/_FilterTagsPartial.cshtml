@@ -50,7 +50,7 @@
                         <tbody class="text-center">
                             @foreach (var tag in Model.Entities)
                             {
-                                <tr>
+                                <tr id="tag-row-@tag.Id">
                                     <td class="vertical-align-middle">
                                         @tag.Title
                                     </td>
@@ -71,7 +71,7 @@
                                         }
                                     </td>
                                     <td class="vertical-align-middle">
-                                        <a href="javascript:void(0);" class="btn btn-danger btn-circle btn-xs">
+                                        <a onclick="DeleteTag('@tag.Id')" class="btn btn-danger btn-circle btn-xs">
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </a>
                                         <a onclick="LoadEditTagModal('@tag.Id')" class="btn btn-sky btn-circle btn-xs">
