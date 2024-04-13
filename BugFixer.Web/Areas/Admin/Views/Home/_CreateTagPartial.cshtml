@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12">
         <form id="create-tag-form" asp-action="CreateTag" asp-controller="Home" asp-area="Admin" data-ajax="true" data-ajax-method="Post"
-              data-ajax-begin="StartLoading('#MediumModalBody')" data-ajax-complete="EndLoading('#MediumModalBody')">
+              data-ajax-begin="StartLoading('#MediumModalBody')" data-ajax-complete="EndLoading('#MediumModalBody')" data-ajax-success="CreateTagDone">
             <div class="form-group">
                 <label asp-for="Title"></label>
                 <input type="text" class="form-control" asp-for="Title">

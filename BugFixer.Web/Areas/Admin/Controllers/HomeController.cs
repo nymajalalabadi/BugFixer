@@ -53,7 +53,14 @@ namespace BugFixer.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTag(CreateTagAdminViewModel create)
         {
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return new JsonResult(new { status = "error", message = "مقادیر ورودی معتبر نمی باشد." });
+            }
+
+            await _questionService.CreateTagAdmin(create);
+
+            return new JsonResult(new { status = "success", message = "عملیات با موفقیت انجام شد." });
         }
 
         #endregion

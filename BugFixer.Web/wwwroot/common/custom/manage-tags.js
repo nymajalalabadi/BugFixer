@@ -65,3 +65,30 @@ function LoadCraeteTagModal()
     });
 
 }
+
+
+function CreateTagDone(response)
+{
+    if (response.status === "error")
+    {
+        swal({
+            title: "خطا",
+            text: response.message,
+            icon: "error",
+            button: "باشه"
+        });
+    }
+    else
+    {
+        $("#MediumModal").modal("hide");
+
+        $("#filter_ajax_form").submit();
+
+        swal({
+            title: "اعلان",
+            text: response.message,
+            icon: "success",
+            button: "باشه"
+        });
+    }
+}

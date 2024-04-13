@@ -73,6 +73,8 @@ namespace BugFixer.Application.Services.Interfaces
 
         Task<FilterTagAdminViewModel> FilterTagAdmin(FilterTagAdminViewModel filter);
 
+        Task CreateTagAdmin(CreateTagAdminViewModel createTagAdminViewModel);
+
         #endregion
     }
 }

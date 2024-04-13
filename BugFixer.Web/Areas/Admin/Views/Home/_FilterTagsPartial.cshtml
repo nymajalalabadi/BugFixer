@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @using BugFixer.domain.ViewModels.Admin.Tag
+@using BugFixer.Application.Extensions
 @model BugFixer.domain.ViewModels.Admin.Tag.FilterTagAdminViewModel
 
 <div id="FilterTagsRow">
@@ -36,6 +37,9 @@
                                     تعداد استفاده
                                 </th>
                                 <th class="text-center">
+                                     ناریخ ثبت
+                                </th>
+                                <th class="text-center">
                                     وضعیت
                                 </th>
                                 <th class="text-center">
@@ -44,7 +48,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            @foreach (var tag in Model.Entities)
+                            @foreach (var tag in Model.Entities.OrderByDescending(s => s.CreateDate))
                             {
                                 <tr>
                                     <td class="vertical-align-middle">
@@ -52,6 +56,9 @@
                                     </td>
                                     <td class="vertical-align-middle">
                                         @tag.UseCount
+                                    </td>
+                                    <td class="vertical-align-middle">
+                                        @tag.CreateDate.ToShamsiDateTime()
                                     </td>
                                     <td class="vertical-align-middle @(string.IsNullOrEmpty(tag.Description) ? "danger" : "success")">
                                         @if (string.IsNullOrEmpty(tag.Description))
