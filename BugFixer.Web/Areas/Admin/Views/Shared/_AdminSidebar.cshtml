@@ -11,6 +11,12 @@
             </a>
         </li>
         <li>
+            <a asp-action="ShowOnlineUsers" asp-controller="Home" asp-area="Admin">
+                <i class="menu-icon fa fa-users"></i>
+                <span class="menu-text"> کابران انلاین </span>
+            </a>
+        </li>
+        <li>
             <a href="#" onclick="loadTagsModal('@Url.Action("LoadFilterTagsPartial", "Home", new { area = "Admin" })')">
                 <i class="menu-icon fa fa-tags"></i>
                 <span class="menu-text"> مدیریت تگ ها </span>

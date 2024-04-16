@@ -1,6 +1,7 @@
 using BugFixer.DataLayer.Context;
 using BugFixer.domain.ViewModels.Common;
 using BugFixer.IoC;
+using BugFixer.Web.Hubs;
 using GoogleReCaptcha.V3;
 using GoogleReCaptcha.V3.Interface;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSignalR();
 
 #region reCAPTCHA 
 builder.Services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
@@ -89,6 +92,8 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<OnlineUserHub>("/hubs/online-users");
 
 app.Run();
 

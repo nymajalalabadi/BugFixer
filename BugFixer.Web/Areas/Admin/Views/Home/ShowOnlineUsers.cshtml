@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "کاربران آنلاین";
+}
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead class="bordered-darkorange">
+                    <tr>
+                        <th class="text-center">
+                            ایدی کاربر
+                        </th>
+                        <th class="text-center">
+                            نام نمایشی
+                        </th>
+                        <th class="text-center">
+                            تاریخ ورود
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-center" id="OnlineUsersTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="/common/signalr/signalr-min.js"></script>
+    <script src="/common/signalr/admin-online-users.js"></script>
+}

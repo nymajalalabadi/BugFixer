@@ -4,3 +4,10 @@
 <script src="/common/waitme/waitMe.min.js"></script>
 <script src="/common/datepicker/kamadatepicker.min.js"></script>
 <script src="/common/custom/Custom.js"></script>
+
+
+@if(User.Identity!.IsAuthenticated)
+{
+    <script src="/common/signalr/signalr-min.js"></script>
+    <script src="/common/signalr/client-online-users.js"></script>
+}
