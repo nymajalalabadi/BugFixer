@@ -62,5 +62,13 @@ namespace BugFixer.Web.Hubs
 
             await base.OnDisconnectedAsync(exception);
         }
+
+        public List<OnlineUsersViewModel> GetAllConnectedUsers()
+        {
+            var users = OnlineUsersList.Values.ToList();
+
+            return users;
+        }
+
     }
 }

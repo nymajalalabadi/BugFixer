@@ -8,6 +8,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 //#endregion
 
+
 //#region get response from hub
 
 connection.on("NewUserConnected", (userInfo) => {
@@ -20,18 +21,24 @@ connection.on("NewUserDisConnected", (userId) => {
 
 //#endregion
 
+
 //#region start connection
 
-function SuccessConnection() {
+function SuccessConnection()
+{
     console.log("successfully connected.");
-    connection.invoke("GetAllConnectedUsers").then((usersList) => {
-        usersList.forEach((user) => {
+
+    connection.invoke("GetAllConnectedUsers").then((usersList) =>
+    {
+        usersList.forEach((user) =>
+        {
             AddUserInfoToTable(user);
         });
     });
 }
 
-function ErrorConnection() {
+function ErrorConnection()
+{
     console.log("error on connection.");
 }
 
@@ -39,10 +46,13 @@ connection.start().then(SuccessConnection, ErrorConnection);
 
 //#endregion
 
+
 //#region other js
 
-function AddUserInfoToTable(userInfo) {
-    if ($(`#online-user-${userInfo.userId}`).length) {
+function AddUserInfoToTable(userInfo)
+{
+    if ($(`#online-user-${userInfo.userId}`).length)
+    {
         return;
     }
 
