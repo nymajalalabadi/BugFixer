@@ -304,6 +304,7 @@ namespace BugFixer.Application.Services.Implementations
                     HasAnyTrueAnswer = s.Answers.Any(a => !a.IsDelete && a.IsTrue),
                     QuestionId = s.Id,
                     Score = s.Score,
+                    IsChecked = s.IsChecked,
                     Title = s.Title,
                     ViewCount = s.ViewCount,
                     UserDisplayName = s.User.GetUserDisplayName(),

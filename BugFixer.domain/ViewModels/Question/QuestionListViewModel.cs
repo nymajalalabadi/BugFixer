@@ -24,6 +24,8 @@ namespace BugFixer.domain.ViewModels.Question
 
         public int Score { get; set; }
 
+        public bool IsChecked { get; set; }
+
         public int ViewCount { get; set; }
 
         public string? AnswerByDisplayName { get; set; }

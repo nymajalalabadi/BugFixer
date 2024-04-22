@@ -1,7 +1,119 @@
-﻿
+﻿@using BugFixer.domain.ViewModels.Question
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model BugFixer.domain.ViewModels.Question.FilterQuestionViewModel
+
 @{
-    ViewData["Title"] = "QuestionsList";
+    ViewData["Title"] = "لیست سوالات";
 }
 
-<h2>QuestionsList</h2>
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal" asp-action="QuestionsList" asp-controller="Question" asp-area="Admin" id="filter_form" method="get">
+            <div class="row">
+                <input type="hidden" asp-for="CurrentPage" />
+                <div class="col-lg-3 col-md-12 mb-15">
+                    <input type="text" asp-for="Title" placeholder="عنوان سوال" class="form-control">
+                </div>
+                <div class="col-lg-3 col-md-12 mb-15">
+                    <select class="form-control" asp-for="Sort" asp-items="Html.GetEnumSelectList(typeof(FilterQuestionSortEnum))"></select>
+                </div>
+                <div class="col-lg-3 col-md-12 mb-15">
+                    <select class="form-control" asp-for="CheckedStatus" asp-items="Html.GetEnumSelectList(typeof(FilterQuestionCheckedStatus))"></select>
+                </div>
+                <div class="col-lg-3 col-md-12 mb-15">
+                    <button type="submit" class="btn btn-success btn-block">اعمال فیلتر</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
+    <div class="col-md-12 text-center">
+        @if (Model.Entities.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="bordered-darkorange">
+                        <tr>
+                            <th class="text-center">
+                                عنوان
+                            </th>
+                            <th class="text-center">
+                                پرسیده شده توسط
+                            </th>
+                            <th class="text-center">
+                                وضعیت پاسخ
+                            </th>
+                            <th class="text-center">
+                                اطلاعات سوال
+                            </th>
+                            <th class="text-center">
+                                وضعیت سوال
+                            </th>
+                            <th class="text-center">
+                                امکانات
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach (var question in Model.Entities)
+                        {
+                            <tr id="question-row-@question.QuestionId">
+                                <td class="vertical-align-middle">
+                                    @question.Title
+                                </td>
+                                <td class="vertical-align-middle">
+                                    <span>@question.UserDisplayName</span>
+                                    <hr style="margin-bottom: 10px !important; margin-top: 10px !important" />
+                                    <span>@question.CreateDate</span>
+                                </td>
+                                <td class="vertical-align-middle">
+                                    <span class="@(question.HasAnyAnswer ? "success" : "danger")">@(question.HasAnyAnswer ? "دارای پاسخ" : "بدون پاسخ")</span>
+                                    <hr style="margin-bottom: 10px !important; margin-top: 10px !important" />
+                                    <span class="@(question.HasAnyTrueAnswer ? "success" : "danger")">@(question.HasAnyTrueAnswer ? "دارای پاسخ صحیح" : "بدون پاسخ صحیح")</span>
+                                </td>
+                                <td class="vertical-align-middle">
+                                    <span>امتیاز سوال : @question.Score</span>
+                                    <hr style="margin-bottom: 10px !important; margin-top: 10px !important" />
+                                    <span>تعداد پاسخ ها : @question.AnswersCount</span>
+                                </td>
+                                <td class="vertical-align-middle">
+                                    <span id="question-is-checked-status-@question.QuestionId" class="@(question.IsChecked ? "success" : "danger")">@(question.IsChecked ? "بررسی شده" : "بررسی نشده")</span>
+                                    @if (!question.IsChecked)
+                                    {
+                                        <button id="question-is-checked-button-@question.QuestionId" onclick="changeQuestionIsCheckedStatus('@question.QuestionId')" class="btn btn-maroon btn-xs" style="margin-right: 6px !important;">
+                                            تغییر وضعیت
+                                        </button>
+                                    }
+                                </td>
+                                <td class="vertical-align-middle">
+                                    <a onclick="deleteQuestion('@question.QuestionId')" href="javascript:void(0);" class="btn btn-danger btn-circle btn-xs">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                    <a asp-controller="Question" asp-action="QuestionDetail" asp-route-questionId="@question.QuestionId" class="btn btn-sky btn-circle btn-xs">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <partial name="_AdminNormalPaging" model="@Model.GetPaging()" />
+        }
+        else
+        {
+            <div class="alert alert-warning fade in">
+                <button class="close" data-dismiss="alert">
+                    ×
+                </button>
+                هیچ سوالی یافت نشد.
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="/common/custom/admin-question.js"></script>
+}
