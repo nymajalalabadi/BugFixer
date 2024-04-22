@@ -290,6 +290,18 @@ namespace BugFixer.Application.Services.Implementations
                     break;
             }
 
+            switch (filterQuestion.CheckedStatus)
+            {
+                case FilterQuestionCheckedStatus.All:
+                    break;
+                case FilterQuestionCheckedStatus.IsChecked:
+                    query = query.Where(s => s.IsChecked);
+                    break;
+                case FilterQuestionCheckedStatus.NotChecked:
+                    query = query.Where(s => !s.IsChecked);
+                    break;
+            }
+
             #endregion
 
             var result = query
@@ -734,6 +746,8 @@ namespace BugFixer.Application.Services.Implementations
 
         #region Admin
 
+        #region tag
+
         public async Task<List<TagViewModelJson>> GetTagViewModelJson()
         {
             var tags = await _questionRepository.GetAllTagsQueryable();
@@ -844,6 +858,50 @@ namespace BugFixer.Application.Services.Implementations
 
             return true;
         }
+
+        #endregion
+
+        #region Question
+
+        #region Question
+
+        public async Task<bool> DeleteQuestion(long id)
+        {
+            var question = await _questionRepository.GetQuestionById(id);
+
+            if (question != null)
+            {
+                return false;
+            }
+
+            question.IsDelete = true;
+
+            await _questionRepository.UpdateQuestion(question);
+            await _questionRepository.SaveChanges();
+
+            return true;
+        }
+
+        public async Task<bool> ChangeQuestionIsCheck(long id)
+        {
+            var question = await _questionRepository.GetQuestionById(id);
+
+            if (question != null)
+            {
+                return false;
+            }
+
+            question.IsChecked = true;
+
+            await _questionRepository.UpdateQuestion(question);
+            await _questionRepository.SaveChanges();
+
+            return true;
+        }
+
+        #endregion
+
+        #endregion
 
         #endregion
     }
