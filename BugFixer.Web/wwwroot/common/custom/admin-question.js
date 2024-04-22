@@ -15,11 +15,10 @@
                         id: id
                     },
                     beforeSend: function () {
-                        StartLoading("");
+                        StartLoading();
                     },
                     success: function (response) {
-                        EndLoading("");
-
+                        EndLoading();
                         if (response.status === "error") {
                             swal({
                                 title: "خطا",
@@ -33,7 +32,6 @@
                             element.removeClass("danger").addClass("success");
                             element.html("بررسی شده");
                             $(`#question-is-checked-button-${id}`).css("display", "none");
-
                             swal({
                                 title: "اعلان",
                                 text: response.message,
@@ -43,7 +41,7 @@
                         }
                     },
                     error: function () {
-                        EndLoading("");
+                        EndLoading();
                         swal({
                             title: "خطا",
                             text: "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .",
@@ -56,11 +54,10 @@
         });
 }
 
-
 function deleteQuestion(id) {
     swal({
         title: "آیا مطمئن هستی ؟",
-        text: "در صورت حذف قادر به بازگردانی آن نمی باشد.",
+        text: "در صورت انجام این عملیات قادر به بازگردانی آن نمی باشید.",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -74,11 +71,10 @@ function deleteQuestion(id) {
                         id: id
                     },
                     beforeSend: function () {
-                        StartLoading("");
+                        StartLoading();
                     },
                     success: function (response) {
-                        EndLoading("");
-
+                        EndLoading();
                         if (response.status === "error") {
                             swal({
                                 title: "خطا",
@@ -89,7 +85,6 @@ function deleteQuestion(id) {
                         }
                         else {
                             $(`#question-row-${id}`).fadeOut(500);
-
                             swal({
                                 title: "اعلان",
                                 text: response.message,
@@ -99,7 +94,7 @@ function deleteQuestion(id) {
                         }
                     },
                     error: function () {
-                        EndLoading("");
+                        EndLoading();
                         swal({
                             title: "خطا",
                             text: "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .",

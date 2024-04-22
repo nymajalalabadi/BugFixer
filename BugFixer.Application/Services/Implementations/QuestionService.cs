@@ -869,7 +869,7 @@ namespace BugFixer.Application.Services.Implementations
         {
             var question = await _questionRepository.GetQuestionById(id);
 
-            if (question != null)
+            if (question == null)
             {
                 return false;
             }
@@ -886,7 +886,7 @@ namespace BugFixer.Application.Services.Implementations
         {
             var question = await _questionRepository.GetQuestionById(id);
 
-            if (question != null)
+            if (question == null)
             {
                 return false;
             }
