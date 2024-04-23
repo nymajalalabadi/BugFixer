@@ -7,6 +7,7 @@ using BugFixer.domain.Entities.Account;
 using BugFixer.domain.Enums;
 using BugFixer.domain.InterFaces;
 using BugFixer.domain.ViewModels.Account;
+using BugFixer.domain.ViewModels.Admin.User;
 using BugFixer.domain.ViewModels.Common;
 using BugFixer.domain.ViewModels.UserPanel.Account;
 using Microsoft.Extensions.Options;
@@ -336,6 +337,44 @@ namespace BugFixer.Application.Services.Implementations
                 _userRepository.UpdateUser(user);
                 await _userRepository.SaveChanges();
             }
+        }
+
+        #endregion
+
+        #region admin
+
+        public async Task<FilterUserAdminViewModel> FilterUserAdmin(FilterUserAdminViewModel filter)
+        {
+            var query = _userRepository.GetAllUsers();
+
+            #region Filter
+
+            if (!string.IsNullOrEmpty(filter.UserSearch))
+            {
+                query = query.Where(s => (s.FirstName + " " + s.LastName).Trim().Contains(filter.UserSearch) || s.Email.Contains(filter.UserSearch));
+            }
+
+            #endregion
+
+            #region Status
+
+            switch (filter.ActivationStatus)
+            {
+                case AccountActivationStatus.All:
+                    break;
+                case AccountActivationStatus.IsActive:
+                    query = query.Where(u => u.IsEmailConfirmed);
+                    break;
+                case AccountActivationStatus.NotActive:
+                    query = query.Where(u => !u.IsEmailConfirmed);
+                    break;
+            }
+
+            #endregion
+
+            await filter.SetPaging(query);
+
+            return filter;
         }
 
         #endregion

@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using BugFixer.domain.ViewModels.Admin.User
+@using BugFixer.Application.Extensions
+@model BugFixer.domain.ViewModels.Admin.User.FilterUserAdminViewModel
+
+@{
+    ViewData["Title"] = "لیست کاربران";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal" asp-action="FilterUsers" asp-controller="User" asp-area="Admin" id="filter_form" method="get">
+            <div class="row">
+                <input type="hidden" asp-for="CurrentPage"/>
+                <div class="col-lg-5 col-md-12 mb-15">
+                    <input type="text" asp-for="UserSearch" placeholder="جستجوی کاربر" class="form-control">
+                </div>
+                <div class="col-lg-5 col-md-12 mb-15">
+                    <select class="form-control" asp-for="ActivationStatus" asp-items="Html.GetEnumSelectList(typeof(AccountActivationStatus))"></select>
+                </div>
+                <div class="col-lg-2 col-md-12 mb-15">
+                    <button type="submit" class="btn btn-success btn-block">اعمال فیلتر</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-12 text-center">
+        @if (Model.Entities.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="bordered-darkorange">
+                    <tr>
+                        <th class="text-center">
+                            نام نمایشی کاربر
+                        </th>
+                        <th class="text-center">
+                            اطلاعات تماس
+                        </th>
+                        <th class="text-center">
+                            امتیاز
+                        </th>
+                        <th class="text-center">
+                            وضعیت کاربر
+                        </th>
+                        <th class="text-center">
+                            امکانات
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    @foreach (var user in Model.Entities)
+                    {
+                        <tr id="user-row-@user.Id">
+                            <td class="vertical-align-middle">
+                                @user.GetUserDisplayName()
+                            </td>
+                            <td class="vertical-align-middle">
+                                <span>@user.Email</span>
+                                @if (!string.IsNullOrEmpty(user.PhoneNumber))
+                                {
+                                    <hr style="margin-bottom: 10px !important; margin-top: 10px !important"/>
+                                    <span>@user.PhoneNumber</span>
+                                }
+                            </td>
+                            <td class="vertical-align-middle">
+                                <span>امتیاز کاربر : @user.Score</span>
+                                @if (user.Medal != null)
+                                {
+                                    <hr style="margin-bottom: 10px !important; margin-top: 10px !important"/>
+                                    <span>@user.Medal.GetEnumDisplayName()</span>
+                                }
+                            </td>
+                            <td class="vertical-align-middle">
+                                <span class="@(user.IsEmailConfirmed ? "success" : "danger")">@(user.IsEmailConfirmed ? "حساب کاربری فعال" : "حساب کاربری غیرفعال")</span>
+                                <hr style="margin-bottom: 10px !important; margin-top: 10px !important"/>
+                                <span class="@(!user.IsBan ? "success" : "danger")">@(!user.IsBan ? "دسترسی آزاد" : "دسترسی محدود")</span>
+                            </td>
+                            <td class="vertical-align-middle">
+                                <a asp-controller="User" asp-action="EditUserInfo" asp-area="Admin" asp-route-userId="@user.Id" class="btn btn-warning btn-circle btn-xs">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+            <partial name="_AdminNormalPaging" model="@Model.GetPaging()"/>
+        }
+        else
+        {
+            <div class="alert alert-warning fade in">
+                <button class="close" data-dismiss="alert">
+                    ×
+                </button>
+                هیچ کاربری یافت نشد.
+            </div>
+        }
+    </div>
+</div>

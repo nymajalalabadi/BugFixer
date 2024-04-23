@@ -58,5 +58,10 @@ namespace BugFixer.DataLayer.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.Id == userId && !u.IsDelete);
         }
 
+        public IQueryable<User> GetAllUsers()
+        {
+            return  _context.Users.Where(u => !u.IsDelete).AsQueryable();
+        }
+
     }
 }

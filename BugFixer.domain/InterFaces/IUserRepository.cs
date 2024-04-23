@@ -1,4 +1,5 @@
 ﻿using BugFixer.domain.Entities.Account;
+using BugFixer.domain.Entities.Tags;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,7 @@ namespace BugFixer.domain.InterFaces
         void UpdateUser(User user);
 
         Task<User> GetUserById(long userId);
+
+        IQueryable<User> GetAllUsers();
     }
 }

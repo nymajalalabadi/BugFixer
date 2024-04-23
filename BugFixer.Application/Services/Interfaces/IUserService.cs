@@ -1,5 +1,6 @@
 ﻿using BugFixer.domain.Entities.Account;
 using BugFixer.domain.ViewModels.Account;
+using BugFixer.domain.ViewModels.Admin.User;
 using BugFixer.domain.ViewModels.UserPanel.Account;
 
 namespace BugFixer.Application.Services.Interfaces
@@ -58,6 +59,12 @@ namespace BugFixer.Application.Services.Interfaces
         #region user quetion
 
         Task UpdateUserScoreAndMedal(long userId, int score);
+
+        #endregion
+
+        #region admin
+
+        Task<FilterUserAdminViewModel> FilterUserAdmin(FilterUserAdminViewModel filter);
 
         #endregion
     }
