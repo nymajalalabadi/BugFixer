@@ -27,5 +27,21 @@ namespace BugFixer.Web.Areas.Admin.Controllers
         }
 
         #endregion
+
+        #region Edit User
+
+        [HttpGet]
+        public async Task<IActionResult> EditUserInfo(long userId)
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUserInfo(EditUserAdminViewModel edit)
+        {
+            return View(edit);
+        }
+
+        #endregion
     }
 }
