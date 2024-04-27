@@ -223,7 +223,7 @@ namespace BugFixer.Application.Services.Implementations
                 BirthDate = user.BirthDate != null ? user.BirthDate.Value.ToShamsiDate() : string.Empty,
                 CityId = user.CityId,
                 CountryId = user.CountryId,
-                Description= user.Description,
+                Description = user.Description,
                 FirstName = user.FirstName ?? string.Empty,
                 LastName = user.LastName ?? string.Empty,
                 GetNewsLetter = user.GetNewsLetter,
@@ -377,7 +377,7 @@ namespace BugFixer.Application.Services.Implementations
             return filter;
         }
 
-        public async Task<EditUserAdminViewModel> FillEditUserAdminViewModel(long userId)
+        public async Task<EditUserAdminViewModel?> FillEditUserAdminViewModel(long userId)
         {
             var user = await _userRepository.GetUserById(userId);
 
@@ -414,7 +414,7 @@ namespace BugFixer.Application.Services.Implementations
                 return EditUserAdminResult.UserNotFound;
             }
 
-            if (editUser.Email.Equals(user.Email) && await _userRepository.IsExistUserByEmail(editUser.Email))
+            if (!user.Email.Equals(editUser.Email) && await _userRepository.IsExistUserByEmail(editUser.Email))
             {
                 return EditUserAdminResult.NotValidEmail;
             }
