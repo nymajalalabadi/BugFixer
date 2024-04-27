@@ -377,6 +377,72 @@ namespace BugFixer.Application.Services.Implementations
             return filter;
         }
 
+        public async Task<EditUserAdminViewModel> FillEditUserAdminViewModel(long userId)
+        {
+            var user = await _userRepository.GetUserById(userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return new EditUserAdminViewModel()
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                PhoneNumber = user.PhoneNumber,
+                Description = user.Description,
+                BirthDate = user.BirthDate?.ToShamsiDate(),
+                CountryId = user.CountryId,
+                CityId = user.CityId,
+                GetNewsLetter = user.GetNewsLetter,
+                IsAdmin = user.IsAdmin,
+                IsBan = user.IsBan,
+                Avatar = user.Avatar,
+                IsEmailConfirmed = user.IsEmailConfirmed,
+                LastName = user.LastName,
+                UserId = user.Id
+            };
+        }
+
+        public async Task<EditUserAdminResult> EditUserAdmin(EditUserAdminViewModel editUser)
+        {
+            var user = await _userRepository.GetUserById(editUser.UserId);
+
+            if (user == null)
+            {
+                return EditUserAdminResult.UserNotFound;
+            }
+
+            if (editUser.Email.Equals(user.Email) && await _userRepository.IsExistUserByEmail(editUser.Email))
+            {
+                return EditUserAdminResult.NotValidEmail;
+            }
+
+            user.Email = editUser.Email;
+            user.FirstName = editUser.FirstName;
+            user.LastName = editUser.LastName;
+            user.Description = editUser.Description;
+            user.IsBan = editUser.IsBan;
+            user.IsEmailConfirmed = editUser.IsEmailConfirmed;
+            user.GetNewsLetter = editUser.GetNewsLetter;
+            user.IsAdmin = editUser.IsAdmin;
+            user.BirthDate = editUser.BirthDate?.ToMiladi();
+            user.PhoneNumber = editUser.PhoneNumber;
+            user.CountryId = Convert.ToInt32(editUser.CountryId);
+            user.CityId = Convert.ToInt32(editUser.CityId);
+
+            if (!string.IsNullOrEmpty(editUser.Password))
+            {
+                user.Password = editUser.Password;
+            }
+
+            _userRepository.UpdateUser(user);
+            await _userRepository.SaveChanges();
+
+            return EditUserAdminResult.Success;
+        }
+
         #endregion
     }
 }
