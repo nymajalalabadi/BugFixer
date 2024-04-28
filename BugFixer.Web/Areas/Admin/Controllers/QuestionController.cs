@@ -1,9 +1,11 @@
 ﻿using BugFixer.Application.Services.Interfaces;
 using BugFixer.domain.ViewModels.Question;
+using BugFixer.Web.ActionFilters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugFixer.Web.Areas.Admin.Controllers
 {
+    [PermissionChecker(3)]
     public class QuestionController : AdminBaseController
     {
         #region Consractor

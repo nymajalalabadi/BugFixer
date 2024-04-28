@@ -3,11 +3,13 @@ using BugFixer.Application.Services.Implementations;
 using BugFixer.Application.Services.Interfaces;
 using BugFixer.Application.Statics;
 using BugFixer.domain.ViewModels.Admin.User;
+using BugFixer.Web.ActionFilters;
 using BugFixer.Web.Extentions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugFixer.Web.Areas.Admin.Controllers
 {
+    [PermissionChecker(2)]
     public class UserController : AdminBaseController
     {
         #region constractor
