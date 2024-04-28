@@ -444,5 +444,21 @@ namespace BugFixer.Application.Services.Implementations
         }
 
         #endregion
+
+        #region Permission
+
+        public async Task<bool> CheckUserPermission(long permissionId, long userId)
+        {
+            var user = await _userRepository.GetUserById(userId);
+
+            if (user == null) return false;
+
+            if (user.IsAdmin) return true;
+
+            return await _userRepository.CheckUserHasPermission(user.Id, permissionId);
+        }
+
+
+        #endregion
     }
 }

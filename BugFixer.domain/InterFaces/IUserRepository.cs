@@ -25,5 +25,7 @@ namespace BugFixer.domain.InterFaces
         Task<User> GetUserById(long userId);
 
         IQueryable<User> GetAllUsers();
+
+        Task<bool> CheckUserHasPermission(long userId, long permissionId);
     }
 }

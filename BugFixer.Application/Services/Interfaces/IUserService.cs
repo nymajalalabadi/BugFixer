@@ -71,5 +71,11 @@ namespace BugFixer.Application.Services.Interfaces
         Task<EditUserAdminResult> EditUserAdmin(EditUserAdminViewModel editUser);
 
         #endregion
+
+        #region Permission
+
+        Task<bool> CheckUserPermission(long permissionId, long userId);
+
+        #endregion
     }
 }
