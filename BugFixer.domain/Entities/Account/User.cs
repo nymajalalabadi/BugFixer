@@ -85,6 +85,8 @@ namespace BugFixer.domain.Entities.Account
 
         public ICollection<AnswerUserScore> AnswerUserScores { get; set; }
 
+        public ICollection<UserPermission> UserPermissions { get; set; }
+
         #endregion
     }
 }
