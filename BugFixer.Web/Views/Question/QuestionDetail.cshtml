@@ -16,6 +16,12 @@
     <link rel="stylesheet" type="text/css" href="/css/question.css">
 }
 
+@section MetaTags
+{
+    <meta name="description" content="@Model.Title" />
+    <meta property="og:title" content="@Model.Title" />
+}
+
 @section Header
 {
     <partial name="_Header" />
