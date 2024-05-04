@@ -331,9 +331,13 @@ namespace BugFixer.Web.Controllers
         #region score answer
 
         [HttpPost("ScoreUpForAnswer")]
-        [Authorize]
         public async Task<IActionResult> ScoreUpForAnswer(long answerId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new JsonResult(new { status = "NotAuthorize" });
+            }
+
             var result = await _questionService.CreateScoreForAnswer(answerId, AnswerScoreType.Plus, User.GetUserId());
 
             switch (result)
@@ -361,9 +365,13 @@ namespace BugFixer.Web.Controllers
 
 
         [HttpPost("ScoreDownForAnswer")]
-        [Authorize]
         public async Task<IActionResult> ScoreDownForAnswer(long answerId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new JsonResult(new { status = "NotAuthorize" });
+            }
+
             var result = await _questionService.CreateScoreForAnswer(answerId, AnswerScoreType.Minus, User.GetUserId());
 
             switch (result)
@@ -418,6 +426,11 @@ namespace BugFixer.Web.Controllers
         [HttpPost("ScoreUpForQuestion")]
         public async Task<IActionResult> ScoreUpForQuestion(long questionId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new JsonResult(new { status = "NotAuthorize" });
+            }
+
             var result = await _questionService.CreateScoreForQuestion(questionId, QuestionScoreType.Plus, User.GetUserId());
 
             switch (result)
@@ -443,9 +456,13 @@ namespace BugFixer.Web.Controllers
         }
 
         [HttpPost("ScoreDownForQuestion")]
-        [Authorize]
         public async Task<IActionResult> ScoreDownForQuestion(long questionId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new JsonResult(new { status = "NotAuthorize" });
+            }
+
             var result = await _questionService.CreateScoreForQuestion(questionId, QuestionScoreType.Minus, User.GetUserId());
 
             switch (result)

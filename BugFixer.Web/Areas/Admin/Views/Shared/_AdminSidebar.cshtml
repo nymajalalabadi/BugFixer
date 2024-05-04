@@ -5,6 +5,12 @@
     <ul class="nav sidebar-menu">
         <!--Dashboard-->
         <li>
+            <a href="/">
+                <i class="menu-icon fa fa-globe"></i>
+                <span class="menu-text"> صفحه اصلی سایت </span>
+            </a>
+        </li>
+        <li>
             <a asp-action="Dashboard" asp-controller="Home" asp-area="Admin">
                 <i class="menu-icon glyphicon glyphicon-home"></i>
                 <span class="menu-text"> داشبورد </span>
@@ -32,6 +38,12 @@
             <a href="#" onclick="loadTagsModal('@Url.Action("LoadFilterTagsPartial", "Home", new { area = "Admin" })')">
                 <i class="menu-icon fa fa-tags"></i>
                 <span class="menu-text"> مدیریت تگ ها </span>
+            </a>
+        </li>
+        <li>
+            <a asp-controller="Account" asp-action="Logout">
+                <i class="menu-icon fa fa-sign-out"></i>
+                <span class="menu-text"> خروج </span>
             </a>
         </li>
     </ul>
