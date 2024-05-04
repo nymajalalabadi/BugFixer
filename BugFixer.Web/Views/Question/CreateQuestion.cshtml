@@ -102,15 +102,13 @@
 </div>
 
 @section Scripts
-    {
+{
     <partial name="_JqueryValidation" />
     <partial name="_AutoCompletePartial" />
     <script src="/js/question.js"></script>
     <script src="/common/magicsuggest/magicsuggest.js"></script>
     <script>
-        $(function () 
-        {
-
+        $(function () {
             var ms = $(`#SelectedTags`).magicSuggest({
                 data: '/get-tags',
                 queryParam: 'name',
@@ -122,16 +120,20 @@
                     return 'لطفا حداقل 2 کاراکتر را وارد کنید';
                 },
                 noSuggestionText: '{{name}} وارد شده در پیشنهادات سایت موجود نیست',
+                beforeSend: function (xhr, settings) {
+                    if (settings.url === '/get-tags?name=') {
+                        return false;
+                    }
+                }
             });
 
             var jsonValue = $("#SelectedTagsJson").val();
 
-            if (jsonValue !== '') 
-            {
+            if (jsonValue !== '') {
                 ms.setValue(JSON.parse(jsonValue));
             }
-
-        })
+        });
     </script>
+
 }
 
