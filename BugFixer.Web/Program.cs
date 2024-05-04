@@ -63,6 +63,26 @@ DependencyContainer.RejosterService(builder.Services);
 
 #endregion
 
+
+#region Minify
+
+//builder.Services.AddWebMarkupMin(
+//        options =>
+//        {
+//            options.AllowMinificationInDevelopmentEnvironment = true;
+//            options.AllowCompressionInDevelopmentEnvironment = true;
+//        })
+//    .AddHtmlMinification(
+//        options =>
+//        {
+//            options.MinificationSettings.RemoveRedundantAttributes = true;
+//            options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+//            options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+//        })
+//    .AddHttpCompression();
+
+#endregion
+
 #endregion
 
 
@@ -80,6 +100,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+//app.UseWebMarkupMin();
 
 app.UseRouting();
 app.UseAuthentication();
