@@ -345,6 +345,14 @@ function ScoreUpForQuestion(questionId) {
                     button: "بستن"
                 });
             }
+            else if (response.status === "NotAuthorize") {
+                swal({
+                    title: "اعلان",
+                    text: "برای انتخاب پاسخ درست ابتدا وارد سایت شوید .",
+                    icon: "info",
+                    button: "باشه"
+                });
+            }
             else if (response.status === "UserCreateScoreBefore") {
                 swal({
                     title: "اعلان",
@@ -396,6 +404,14 @@ function ScoreDownForQuestion(questionId) {
                 });
 
                 $("#QuestionDetailMainBox").load(location.href + " #QuestionDetailMainBox");
+            }
+            else if (response.status === "NotAuthorize") {
+                swal({
+                    title: "اعلان",
+                    text: "برای انتخاب پاسخ درست ابتدا وارد سایت شوید .",
+                    icon: "info",
+                    button: "باشه"
+                });
             }
             else if (response.status === "NotEnoughScoreForDown") {
                 swal({
@@ -465,6 +481,14 @@ function ScoreUpForAnswer(answerId) {
 
                 $("#AnswersBox").load(location.href + " #AnswersBox");
             }
+            else if (response.status === "NotAuthorize") {
+                swal({
+                    title: "اعلان",
+                    text: "برای انتخاب پاسخ درست ابتدا وارد سایت شوید .",
+                    icon: "info",
+                    button: "باشه"
+                });
+            }
             else if (response.status === "NotEnoughScoreForDown") {
                 swal({
                     title: "اعلان",
@@ -532,6 +556,14 @@ function ScoreDownForAnswer(answerId) {
                 });
 
                 $("#AnswersBox").load(location.href + " #AnswersBox");
+            }
+            else if (response.status === "NotAuthorize") {
+                swal({
+                    title: "اعلان",
+                    text: "برای انتخاب پاسخ درست ابتدا وارد سایت شوید .",
+                    icon: "info",
+                    button: "باشه"
+                });
             }
             else if (response.status === "NotEnoughScoreForDown") {
                 swal({
