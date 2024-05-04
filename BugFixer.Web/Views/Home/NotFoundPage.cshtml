@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "صفحه ی مورد نظر پیدا نشد";
+    Layout = "_Layout";
+}
+
+@section Header
+{
+    <partial name="_Header" />
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="/css/page.css">
+}
+
+<div class="user-page-style">
+
+    <div class="breadcumb-layer">
+        <div class="container">
+            <ul itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="/" itemprop="item"><span itemprop="name"> صفحه اصلی </span></a></li>
+                <li itemtype="http://schema.org/ListItem" itemscope itemprop="itemListElement"><a href="javascript:void(0)" itemprop="item"><span itemprop="name"> @ViewData["Title"] </span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-style default">
+
+        <div class="container">
+
+            <div class="right-col">
+
+                <div class="notfound">
+
+                    <header class="top-heading"><h1><a href="javascript:void(0)"> صفحه مورد نظر یافت نشد </a></h1></header>
+
+                    <img src="/images/404.svg" alt="404-image">
+
+                    <p> ممکن است صفحه ای که به دنبال آن میگردید حذف شده باشد و یا آدرس آن را به درستی وارد نکرده باشید </p>
+
+                </div>
+
+            </div>
+
+            <partial name="_LeftSide" />
+
+            <div class="clearfix"></div>
+
+        </div>
+
+    </div>
+
+</div>  

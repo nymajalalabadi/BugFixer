@@ -47,5 +47,15 @@ namespace BugFixer.Web.Controllers
 
         #endregion
 
+        #region 404
+
+        [HttpGet("/404")]
+        public IActionResult NotFoundPage()
+        {
+            return View();
+        }
+
+        #endregion
+
     }
 }
